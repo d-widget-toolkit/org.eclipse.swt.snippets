@@ -63,7 +63,7 @@ void main () {
     createItem(coolBar, 2);
     createItem(coolBar, 3);
     createItem(coolBar, 4);
-    int style = SWT.BORDER | DWT.H_SCROLL | DWT.V_SCROLL;
+    int style = SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL;
     Text text = new Text(shell, style);
     FormLayout layout = new FormLayout();
     shell.setLayout(layout);

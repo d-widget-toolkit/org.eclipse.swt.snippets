@@ -17,7 +17,7 @@ module org.eclipse.swt.snippets.Snippet288;
  * http://www.eclipse.org/swt/snippets/
  */
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.DWTException;
+import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -51,7 +51,7 @@ void main () {
     display = new Display();
     Shell shell = new Shell (display);
     shellBackground = shell.getBackground();
-    FileDialog dialog = new FileDialog(shell, SWT.OPEN | DWT.MULTI);
+    FileDialog dialog = new FileDialog(shell, SWT.OPEN | SWT.MULTI);
     dialog.setText("Select Multiple Animated GIFs");
     dialog.setFilterExtensions(["*.gif"]);
     char[] filename = dialog.open();
@@ -60,11 +60,11 @@ void main () {
     if (numToolBarItems > 0) {
         try {
             loadAllImages((new FilePath(filename)).parent, filenames);
-        } catch (DWTException e) {
+        } catch (SWTException e) {
             Stdout.print("There was an error loading an image.").newline;
             e.printStackTrace();
         }
-        ToolBar toolBar = new ToolBar (shell, SWT.FLAT | DWT.BORDER | DWT.WRAP);
+        ToolBar toolBar = new ToolBar (shell, SWT.FLAT | SWT.BORDER | SWT.WRAP);
         item = new ToolItem[numToolBarItems];
         for (int i = 0; i < numToolBarItems; i++) {
             item[i] = new ToolItem (toolBar, SWT.PUSH);
@@ -195,7 +195,7 @@ private static void startAnimationThreads() {
                         /* If we have just drawn the last image, decrement the repeat count and start again. */
                         if (imageDataIndex == imageDataArray[id].length - 1) repeatCount--;
                     }
-                } catch (DWTException ex) {
+                } catch (SWTException ex) {
                     Stdout.print("There was an error animating the GIF").newline;
                     ex.printStackTrace();
                 }

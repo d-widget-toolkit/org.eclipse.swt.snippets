@@ -37,7 +37,7 @@ void main() {
     Display display = new Display();
     final Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
-    Tree tree = new Tree(shell, SWT.BORDER | DWT.H_SCROLL | DWT.V_SCROLL);
+    Tree tree = new Tree(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
     tree.setHeaderVisible(true);
     TreeColumn column1 = new TreeColumn(tree, SWT.LEFT);
     column1.setText("Column 1");

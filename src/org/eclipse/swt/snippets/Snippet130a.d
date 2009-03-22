@@ -49,7 +49,7 @@ public class Snippet130 {
         Display display = new Display();
         Shell shell = new Shell(display);
         shell.setLayout(new GridLayout());
-        Text text = new Text(shell, SWT.MULTI | DWT.BORDER | DWT.V_SCROLL);
+        Text text = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
         text.setLayoutData(new GridData(GridData.FILL_BOTH));
         int[] nextId = new int[1];
         Button b = new Button(shell, SWT.PUSH);

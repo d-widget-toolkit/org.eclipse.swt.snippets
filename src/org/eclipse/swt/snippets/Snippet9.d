@@ -10,7 +10,7 @@
  * D Port
  *     Jesse Phillips <Jesse.K.Phillips+D> gmail.com
  *******************************************************************************/
-module org.eclipse.swt.snippets.Snippit9;
+module org.eclipse.swt.snippets.Snippet9;
 
 /*
  * Composite example snippet: scroll a child control automatically
@@ -34,7 +34,7 @@ import java.lang.all;
 void main () {
     auto display = new Display ();
     auto shell = new Shell
-       (display, SWT.SHELL_TRIM | DWT.H_SCROLL | DWT.V_SCROLL);
+       (display, SWT.SHELL_TRIM | SWT.H_SCROLL | SWT.V_SCROLL);
     auto composite = new Composite (shell, SWT.BORDER);
     composite.setSize (700, 600);
     auto red = display.getSystemColor (SWT.COLOR_RED);

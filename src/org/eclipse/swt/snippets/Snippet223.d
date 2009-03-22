@@ -61,7 +61,7 @@ void main () {
     button.setText("SWT.TOGGLE");
     ExpandItem item0 = new ExpandItem (bar, SWT.NONE, 0);
     item0.setText("What is your favorite button");
-    item0.setHeight(composite.computeSize(SWT.DEFAULT, DWT.DEFAULT).y);
+    item0.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
     item0.setControl(composite);
     item0.setImage(image);
     
@@ -89,7 +89,7 @@ void main () {
     label.setText("SWT.ICON_QUESTION");
     ExpandItem item1 = new ExpandItem (bar, SWT.NONE, 1);
     item1.setText("What is your favorite icon");
-    item1.setHeight(composite.computeSize(SWT.DEFAULT, DWT.DEFAULT).y);
+    item1.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
     item1.setControl(composite);
     item1.setImage(image);
     
@@ -110,7 +110,7 @@ void main () {
     new Slider (composite, SWT.NONE);
     ExpandItem item2 = new ExpandItem (bar, SWT.NONE, 2);
     item2.setText("What is your favorite range widget");
-    item2.setHeight(composite.computeSize(SWT.DEFAULT, DWT.DEFAULT).y);
+    item2.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
     item2.setControl(composite);
     item2.setImage(image);
     

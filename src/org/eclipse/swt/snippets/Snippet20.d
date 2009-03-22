@@ -36,7 +36,7 @@ void main () {
         auto item = new CoolItem (bar, SWT.NONE);
         auto button = new Button (bar, SWT.PUSH);
         button.setText ("Button " ~ to!(char[])(i));
-        auto size = button.computeSize (SWT.DEFAULT, DWT.DEFAULT);
+        auto size = button.computeSize (SWT.DEFAULT, SWT.DEFAULT);
         item.setPreferredSize (item.computeSize (size.x, size.y));
         item.setControl (button);
     }

@@ -46,9 +46,9 @@ void main () {
     display = new Display ();
     shell = new Shell (display);
     shell.setLayout(new GridLayout());
-    coolBar = new CoolBar(shell, SWT.FLAT | DWT.BORDER);
+    coolBar = new CoolBar(shell, SWT.FLAT | SWT.BORDER);
     coolBar.setLayoutData(new GridData(GridData.FILL_BOTH));
-    ToolBar toolBar = new ToolBar(coolBar, SWT.FLAT | DWT.WRAP);
+    ToolBar toolBar = new ToolBar(coolBar, SWT.FLAT | SWT.WRAP);
     int minWidth = 0;
     for (int j = 0; j < 5; j++) {
         int width = 0;
@@ -60,7 +60,7 @@ void main () {
     }
     CoolItem coolItem = new CoolItem(coolBar, SWT.DROP_DOWN);
     coolItem.setControl(toolBar);
-    Point size = toolBar.computeSize(SWT.DEFAULT, DWT.DEFAULT);
+    Point size = toolBar.computeSize(SWT.DEFAULT, SWT.DEFAULT);
     Point coolSize = coolItem.computeSize (size.x, size.y);
     coolItem.setMinimumSize(minWidth, coolSize.y);
     coolItem.setPreferredSize(coolSize);

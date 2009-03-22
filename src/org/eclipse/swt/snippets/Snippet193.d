@@ -42,7 +42,7 @@ void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new RowLayout(SWT.HORIZONTAL));
-    final Tree tree = new Tree(shell, SWT.BORDER | DWT.CHECK);
+    final Tree tree = new Tree(shell, SWT.BORDER | SWT.CHECK);
     tree.setLayoutData(new RowData(-1, 300));
     tree.setHeaderVisible(true);
     TreeColumn column = new TreeColumn(tree, SWT.LEFT);

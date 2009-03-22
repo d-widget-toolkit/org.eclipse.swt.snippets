@@ -54,7 +54,7 @@ void main (String [] args) {
     r3.setText ("R3");
     Button b2 = new Button (c1, SWT.PUSH);
     b2.setText ("B2");
-    List l1 = new List (c1, SWT.SINGLE | DWT.BORDER);
+    List l1 = new List (c1, SWT.SINGLE | SWT.BORDER);
     l1.setItems (["L1"]);
     Button b3 = new Button (c1, SWT.PUSH);
     b3.setText ("B&3");
@@ -68,15 +68,15 @@ void main (String [] args) {
     Button b6 = new Button (c2, SWT.PUSH);
     b6.setText ("B&6");
 
-    List l2 = new List (shell, SWT.SINGLE | DWT.BORDER);
+    List l2 = new List (shell, SWT.SINGLE | SWT.BORDER);
     l2.setItems ( ["L2"] );
 
-    ToolBar tb1 = new ToolBar (shell, SWT.FLAT | DWT.BORDER);
+    ToolBar tb1 = new ToolBar (shell, SWT.FLAT | SWT.BORDER);
     ToolItem i1 = new ToolItem (tb1, SWT.RADIO);
     i1.setText ("I1");
     ToolItem i2 = new ToolItem (tb1, SWT.RADIO);
     i2.setText ("I2");
-    Combo combo1 = new Combo (tb1, SWT.READ_ONLY | DWT.BORDER);
+    Combo combo1 = new Combo (tb1, SWT.READ_ONLY | SWT.BORDER);
     combo1.setItems (["C1"]);
     combo1.setText ("C1");
     combo1.pack ();

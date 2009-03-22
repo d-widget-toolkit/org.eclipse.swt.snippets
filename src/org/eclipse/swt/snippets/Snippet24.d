@@ -36,7 +36,7 @@ void main (String [] args) {
     shell.setLayout (new RowLayout ());
     Combo combo = new Combo (shell, SWT.NONE);
     combo.setItems (["A-1", "B-1", "C-1"]);
-    Text text = new Text (shell, SWT.SINGLE | DWT.BORDER);
+    Text text = new Text (shell, SWT.SINGLE | SWT.BORDER);
     text.setText ("some text");
     combo.addListener (SWT.DefaultSelection, new class() Listener{
         public void handleEvent (Event e) {

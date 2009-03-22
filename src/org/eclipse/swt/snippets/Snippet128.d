@@ -34,8 +34,8 @@ import tango.io.Console;
 import java.lang.all;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.DWTError;
-import org.eclipse.swt.DWTException;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.SWTException;
 
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.ProgressEvent;
@@ -93,7 +93,7 @@ public static void main(String [] args) {
 	Browser browser;
 	try {
 		browser = new Browser(shell, SWT.NONE);
-	} catch (DWTError e) {
+	} catch (SWTError e) {
 		Cout ("Could not instantiate Browser: " ~ e.getMessage());
 		return;
 	}

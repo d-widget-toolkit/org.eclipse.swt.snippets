@@ -39,7 +39,7 @@ void main() {
     Shell shell = new Shell(display);
     shell.setText("Advanced Graphics");
     FontData fd = shell.getFont().getFontData()[0];
-    Font font = new Font(display, fd.getName(), 60., SWT.BOLD | DWT.ITALIC);
+    Font font = new Font(display, fd.getName(), 60., SWT.BOLD | SWT.ITALIC);
     Image image = new Image(display, 640, 480);
     Rectangle rect = image.getBounds();
     GC gc = new GC(image);

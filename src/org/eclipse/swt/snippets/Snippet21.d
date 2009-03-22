@@ -84,10 +84,10 @@ void main () {
 	c.addListener (SWT.FocusOut, dgListener(&onFocusOut, c));
 	c.addListener (SWT.KeyDown, dgListener(&onKeyDown, c));
 
-	Text t = new Text (shell, SWT.SINGLE | DWT.BORDER);
+	Text t = new Text (shell, SWT.SINGLE | SWT.BORDER);
 	t.setBounds (10, 85, 100, 32);
 
-	Text r = new Text (shell, SWT.MULTI | DWT.BORDER);
+	Text r = new Text (shell, SWT.MULTI | SWT.BORDER);
 	r.setBounds (10, 120, 100, 32);
 	
 	c.setFocus ();

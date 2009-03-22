@@ -58,7 +58,7 @@ void main() {
                     }
                 });
 
-            ScrolledComposite sc = new ScrolledComposite (popup, SWT.V_SCROLL | DWT.H_SCROLL);
+            ScrolledComposite sc = new ScrolledComposite (popup, SWT.V_SCROLL | SWT.H_SCROLL);
             Canvas canvas = new Canvas(sc, SWT.NONE);
             sc.setContent(canvas);
             canvas.setBounds(display.getBounds ());

@@ -56,7 +56,7 @@ Shell shell;
 void main(char[][] args) {
     display = new Display();
     //Shell must be created with style SWT.NO_TRIM
-    shell = new Shell(display, SWT.NO_TRIM | DWT.ON_TOP);
+    shell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
     shell.setBackground(display.getSystemColor(SWT.COLOR_RED));
     //define a region that looks like a key hole
     Region region = new Region();

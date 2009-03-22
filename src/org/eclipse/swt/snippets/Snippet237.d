@@ -74,7 +74,7 @@ public class Snippet237 {
     }
     static void createChildren(Composite parent) {
         parent.setLayout(new RowLayout());
-        List list = new List(parent, SWT.BORDER | DWT.MULTI);
+        List list = new List(parent, SWT.BORDER | SWT.MULTI);
         list.add("List item 1");
         list.add("List item 2");
         Label label = new Label(parent, SWT.NONE);

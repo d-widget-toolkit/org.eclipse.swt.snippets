@@ -53,7 +53,7 @@ void main() {
     Shell shell = new Shell(display);
     shell.setText("StyledText Bullet Example");
     shell.setLayout(new FillLayout());
-    StyledText styledText = new StyledText (shell, SWT.FULL_SELECTION | DWT.BORDER | DWT.WRAP | DWT.V_SCROLL);
+    StyledText styledText = new StyledText (shell, SWT.FULL_SELECTION | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
     StringBuffer text = new StringBuffer();
     text.append("Here is StyledText with some bulleted lists:\n\n");
     for (int i = 0; i < 4; i++) text.append("Red Bullet List Item " ~ to!(char[])(i) ~ "\n");

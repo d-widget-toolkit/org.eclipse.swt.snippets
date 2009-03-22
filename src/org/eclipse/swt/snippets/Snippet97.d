@@ -34,7 +34,7 @@ import tango.util.Convert;
 void main () {
     auto display = new Display ();
     auto shell = new Shell (display);
-    auto tree = new Tree (shell, SWT.BORDER | DWT.MULTI);
+    auto tree = new Tree (shell, SWT.BORDER | SWT.MULTI);
     auto menu = new Menu (shell, SWT.POP_UP);
     tree.setMenu (menu);
     for (int i=0; i<12; i++) {

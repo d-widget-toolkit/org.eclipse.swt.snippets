@@ -42,7 +42,7 @@ public static void main(String[] args) {
     Clipboard cb = new Clipboard(display);
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
-    Text text = new Text(shell, SWT.BORDER | DWT.MULTI | DWT.WRAP);
+    Text text = new Text(shell, SWT.BORDER | SWT.MULTI | SWT.WRAP);
     Menu menu = new Menu(shell, SWT.POP_UP);
     MenuItem copyItem = new MenuItem(menu, SWT.PUSH);
     copyItem.setText("Copy");

@@ -87,7 +87,7 @@ class Snippet133{
         shell = new Shell(display);
         shell.setLayout(new FillLayout());
         shell.setText("Print Text");
-        text = new Text(shell, SWT.BORDER | DWT.MULTI | DWT.V_SCROLL | DWT.H_SCROLL);
+        text = new Text(shell, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
 
         Menu menuBar = new Menu(shell, SWT.BAR);
         shell.setMenuBar(menuBar);

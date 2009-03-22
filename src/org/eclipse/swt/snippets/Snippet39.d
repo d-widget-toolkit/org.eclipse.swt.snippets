@@ -35,8 +35,8 @@ public static void main(String[] args) {
     Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
 
-    CCombo combo = new CCombo(shell, SWT.FLAT | DWT.BORDER);
-    combo.setLayoutData(new GridData(SWT.FILL, DWT.CENTER, true, false));
+    CCombo combo = new CCombo(shell, SWT.FLAT | SWT.BORDER);
+    combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
     for (int i = 0; i < 5; i++) {
         combo.add("item" ~ to!(char[])(i));
     }

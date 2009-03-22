@@ -42,7 +42,7 @@ void main() {
     auto shell = new Shell(display);
     shell.setLayout(new GridLayout(2, false));
 
-    auto text = new Text(shell, SWT.SEARCH | DWT.CANCEL);
+    auto text = new Text(shell, SWT.SEARCH | SWT.CANCEL);
     Image image = null;
     if ((text.getStyle() & SWT.CANCEL) == 0) {
         image = new Image (display, new ImageData(new ByteArrayInputStream( cast(byte[]) import("links_obj.gif" ))));

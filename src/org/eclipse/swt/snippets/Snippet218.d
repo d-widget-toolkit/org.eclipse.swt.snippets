@@ -55,7 +55,7 @@ void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
-    StyledText styledText = new StyledText(shell, SWT.WRAP | DWT.BORDER);
+    StyledText styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
     styledText.setText(text);
     FontData data = display.getSystemFont().getFontData()[0];
     Font font = new Font(display, data.getName(), 16f, SWT.BOLD);

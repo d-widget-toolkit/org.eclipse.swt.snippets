@@ -60,7 +60,7 @@ void main () {
 	final Image image = originalImage;
 	final Point origin = new Point (0, 0);
 	final Canvas canvas = new Canvas (shell, SWT.NO_BACKGROUND |
-			SWT.NO_REDRAW_RESIZE | DWT.V_SCROLL | DWT.H_SCROLL);
+			SWT.NO_REDRAW_RESIZE | SWT.V_SCROLL | SWT.H_SCROLL);
 	final ScrollBar hBar = canvas.getHorizontalBar ();
     void onHBarSelection (Event e) {
         int hSelection = hBar.getSelection ();

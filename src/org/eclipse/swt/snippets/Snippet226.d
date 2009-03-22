@@ -44,7 +44,7 @@ void main()
 	Shell shell = new Shell(display);
 	shell.setText("Custom gradient selection for Tree");
 	shell.setLayout(new FillLayout());
-	final Tree tree = new Tree(shell, SWT.MULTI | DWT.FULL_SELECTION);
+	final Tree tree = new Tree(shell, SWT.MULTI | SWT.FULL_SELECTION);
 	tree.setHeaderVisible(true);
 	tree.setLinesVisible(true);
 	int columnCount = 4;

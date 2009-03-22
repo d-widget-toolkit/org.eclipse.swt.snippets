@@ -38,8 +38,8 @@ void main (String [] args) {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout(new RowLayout());
-    Text text = new Text(shell, SWT.MULTI | DWT.BORDER);
-    String modifier = SWT.MOD1 == DWT.CTRL ? "Ctrl" : "Command";
+    Text text = new Text(shell, SWT.MULTI | SWT.BORDER);
+    String modifier = SWT.MOD1 == SWT.CTRL ? "Ctrl" : "Command";
     text.setText("Hit " ~ modifier ~ "+Return\nto see\nthe default button\nrun");
     text.addTraverseListener(new class() TraverseListener{
         public void keyTraversed(TraverseEvent e) {

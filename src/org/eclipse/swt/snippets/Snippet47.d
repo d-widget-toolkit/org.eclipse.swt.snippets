@@ -52,7 +52,7 @@ void main () {
     gc.fillRectangle (hotImage.getBounds ());
     gc.dispose ();
     
-    ToolBar bar = new ToolBar (shell, SWT.BORDER | DWT.FLAT);
+    ToolBar bar = new ToolBar (shell, SWT.BORDER | SWT.FLAT);
     bar.setSize (200, 32);
     for (int i=0; i<12; i++) {
         ToolItem item = new ToolItem (bar, 0);

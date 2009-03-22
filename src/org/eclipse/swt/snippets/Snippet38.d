@@ -30,11 +30,11 @@ import tango.util.Convert;
 void main () {
     auto display = new Display ();
     auto shell = new Shell (display);
-    auto table = new Table (shell, SWT.MULTI | DWT.BORDER | DWT.FULL_SELECTION);
+    auto table = new Table (shell, SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
     table.setLinesVisible (true);
     table.setHeaderVisible (true);
     char[][] titles = [" ", "C", "!", "Description", "Resource", "In Folder", "Location"];
-    int[]    styles = [SWT.NONE, DWT.LEFT, DWT.RIGHT, DWT.CENTER, DWT.NONE, DWT.NONE, DWT.NONE];
+    int[]    styles = [SWT.NONE, SWT.LEFT, SWT.RIGHT, SWT.CENTER, SWT.NONE, SWT.NONE, SWT.NONE];
     foreach (i,title; titles) {
         auto column = new TableColumn (table, styles[i]);
         column.setText (title);

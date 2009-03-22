@@ -39,7 +39,7 @@ void main() {
     Canvas blankCanvas = new Canvas(shell, SWT.BORDER);
     blankCanvas.setLayoutData(new GridData(200, 200));
     Label statusLine = new Label(shell, SWT.NONE);
-    statusLine.setLayoutData(new GridData(SWT.FILL, DWT.CENTER, true, false));
+    statusLine.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
     Menu bar = new Menu (shell, SWT.BAR);
     shell.setMenuBar (bar);

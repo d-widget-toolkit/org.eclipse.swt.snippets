@@ -35,9 +35,9 @@ void main (String [] args) {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout (new RowLayout (SWT.VERTICAL));
-    Composite c1 = new Composite (shell, SWT.BORDER | DWT.NO_RADIO_GROUP);
+    Composite c1 = new Composite (shell, SWT.BORDER | SWT.NO_RADIO_GROUP);
     c1.setLayout (new RowLayout ());
-    Composite c2 = new Composite (shell, SWT.BORDER | DWT.NO_RADIO_GROUP);
+    Composite c2 = new Composite (shell, SWT.BORDER | SWT.NO_RADIO_GROUP);
     c2.setLayout (new RowLayout ());
     Composite [] composites = [c1, c2];
     Listener radioGroup = new class() Listener{

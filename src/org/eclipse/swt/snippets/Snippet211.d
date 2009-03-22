@@ -48,7 +48,7 @@ void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
-    StyledText styledText = new StyledText(shell, SWT.WRAP | DWT.BORDER);
+    StyledText styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
     styledText.setText(text);
     FontData data = styledText.getFont().getFontData()[0];
     Font font1 = new Font(display, data.getName(), data.getHeight() * 2f, data.getStyle());

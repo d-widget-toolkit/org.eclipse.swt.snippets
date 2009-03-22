@@ -41,10 +41,10 @@ void main(String [] args) {
     shell.setText("The SWT.Settings Event");
     shell.setLayout(new GridLayout());
     Label label = new Label(shell, SWT.WRAP);
-    label.setLayoutData(new GridData(SWT.FILL, DWT.CENTER, true, false));
+    label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
     label.setText("Change a system setting and the table below will be updated.");
     final Table table = new Table(shell, SWT.BORDER);
-    table.setLayoutData(new GridData(SWT.FILL, DWT.FILL, true, true));
+    table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     TableColumn column = new TableColumn(table, SWT.NONE);
     column = new TableColumn(table, SWT.NONE);
     column.setWidth(150);

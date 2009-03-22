@@ -48,7 +48,7 @@ void main () {
     auto shell = new Shell (display);
     shell.setLayout(new GridLayout());
     auto folder = new CTabFolder(shell, SWT.BORDER);
-    folder.setLayoutData(new GridData(SWT.FILL, DWT.FILL, true, false));
+    folder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
     folder.setSimple(false);
     folder.setUnselectedImageVisible(false);
     folder.setUnselectedCloseVisible(false);
@@ -56,7 +56,7 @@ void main () {
         CTabItem item = new CTabItem(folder, SWT.CLOSE);
         item.setText("Item " ~ to!(char[])(i));
         item.setImage(image);
-        Text text = new Text(folder, SWT.MULTI | DWT.V_SCROLL | DWT.H_SCROLL);
+        Text text = new Text(folder, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
         text.setText("Text for item " ~ to!(char[])(i) ~
                      "\n\none, two, three\n\nabcdefghijklmnop");
         item.setControl(text);
@@ -70,13 +70,13 @@ void main () {
         }
         public void maximize(CTabFolderEvent event) {
             folder.setMaximized(true);
-            folder.setLayoutData(new GridData(SWT.FILL, DWT.FILL, true, true));
+            folder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
             shell.layout(true);
         }
         public void restore(CTabFolderEvent event) {
             folder.setMinimized(false);
             folder.setMaximized(false);
-            folder.setLayoutData(new GridData(SWT.FILL, DWT.FILL, true, false));
+            folder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
             shell.layout(true);
         }
     });

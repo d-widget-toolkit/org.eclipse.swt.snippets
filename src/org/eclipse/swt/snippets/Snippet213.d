@@ -44,7 +44,7 @@ void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
-    StyledText styledText = new StyledText(shell, SWT.WRAP | DWT.BORDER);
+    StyledText styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
     styledText.setText(text);
     styledText.setLineIndent(0, 1, 50);
     styledText.setLineAlignment(2, 1, SWT.CENTER);

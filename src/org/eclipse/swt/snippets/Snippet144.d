@@ -42,7 +42,7 @@ void main() {
     auto display = new Display ();
     auto shell = new Shell (display);
     shell.setLayout (new RowLayout (SWT.VERTICAL));
-    auto table = new Table (shell, SWT.VIRTUAL | DWT.BORDER);
+    auto table = new Table (shell, SWT.VIRTUAL | SWT.BORDER);
     table.addListener (SWT.SetData, new class Listener {
         public void handleEvent (Event event) {
             auto item = cast(TableItem) event.item;

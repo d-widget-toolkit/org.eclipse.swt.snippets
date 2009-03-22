@@ -41,7 +41,7 @@ public static void main( String[] args) {
     Clipboard cb = new Clipboard(display);
     Shell shell = new Shell (display);
     shell.setLayout(new FormLayout());
-    Text text = new Text(shell, SWT.BORDER | DWT.MULTI | DWT.V_SCROLL | DWT.H_SCROLL);
+    Text text = new Text(shell, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
 
     Button copy = new Button(shell, SWT.PUSH);
     copy.setText("Copy");

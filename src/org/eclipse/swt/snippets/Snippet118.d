@@ -40,7 +40,7 @@ void main (String [] args) {
     Cursor[] cursor = new Cursor[1];
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Change cursor");
-    Point size = button.computeSize(SWT.DEFAULT, DWT.DEFAULT);
+    Point size = button.computeSize(SWT.DEFAULT, SWT.DEFAULT);
     button.setSize(size);
     button.addListener(SWT.Selection, new class() Listener{
         public void handleEvent(Event e) {

@@ -92,8 +92,8 @@ void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
-    styledText = new StyledText(shell, SWT.WRAP | DWT.BORDER);
-    styledText.setLayoutData(new GridData(SWT.FILL, DWT.FILL, true, true));
+    styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
+    styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     styledText.setText(text);
     images = [
         display.getSystemImage(SWT.ICON_QUESTION),
@@ -154,7 +154,7 @@ void main() {
     
     Button button = new Button (shell, SWT.PUSH);
     button.setText("Add Image");
-    button.setLayoutData(new GridData(SWT.CENTER, DWT.CENTER, false, false));
+    button.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false));
     
     void onSelection(Event e) {
        FileDialog dialog = new FileDialog(shell);

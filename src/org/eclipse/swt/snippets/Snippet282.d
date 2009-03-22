@@ -46,7 +46,7 @@ public static void main(String[] args) {
     shell.setText("Clipboard ImageTransfer");
 
     Button imageButton = new Button(shell, SWT.NONE );
-    GridData gd = new GridData(SWT.FILL, DWT.FILL, true, true);
+    GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
     gd.minimumHeight = 400;
     gd.minimumWidth = 600;
     imageButton.setLayoutData(gd);

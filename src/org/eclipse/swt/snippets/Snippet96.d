@@ -61,7 +61,7 @@ void main() {
     shell.setLayout(new GridLayout());
 
     // create a a table with 3 columns and fill with data
-    final Table table = new Table(shell, SWT.BORDER | DWT.MULTI | DWT.FULL_SELECTION);
+    final Table table = new Table(shell, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
     table.setLayoutData(new GridData(GridData.FILL_BOTH));
     TableColumn column1 = new TableColumn(table, SWT.NONE);
     TableColumn column2 = new TableColumn(table, SWT.NONE);
@@ -227,14 +227,14 @@ void main() {
             cursor = cursor_;
         }
         public void keyReleased(KeyEvent e) {
-            if (e.keyCode == SWT.CONTROL && (e.stateMask & DWT.SHIFT) != 0)
+            if (e.keyCode == SWT.CONTROL && (e.stateMask & SWT.SHIFT) != 0)
                 return;
-            if (e.keyCode == SWT.SHIFT && (e.stateMask & DWT.CONTROL) != 0)
+            if (e.keyCode == SWT.SHIFT && (e.stateMask & SWT.CONTROL) != 0)
                 return;
             if (e.keyCode != SWT.CONTROL
                 && (e.stateMask & SWT.CONTROL) != 0)
                 return;
-            if (e.keyCode != SWT.SHIFT && (e.stateMask & DWT.SHIFT) != 0)
+            if (e.keyCode != SWT.SHIFT && (e.stateMask & SWT.SHIFT) != 0)
                 return;
 
             TableItem[] selection = table.getSelection();

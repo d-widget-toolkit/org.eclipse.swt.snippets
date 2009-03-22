@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 
-import tango.math.Math;
+import java.lang.all;
 
 void main () {
     auto display = new Display ();

@@ -75,9 +75,9 @@ void main() {
     Font font = new Font(display, "Tahoma", 32f, SWT.NORMAL);
     Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
-    styledText = new StyledText(shell, SWT.WRAP | DWT.BORDER);
+    styledText = new StyledText(shell, SWT.WRAP | SWT.BORDER);
     styledText.setFont(font);
-    styledText.setLayoutData(new GridData(SWT.FILL, DWT.FILL, true, true));
+    styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     styledText.setText(text);
     controls = new Control[2];
     Button button = new Button(styledText, SWT.PUSH);

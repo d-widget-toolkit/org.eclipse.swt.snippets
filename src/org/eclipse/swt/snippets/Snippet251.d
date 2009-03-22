@@ -55,15 +55,15 @@ void main (String [] args) {
             dialog = new Shell (shell, SWT.DIALOG_TRIM);
             dialog.setLayout (new GridLayout (3, false));
 
-            calendar = new DateTime (dialog, SWT.CALENDAR | DWT.BORDER);
-            date = new DateTime (dialog, SWT.DATE | DWT.SHORT);
-            time = new DateTime (dialog, SWT.TIME | DWT.SHORT);
+            calendar = new DateTime (dialog, SWT.CALENDAR | SWT.BORDER);
+            date = new DateTime (dialog, SWT.DATE | SWT.SHORT);
+            time = new DateTime (dialog, SWT.TIME | SWT.SHORT);
 
             new Label (dialog, SWT.NONE);
             new Label (dialog, SWT.NONE);
             Button ok = new Button (dialog, SWT.PUSH);
             ok.setText ("OK");
-            ok.setLayoutData(new GridData (SWT.FILL, DWT.CENTER, false, false));
+            ok.setLayoutData(new GridData (SWT.FILL, SWT.CENTER, false, false));
             ok.addSelectionListener (new class() SelectionAdapter{
                 void widgetSelected (SelectionEvent e) {
                     Stdout.formatln("Calendar date selected (MM/DD/YYYY) = {:d02}/{:d02}/{:d04}",

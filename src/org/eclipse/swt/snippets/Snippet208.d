@@ -73,32 +73,32 @@ void main (String [] args) {
 
     Label label = new Label(shell, SWT.CENTER);
     label.setImage(hueImage);
-    GridData data = new GridData(SWT.RIGHT, DWT.CENTER, false, false, 2, 1);
+    GridData data = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 2, 1);
     label.setLayoutData(data);
 
     label = new Label(shell, SWT.CENTER); //spacer
     label = new Label(shell, SWT.CENTER);
     label.setText("Hue");
-    data = new GridData(SWT.CENTER, DWT.CENTER, false, false);
+    data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
     label.setLayoutData(data);
     label = new Label(shell, SWT.CENTER); //spacer
-    data = new GridData(SWT.CENTER, DWT.CENTER, false, false, 2, 1);
+    data = new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1);
     label.setLayoutData(data);
 
     label = new Label(shell, SWT.LEFT);
     label.setText("Brightness");
-    data = new GridData(SWT.LEFT, DWT.CENTER, false, false);
+    data = new GridData(SWT.LEFT, SWT.CENTER, false, false);
     label.setLayoutData(data);
 
     label = new Label(shell, SWT.CENTER);
     label.setImage(saturationImage);
-    data = new GridData(SWT.CENTER, DWT.CENTER, false, false);
+    data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
     label.setLayoutData (data);
 
     label = new Label(shell, SWT.CENTER); //spacer
     label = new Label(shell, SWT.CENTER);
     label.setText("Saturation");
-    data = new GridData(SWT.CENTER, DWT.CENTER, false, false);
+    data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
     label.setLayoutData(data);
 
     shell.pack();

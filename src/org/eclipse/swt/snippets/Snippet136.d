@@ -21,8 +21,8 @@ module Snippet136;
  * @since 3.0
  */
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.DWTError;
-import org.eclipse.swt.DWTException;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.SWTException;
 
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Display;
@@ -52,7 +52,7 @@ void main() {
 		Browser browser;
 		try {
 			browser = new Browser(shell, SWT.NONE);
-		} catch (DWTError e) {
+		} catch (SWTError e) {
 			Cout("Could not instatiate Browser.").newline;
 			return;
 		}

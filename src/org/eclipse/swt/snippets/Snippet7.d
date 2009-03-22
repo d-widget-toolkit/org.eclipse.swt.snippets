@@ -44,7 +44,7 @@ void main (String [] args) {
     Shell shell = new Shell (display);
     shell.setText ("Lazy Table");
     shell.setLayout (new FillLayout ());
-    Table table = new Table (shell, SWT.BORDER | DWT.MULTI);
+    Table table = new Table (shell, SWT.BORDER | SWT.MULTI);
     table.setSize (200, 200);
     Thread thread = new Thread({
         for(int i=0; i< 20000; i++){
