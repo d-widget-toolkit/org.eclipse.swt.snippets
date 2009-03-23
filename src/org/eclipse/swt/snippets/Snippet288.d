@@ -29,8 +29,10 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.FileDialog;
 
+import java.lang.all;
+
 import tango.io.FilePath;
-import tango.io.FileConst;
+import tango.io.model.IFile;
 import tango.core.Thread;
 import tango.io.Stdout;
 import tango.util.Convert;

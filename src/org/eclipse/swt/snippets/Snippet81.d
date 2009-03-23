@@ -35,7 +35,7 @@ import org.eclipse.swt.ole.win32.OleFunctionDescription;
 import org.eclipse.swt.ole.win32.OlePropertyDescription;
 
 import tango.io.Stdout;
-import tango.io.Print;
+import tango.io.stream.Format;
 import tango.text.convert.Format;
 
 int main() {
@@ -73,7 +73,7 @@ int main() {
     return iRes;
 }
 
-private static void printTypeInfo(OleAutomation oOleAutoObj, Print!(char) oOut)
+private static void printTypeInfo(OleAutomation oOleAutoObj, FormatOutput!(char) oOut)
 {
     org.eclipse.swt.internal.ole.win32.OAIDL.TYPEATTR * pTypeAttr = oOleAutoObj.getTypeInfoAttributes();
     if (pTypeAttr !is null) {
