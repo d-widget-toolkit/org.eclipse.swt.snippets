@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 void main () {
-    final Display display = new Display ();
+    Display display = new Display ();
     Shell shell = new Shell(display);
     shell.setLayout (new FillLayout());
 

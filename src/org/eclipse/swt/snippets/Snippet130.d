@@ -32,12 +32,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.custom.BusyIndicator;
 
 import java.lang.all;
-
-import tango.core.Thread;
-import tango.io.Stdout;
-import tango.util.Convert;
-import tango.util.log.Trace;
-
+import java.lang.Thread;
 
 void main(String[] args){
     Snippet130.main(args);
@@ -66,28 +61,28 @@ public class Snippet130 {
                             display.syncExec(new class() Runnable {
                                 public void run() {
                                 if (text.isDisposed()) return;
-                                text.append("\nStart long running task "~to!(char[])(id));
+                                text.append(Format("\nStart long running task {}", id));
                                 }
                                 }); // display.syncExec
                             /*
                              * This crashes when more than 1 thread gets created. THD
                              for (int i = 0; i < 100000; i++) {
                              if (display.isDisposed()) return;
-                             Stdout.formatln("do task that takes a long time in a separate thread {}", id);
+                             getDwtLogger().info(__FILE__, __LINE__, "do task that takes a long time in a separate thread {}", id);
                              }
                              */
                             // This runs fine
                             for (int i = 0; i < 6; i++) {
                                 if (display.isDisposed()) return;
-                                Trace.formatln("do task that takes a long time in a separate thread {} {}/6", id, i);
-                                Thread.sleep(0.500);
+                                getDwtLogger().info( __FILE__, __LINE__, "do task that takes a long time in a separate thread {} {}/6", id, i);
+                                Thread.sleep(500);
                             }
 
                             if (display.isDisposed()) return;
                             display.syncExec(new class() Runnable {
                                 public void run() {
                                     if (text.isDisposed()) return;
-                                    text.append("\nCompleted long running task "~to!(char[])(id));
+                                    text.append(Format("\nCompleted long running task {}", id));
                                 }
                             }); // display.syncExec
                             done = true;
@@ -116,12 +111,12 @@ public class Snippet130 {
     }
     private void printStart(Text text, int id ) {
         if (text.isDisposed()) return;
-        Trace.formatln( "Start long running task {}", id );
-        text.append("\nStart long running task "~to!(char[])(id));
+        getDwtLogger().info( __FILE__, __LINE__, "Start long running task {}", id );
+        text.append(Format("\nStart long running task {}", id));
     }
     private void printEnd(Text text, int id ) {
         if (text.isDisposed()) return;
-        Trace.formatln( "Completed long running task {}", id );
-        text.append("\nCompleted long running task "~to!(char[])(id));
+        getDwtLogger().info( __FILE__, __LINE__, "Completed long running task {}", id );
+        text.append(Format("\nCompleted long running task {}", id));
     }
 }

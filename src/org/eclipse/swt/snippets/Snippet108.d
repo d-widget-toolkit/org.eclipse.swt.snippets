@@ -29,7 +29,6 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
 
 import java.lang.all;
-import tango.io.Stdout;
 
 void main(String[] args){
     Snippet108.main(args);
@@ -48,14 +47,14 @@ public class Snippet108 {
         ok.setText ("OK");
         ok.addSelectionListener(new class() SelectionAdapter {
             public void widgetSelected(SelectionEvent e) {
-                Stdout.formatln("OK");
+                getDwtLogger().info( __FILE__, __LINE__, "OK");
             }
         });
         Button cancel = new Button (shell, SWT.PUSH);
         cancel.setText ("Cancel");
         cancel.addSelectionListener(new class() SelectionAdapter {
             public void widgetSelected(SelectionEvent e) {
-                Stdout.formatln("Cancel");
+                getDwtLogger().info( __FILE__, __LINE__, "Cancel");
             }
         });
         shell.setDefaultButton (cancel);

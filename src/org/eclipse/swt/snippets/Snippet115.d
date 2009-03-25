@@ -29,7 +29,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
-import tango.util.Convert;
 
 void main (String [] args) {
     Display display = new Display ();
@@ -59,12 +58,12 @@ void main (String [] args) {
     };
     for (int i=0; i<4; i++) {
         Button button = new Button (c1, SWT.RADIO);
-        button.setText ("Button " ~ to!(char[])(i));
+        button.setText (Format("Button {}",i));
         button.addListener (SWT.Selection, radioGroup);
     }
     for (int i=0; i<4; i++) {
         Button button = new Button (c2, SWT.RADIO);
-        button.setText ("Button " ~to!(char[])(i + 4));
+        button.setText (Format("Button {}",(i + 4)));
         button.addListener (SWT.Selection, radioGroup);
     }
     shell.pack ();

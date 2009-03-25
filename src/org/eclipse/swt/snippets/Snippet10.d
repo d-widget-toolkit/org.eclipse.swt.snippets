@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
 
-
 void main() {
     Display display = new Display();
     Shell shell = new Shell(display);

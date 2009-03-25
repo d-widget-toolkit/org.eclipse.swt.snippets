@@ -34,10 +34,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.custom.TreeEditor;
 
-import java.lang.all : String, substring, Math;
+import java.lang.all;
 
-import tango.util.Convert;
-import tango.util.log.Trace;
 version(JIVE){
     import jive.stacktrace;
 }
@@ -119,10 +117,10 @@ void main () {
     tree = new Tree (shell, SWT.BORDER);
     for (int i=0; i<16; i++) {
         TreeItem itemI = new TreeItem (tree, SWT.NONE);
-        itemI.setText ("Item " ~ to!(char[])(i));
+        itemI.setText (Format("Item {}", i));
         for (int j=0; j<16; j++) {
             TreeItem itemJ = new TreeItem (itemI, SWT.NONE);
-            itemJ.setText ("Item " ~ to!(char[])(j) );
+            itemJ.setText ( Format("Item {}", j) );
         }
     }
     TreeItem [] lastItem = new TreeItem [1];
