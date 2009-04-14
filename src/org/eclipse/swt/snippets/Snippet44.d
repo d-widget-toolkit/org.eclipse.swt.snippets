@@ -28,6 +28,24 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeListener;
+import tango.io.Stdout;
+
+class MyJob : Job {
+    this(char[] name) {
+        super(name);
+    }
+    public IStatus run(IProgressMonitor monitor) {
+        Stdout.formatln("doing job");
+        return Status.OK_STATUS;
+    }
+}
+
+
 void main (String [] args) {
     Display display = new Display ();
     Cursor cursor = new Cursor (display, SWT.CURSOR_HAND);
@@ -37,7 +55,11 @@ void main (String [] args) {
     b.setBounds (10, 10, 200, 200);
     b.addListener (SWT.Selection, new class() Listener{
         public void handleEvent (Event e) {
-            b.setCursor (cursor);
+            //b.setCursor (cursor);
+            auto job = new MyJob("test");
+            job.schedule();
+            job.join;
+            Stdout.formatln("job done");
         }
     });
     while (!shell.isDisposed ()) {
