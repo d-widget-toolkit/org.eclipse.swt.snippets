@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Text;
 
 import java.lang.all;
 
-import tango.core.Thread;
+//import tango.core.Thread;
 import tango.text.Unicode;
 
 void main(String[] args) {
@@ -58,12 +58,12 @@ void main(String[] args) {
             event.character = ch;
             display.post(event);
             try {
-                Thread.sleep(10/1000.);
+                Thread.sleep(10);
             } catch (InterruptedException e) {}
             event.type = SWT.KeyUp;
             display.post(event);
             try {
-                Thread.sleep(100/1000.0);
+                Thread.sleep(100);
             } catch (InterruptedException e) {}
             if (shift) {
                 event = new Event();

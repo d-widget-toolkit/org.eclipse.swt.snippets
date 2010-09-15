@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import tango.core.Thread;
+//import tango.core.Thread;
 import tango.io.Stdout;
 
 void main(String[] args) {
@@ -48,7 +48,7 @@ void main(String[] args) {
     Thread thread = new Thread({
         Event event;
         try {
-            Thread.sleep(300/1000.);
+            Thread.sleep(300);
         } catch (InterruptedException e) {}
         event = new Event();
         event.type = SWT.MouseMove;
@@ -56,13 +56,13 @@ void main(String[] args) {
         event.y = pt.y;
         display.post(event);
         try {
-            Thread.sleep(300/1000.0);
+            Thread.sleep(300);
         } catch (InterruptedException e) {}
         event.type = SWT.MouseDown;
         event.button = 1;
         display.post(event);
         try {
-            Thread.sleep(300/1000.0);
+            Thread.sleep(300);
         } catch (InterruptedException e) {}
         event.type = SWT.MouseUp;
         display.post(event);

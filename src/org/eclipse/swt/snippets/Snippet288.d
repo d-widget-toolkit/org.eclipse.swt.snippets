@@ -33,7 +33,7 @@ import java.lang.all;
 
 import tango.io.FilePath;
 import tango.io.model.IFile;
-import tango.core.Thread;
+//import tango.core.Thread;
 import tango.io.Stdout;
 import tango.util.Convert;
 import tango.core.Exception;
@@ -88,7 +88,7 @@ void main () {
         }
         display.dispose ();
     }
-    thread_joinAll();
+    Thread.joinAll();
 }
 
 private static void loadAllImages(char[] directory, char[][] filenames) {
@@ -167,8 +167,8 @@ private static void startAnimationThreads() {
             int id = 0;
             this(int _id) { 
                 id = _id;
-                name = "Animation "~to!(char[])(ii);
-                isDaemon = true;
+                //name = "Animation "~to!(char[])(ii);
+                //isDaemon = true;
                 super(&run);
             }
             void run() {
@@ -190,7 +190,7 @@ private static void startAnimationThreads() {
                             int ms = imageDataArray[id][imageDataIndex].delayTime * 10;
                             if (ms < 20) ms += 30;
                             if (ms < 30) ms += 10;
-                            Thread.sleep(0.001*ms);
+                            Thread.sleep(1 * ms);
                         } catch (ThreadException e) {
                         }
 

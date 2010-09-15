@@ -33,7 +33,7 @@ import org.eclipse.swt.custom.BusyIndicator;
 
 import java.lang.all;
 
-import tango.core.Thread;
+//import tango.core.Thread;
 import tango.io.Stdout;
 import tango.util.Convert;
 import tango.util.log.Trace;
@@ -67,7 +67,7 @@ public class Snippet130 {
                             for (int i = 0; i < 6; i++) {
                             if (display.isDisposed()) return;
                             Trace.formatln("do task that takes a long time in a separate thread {} {}/6", id, i);
-                            Thread.sleep(0.500);
+                            Thread.sleep(500);
                             }
                             /*
                             for (int i = 0; i < 100000; i++) {

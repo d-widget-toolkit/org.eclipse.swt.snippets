@@ -51,7 +51,7 @@ import org.eclipse.swt.printing.PrintDialog,
 import java.lang.all;
 
 // tango
-import tango.core.Thread;
+//import tango.core.Thread;
 import tango.io.device.File;
 import tango.text.Unicode;
 
@@ -241,7 +241,7 @@ class Snippet133{
                     }
                 public 
                     this(char[] o_name){
-                        this.name = o_name;
+                        //this.name = o_name;
                         super(&run);
                     }
             };

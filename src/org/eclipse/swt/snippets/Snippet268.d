@@ -34,7 +34,7 @@ import org.eclipse.swt.layout.FillLayout;
 
 import tango.io.Stdout;
 import tango.util.Convert;
-import tango.core.Thread;
+//import tango.core.Thread;
 
 void main(String[] args) {
     Display display = new Display();
@@ -65,7 +65,7 @@ void main(String[] args) {
             event.count = -2;
             display.post(event);
             try {
-                Thread.sleep(400/1000);
+                Thread.sleep(400);
             } catch (InterruptedException e) {}
         }
         Stdout("Thread done\n").flush(); 
