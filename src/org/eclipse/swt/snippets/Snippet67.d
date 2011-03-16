@@ -29,8 +29,13 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     Display display = new Display ();
@@ -39,7 +44,7 @@ void main () {
     Menu menu = new Menu (shell, SWT.POP_UP);
     for (int i=0; i<8; i++) {
         MenuItem item = new MenuItem (menu, SWT.PUSH);
-        item.setText ("Item " ~ to!(char[])(i));
+        item.setText ("Item " ~ to!(String)(i));
     }
     ToolItem item = new ToolItem (toolBar, SWT.DROP_DOWN);
     item.addListener (SWT.Selection, new class Listener {

@@ -31,7 +31,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Canvas;
 
-import Math=tango.math.Math;
+version(Tango){
+    import Math=tango.math.Math;
+} else { // Phobos
+    import Math=std.math;
+}
 
 void main() {
     Display display = new Display();

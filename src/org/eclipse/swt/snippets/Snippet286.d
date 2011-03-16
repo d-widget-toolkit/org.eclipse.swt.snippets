@@ -27,8 +27,13 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 
 void main() {
@@ -51,7 +56,7 @@ void main() {
 		
     for (int i = 0; i < 5; i++) {
         MenuItem item = new MenuItem (menu, SWT.PUSH);
-        item.setText ("Item " ~ to!(char[])(i));
+        item.setText ("Item " ~ to!(String)(i));
         item.addArmListener(new class ArmListener {
             public void widgetArmed(ArmEvent e) {
                 statusLine.setText((cast(MenuItem)e.getSource()).getText());

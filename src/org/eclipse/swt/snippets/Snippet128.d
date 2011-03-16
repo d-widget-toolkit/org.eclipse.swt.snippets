@@ -59,7 +59,7 @@ import org.eclipse.swt.widgets.Event;
 
 public static void main(String [] args) {
     Display display = new Display();
-    final Shell shell = new Shell(display);
+    Shell shell = new Shell(display);
     GridLayout gridLayout = new GridLayout();
     gridLayout.numColumns = 3;
     shell.setLayout(gridLayout);
@@ -82,7 +82,7 @@ public static void main(String [] args) {
     Label labelAddress = new Label(shell, SWT.NONE);
     labelAddress.setText("Address");
         
-    final Text location = new Text(shell, SWT.BORDER);
+    Text location = new Text(shell, SWT.BORDER);
     data = new GridData();
     data.horizontalAlignment = GridData.FILL;
     data.horizontalSpan = 2;

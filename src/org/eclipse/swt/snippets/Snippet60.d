@@ -23,7 +23,11 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     Display display = new Display ();
@@ -31,10 +35,18 @@ void main (String [] args) {
     shell.setSize (200, 200);
     shell.open ();
     display.timerExec (5000, dgRunnable({
-        Stdout("5000\n").flush();
+        version(Tango){
+            Stdout("5000\n").flush();
+        } else { // Phobos
+            writeln("5000");
+        }
     }));
     display.timerExec (2000, dgRunnable({
-        Stdout("2000\n").flush();
+        version(Tango){
+            Stdout("2000\n").flush();
+        } else { // Phobos
+            writeln("2000");
+        }
     }));
     while (!shell.isDisposed ()) {
         if (!display.readAndDispatch ()) display.sleep ();

@@ -34,17 +34,21 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 import java.lang.all;
 
 void main() 
 {
-	final Display display = new Display();
+	Display display = new Display();
 	Shell shell = new Shell(display);
 	shell.setText("Custom gradient selection for Tree");
 	shell.setLayout(new FillLayout());
-	final Tree tree = new Tree(shell, SWT.MULTI | SWT.FULL_SELECTION);
+	Tree tree = new Tree(shell, SWT.MULTI | SWT.FULL_SELECTION);
 	tree.setHeaderVisible(true);
 	tree.setLinesVisible(true);
 	int columnCount = 4;

@@ -25,12 +25,20 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
+import java.lang.all;
 
-import tango.io.Stdout;
-import tango.text.convert.Format;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.text.convert.Format;
+    import tango.util.Convert;
+} else { // Phobos
+    import std.stdio;
+    import std.string;
+    import std.conv;
+}
 
-static char[] stateMask (int stateMask) {
-	char[] string = "";
+static String stateMask (int stateMask) {
+	String string = "";
 	if ((stateMask & SWT.CTRL) != 0) string ~= " CTRL";
 	if ((stateMask & SWT.ALT) != 0) string ~= " ALT";
 	if ((stateMask & SWT.SHIFT) != 0) string ~= " SHIFT";
@@ -38,7 +46,7 @@ static char[] stateMask (int stateMask) {
 	return string;
 }
 
-static char[] character (char character) {
+static String character (wchar character) {
 	switch (character) {
     case 0: 		return "'\\0'";
     case SWT.BS:	return "'\\b'";
@@ -48,11 +56,11 @@ static char[] character (char character) {
     case SWT.LF:	return "'\\n'";
     case SWT.TAB:	return "'\\t'";
     default:
-        return "'" ~ character ~"'";
+		return to!(String)("'"w ~ character ~"'"w);
 	}
 }
 
-static char[] keyCode (int keyCode) {
+static String keyCode (int keyCode) {
 	switch (keyCode) {
 		
 		/* Keyboard and Mouse Masks */
@@ -136,11 +144,18 @@ void main () {
 	Shell shell = new Shell (display);
 	Listener listener = new class Listener {
 		public void handleEvent (Event e) {
-			char[] string = e.type == SWT.KeyDown ? "DOWN:" : "UP  :";
-			string ~= Format("stateMask=0x{:x}{},", e.stateMask, stateMask (e.stateMask));
-			string ~= Format(" keyCode=0x{:x} {},", e.keyCode, keyCode (e.keyCode));
-			string ~= Format(" character=0x{:x} {}", e.character, character (e.character));
-			Stdout.formatln (string);
+			String string = e.type == SWT.KeyDown ? "DOWN:" : "UP  :";
+			version(Tango){
+				string ~= Format("stateMask=0x{:x}{},", e.stateMask, stateMask (e.stateMask));
+				string ~= Format(" keyCode=0x{:x} {},", e.keyCode, keyCode (e.keyCode));
+				string ~= Format(" character=0x{:x} {}", e.character, character (e.character));
+				Stdout.formatln (string);
+			} else { // Phobos
+				string ~= format("stateMask=0x%x%s,", e.stateMask, stateMask (e.stateMask));
+				string ~= format(" keyCode=0x%x %s,", e.keyCode, keyCode (e.keyCode));
+				string ~= format(" character=0x%x %s", e.character, character (e.character));
+				writefln (string);
+			}
 		}
 	};
 	shell.addListener (SWT.KeyDown, listener);

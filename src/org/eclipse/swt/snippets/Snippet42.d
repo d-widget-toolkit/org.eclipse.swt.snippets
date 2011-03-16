@@ -22,10 +22,19 @@ import org.eclipse.swt.widgets.Display;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 void main (String [] args) {
     Display display = new Display ();
-    Stdout.formatln("Display Bounds= {}  Display ClientArea= {}" 
-                    ,display.getBounds(),display.getClientArea());
+    version(Tango){
+        Stdout.formatln("Display Bounds= {}  Display ClientArea= {}" 
+                        ,display.getBounds(),display.getClientArea());
+    } else { // Phobos
+        writefln("Display Bounds= %s  Display ClientArea= %s" 
+                 ,display.getBounds().toString(),display.getClientArea().toString());
+    }
     display.dispose ();
 }

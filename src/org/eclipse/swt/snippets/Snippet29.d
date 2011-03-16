@@ -26,7 +26,11 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main () {
     auto display = new Display ();
@@ -40,7 +44,11 @@ void main () {
     auto item = new MenuItem (submenu, SWT.PUSH);
     item.addListener (SWT.Selection, new class Listener {
         public void handleEvent (Event e) {
-            Stdout("Select All").newline;
+            version(Tango){
+                Stdout("Select All").newline;
+            } else { // Phobos
+                writeln("Select All");
+            }
         }
     });
     item.setText ("Select &All\tCtrl+A");

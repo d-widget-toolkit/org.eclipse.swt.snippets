@@ -39,7 +39,11 @@ import org.eclipse.swt.opengl.GLData;
 import derelict.opengl.gl;
 import derelict.opengl.glu;
 
-import Math = tango.math.Math;
+version(Tango){
+    import Math = tango.math.Math;
+} else { // Phobos
+    import Math = std.algorithm;
+}
 
 public static void main() 
 {
@@ -52,7 +56,7 @@ public static void main()
     shell.setLayout(new FillLayout());
     GLData data = new GLData();
     data.doubleBuffer = true;
-    final GLCanvas canvas = new GLCanvas(shell, SWT.NO_BACKGROUND, data);
+    GLCanvas canvas = new GLCanvas(shell, SWT.NO_BACKGROUND, data);
     canvas.addControlListener(new class ControlAdapter {
         public void controlResized(ControlEvent e) {
             resize(canvas);

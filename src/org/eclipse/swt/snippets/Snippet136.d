@@ -31,7 +31,11 @@ import org.eclipse.swt.layout.FillLayout;
 
 import java.lang.all;
 
-import tango.io.Console;
+version(Tango){
+    import tango.io.Console;
+} else { // Phobos
+    import std.stdio;
+}
 
 version(linux) {
     version(build)
@@ -53,7 +57,11 @@ void main() {
 		try {
 			browser = new Browser(shell, SWT.NONE);
 		} catch (SWTError e) {
-			Cout("Could not instatiate Browser.").newline;
+			version(Tango){
+				Cout("Could not instatiate Browser.").newline;
+			} else { // Phobos
+				writeln("Could not instatiate Browser.");
+			}
 			return;
 		}
 		browser.setText(html);

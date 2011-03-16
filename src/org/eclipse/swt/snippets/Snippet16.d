@@ -25,22 +25,34 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     Display display = new Display ();
     Shell shell = new Shell (display);
-    final int time = 500;
+    int time = 500;
     Runnable timer;
     timer = dgRunnable( {
         Point point = display.getCursorLocation ();
         Rectangle rect = shell.getBounds ();
-        if (rect.contains (point)) {
-            Stdout("In\n");
-        } else {
-            Stdout("Out\n");
+        version(Tango){
+            if (rect.contains (point)) {
+                Stdout("In\n");
+            } else {
+                Stdout("Out\n");
+            }
+            Stdout.flush();
+        } else { // Phobos
+            if (rect.contains (point)) {
+                writeln("In");
+            } else {
+                writeln("Out");
+            }
         }
-        Stdout.flush();
         display.timerExec (time, timer);
     });
     display.timerExec (time, timer);

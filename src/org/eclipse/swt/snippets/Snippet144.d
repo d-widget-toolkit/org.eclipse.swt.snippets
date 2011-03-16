@@ -31,10 +31,17 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
+import java.lang.all;
 
-import tango.io.Stdout;
-import tango.time.StopWatch;
-import tango.util.Convert;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.time.StopWatch;
+    import tango.util.Convert;
+} else {
+    import std.stdio;
+    import std.datetime;
+    import std.conv;
+}
 
 const int COUNT = 1000000;
 
@@ -47,8 +54,12 @@ void main() {
         public void handleEvent (Event event) {
             auto item = cast(TableItem) event.item;
             auto index = table.indexOf (item);
-            item.setText ("Item " ~ to!(char[])(index));
-            Stdout(item.getText ()).newline;
+            item.setText ("Item " ~ to!(String)(index));
+            version(Tango){
+                Stdout(item.getText ()).newline;
+            } else { // Phobos
+                writeln(item.getText ());
+            }
         }
     });
     table.setLayoutData (new RowData (200, 200));
@@ -57,12 +68,20 @@ void main() {
     auto label = new Label(shell, SWT.NONE);
     button.addListener (SWT.Selection, new class Listener {
         public void handleEvent (Event event) {
-            StopWatch elapsed;
-            elapsed.start;
-            table.setItemCount (COUNT);
-            auto t = elapsed.stop;
-            label.setText ("Items: " ~ to!(char[])(COUNT) ~
-                           ", Time: " ~ to!(char[])(t) ~ " (sec)");
+            version(Tango){
+                StopWatch elapsed;
+                elapsed.start;
+                table.setItemCount (COUNT);
+                auto t = elapsed.stop;
+            } else { // Phobos
+                StopWatch elapsed;
+                elapsed.start;
+                table.setItemCount (COUNT);
+                elapsed.stop;
+                auto t = elapsed.peek.msecs;
+            }
+            label.setText ("Items: " ~ to!(String)(COUNT) ~
+                           ", Time: " ~ to!(String)(t) ~ " (sec)");
             shell.layout ();
         }
     });

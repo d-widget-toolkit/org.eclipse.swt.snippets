@@ -27,8 +27,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Label;
+import java.lang.all;
 
-static char[] statusText = "";
+static String statusText = "";
 void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
@@ -43,7 +44,7 @@ void main() {
     bar.addMouseMoveListener(new class MouseMoveListener {
         void mouseMove(MouseEvent e) {
             ToolItem item = bar.getItem(new Point(e.x, e.y));
-            char[] name = "";
+           String name = "";
             if (item !is null) {
                 name = item.getText();
             }

@@ -28,20 +28,24 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Canvas;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 import java.lang.all;
 
 void main () {
 	Display display = new Display ();
-	final Color red = display.getSystemColor (SWT.COLOR_RED);
-	final Color blue = display.getSystemColor (SWT.COLOR_BLUE);
+	Color red = display.getSystemColor (SWT.COLOR_RED);
+	Color blue = display.getSystemColor (SWT.COLOR_BLUE);
 	Shell shell = new Shell (display);
 	Button b = new Button (shell, SWT.PUSH);
 	b.setBounds (10, 10, 100, 32);
 	b.setText ("Button");
 	shell.setDefaultButton (b);
-	final Canvas c = new Canvas (shell, SWT.BORDER);
+	Canvas c = new Canvas (shell, SWT.BORDER);
 	c.setBounds (10, 50, 100, 32);
 
     void onTraverse(Event e, Canvas c) {
@@ -67,7 +71,11 @@ void main () {
     }
 
     void onKeyDown (Event e, Canvas c) {
-        Stdout("KEY").newline;
+        version(Tango){
+            Stdout("KEY").newline;
+        } else { // Phobos
+            writeln("KEY");
+        }
         for (int i=0; i<64; i++) {
             Color c1 = red, c2 = blue;
             if (c.isFocusControl ()) {

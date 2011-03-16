@@ -43,7 +43,7 @@ void main(String [] args) {
     Label label = new Label(shell, SWT.WRAP);
     label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
     label.setText("Change a system setting and the table below will be updated.");
-    final Table table = new Table(shell, SWT.BORDER);
+    Table table = new Table(shell, SWT.BORDER);
     table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     TableColumn column = new TableColumn(table, SWT.NONE);
     column = new TableColumn(table, SWT.NONE);

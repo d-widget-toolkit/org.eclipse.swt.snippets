@@ -30,8 +30,13 @@ import org.eclipse.swt.widgets.TableItem;
 
 import java.lang.all;
 
-import tango.core.Thread;
-import tango.util.Convert;
+version(Tango){
+    import T = tango.core.Thread;
+    import tango.util.Convert;
+} else { // Phobos
+    import T = core.thread;
+    import std.conv;
+}
 
 void main (String [] args) {
     Display display = new Display ();
@@ -46,7 +51,7 @@ void main (String [] args) {
     shell.setLayout (new FillLayout ());
     Table table = new Table (shell, SWT.BORDER | SWT.MULTI);
     table.setSize (200, 200);
-    Thread thread = new Thread({
+    T.Thread thread = new T.Thread({
         for(int i=0; i< 20000; i++){
             if (table.isDisposed ()) return;
 

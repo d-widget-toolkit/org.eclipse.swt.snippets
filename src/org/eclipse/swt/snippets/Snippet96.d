@@ -52,7 +52,11 @@ import org.eclipse.swt.events.MouseAdapter;
 
 import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 
 void main() {
@@ -61,24 +65,24 @@ void main() {
     shell.setLayout(new GridLayout());
 
     // create a a table with 3 columns and fill with data
-    final Table table = new Table(shell, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
+    Table table = new Table(shell, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
     table.setLayoutData(new GridData(GridData.FILL_BOTH));
     TableColumn column1 = new TableColumn(table, SWT.NONE);
     TableColumn column2 = new TableColumn(table, SWT.NONE);
     TableColumn column3 = new TableColumn(table, SWT.NONE);
     for (int i = 0; i < 100; i++) {
         TableItem item = new TableItem(table, SWT.NONE);
-        item.setText(["cell " ~ to!(char[])(i) ~ " 0",  "cell " ~ to!(char[])(i) ~ " 1", "cell " ~ to!(char[])(i) ~ " 2" ]);
+        item.setText(["cell " ~ to!(String)(i) ~ " 0",  "cell " ~ to!(String)(i) ~ " 1", "cell " ~ to!(String)(i) ~ " 2" ]);
     }
     column1.pack();
     column2.pack();
     column3.pack();
 
     // create a TableCursor to navigate around the table
-    final TableCursor cursor = new TableCursor(table, SWT.NONE);
+    TableCursor cursor = new TableCursor(table, SWT.NONE);
     // create an editor to edit the cell when the user hits "ENTER"
     // while over a cell in the table
-    final ControlEditor editor = new ControlEditor(cursor);
+    ControlEditor editor = new ControlEditor(cursor);
     editor.grabHorizontal = true;
     editor.grabVertical = true;
 
@@ -102,7 +106,7 @@ void main() {
         // when the user hits "ENTER" in the TableCursor, pop up a text editor so that
         // they can change the text of the cell
         public void widgetDefaultSelected(SelectionEvent e) {
-            final Text text = new Text(cursor, SWT.NONE);
+            Text text = new Text(cursor, SWT.NONE);
             TableItem row = cursor.getRow();
             int column = cursor.getColumn();
             text.setText(row.getText(column));
@@ -173,7 +177,7 @@ void main() {
         }
 
         public void mouseDown(MouseEvent e) {
-            final Text text = new Text(cursor, SWT.NONE);
+            Text text = new Text(cursor, SWT.NONE);
             TableItem row = cursor.getRow();
             int column = cursor.getColumn();
             text.setText(row.getText(column));

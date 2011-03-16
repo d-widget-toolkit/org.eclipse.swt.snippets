@@ -24,8 +24,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     auto display = new Display ();
@@ -33,7 +38,7 @@ void main () {
     auto table = new Table (shell, SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
     table.setLinesVisible (true);
     table.setHeaderVisible (true);
-    char[][] titles = [" ", "C", "!", "Description", "Resource", "In Folder", "Location"];
+    String[] titles = [" ", "C", "!", "Description", "Resource", "In Folder", "Location"];
     int[]    styles = [SWT.NONE, SWT.LEFT, SWT.RIGHT, SWT.CENTER, SWT.NONE, SWT.NONE, SWT.NONE];
     foreach (i,title; titles) {
         auto column = new TableColumn (table, styles[i]);
@@ -48,7 +53,7 @@ void main () {
         item.setText (3, "this stuff behaves the way I expect");
         item.setText (4, "almost everywhere");
         item.setText (5, "some.folder");
-        item.setText (6, "line " ~ to!(char[])(i) ~ " in nowhere");
+        item.setText (6, "line " ~ to!(String)(i) ~ " in nowhere");
     }
     for (int i=0; i<titles.length; i++) {
         table.getColumn (i).pack ();

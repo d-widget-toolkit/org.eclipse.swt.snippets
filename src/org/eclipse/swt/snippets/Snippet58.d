@@ -24,8 +24,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Combo;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     Display display = new Display ();
@@ -33,17 +38,17 @@ void main () {
     ToolBar bar = new ToolBar (shell, SWT.BORDER);
     for (int i=0; i<4; i++) {
         ToolItem item = new ToolItem (bar, 0);
-        item.setText ("Item " ~ to!(char[])(i));
+        item.setText ("Item " ~ to!(String)(i));
     }
     ToolItem sep = new ToolItem (bar, SWT.SEPARATOR);
     int start = bar.getItemCount ();
     for (int i=start; i<start+4; i++) {
         ToolItem item = new ToolItem (bar, 0);
-        item.setText ("Item " ~ to!(char[])(i));
+        item.setText ("Item " ~ to!(String)(i));
     }
     Combo combo = new Combo (bar, SWT.READ_ONLY);
     for (int i=0; i<4; i++) {
-        combo.add ("Item " ~ to!(char[])(i));
+        combo.add ("Item " ~ to!(String)(i));
     }
     combo.pack ();
     sep.setWidth (combo.getSize ().x);

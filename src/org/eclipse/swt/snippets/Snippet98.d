@@ -32,14 +32,18 @@ import org.eclipse.swt.widgets.TableItem;
 
 import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 static int pageNum = 0;
 static Composite pageComposite;
 
 void main(String args[]) {
     Display display = new Display();
-    final Shell shell = new Shell(display);
+    Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Push");
@@ -59,7 +63,7 @@ void main(String args[]) {
                 Table table = new Table(pageComposite, SWT.BORDER);
                 table.setLayoutData(new GridData());
                 for (int i = 0; i < 5; i++) {
-                    (new TableItem(table, SWT.NONE)).setText("table item " ~ to!(char[])(i));
+                    (new TableItem(table, SWT.NONE)).setText("table item " ~ to!(String)(i));
                 }
             } else {
                 (new Button(pageComposite, SWT.RADIO)).setText("radio");

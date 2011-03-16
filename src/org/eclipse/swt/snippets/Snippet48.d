@@ -57,11 +57,11 @@ void main () {
 		gc.drawText ("Default Image", 10, 10);
 		gc.dispose ();
 	}
-	final Image image = originalImage;
-	final Point origin = new Point (0, 0);
-	final Canvas canvas = new Canvas (shell, SWT.NO_BACKGROUND |
+	Image image = originalImage;
+	Point origin = new Point (0, 0);
+	Canvas canvas = new Canvas (shell, SWT.NO_BACKGROUND |
 			SWT.NO_REDRAW_RESIZE | SWT.V_SCROLL | SWT.H_SCROLL);
-	final ScrollBar hBar = canvas.getHorizontalBar ();
+	ScrollBar hBar = canvas.getHorizontalBar ();
     void onHBarSelection (Event e) {
         int hSelection = hBar.getSelection ();
         int destX = -hSelection - origin.x;
@@ -69,7 +69,7 @@ void main () {
         canvas.scroll (destX, 0, 0, 0, rect.width, rect.height, false);
         origin.x = -hSelection;
     }
-	final ScrollBar vBar = canvas.getVerticalBar ();
+	ScrollBar vBar = canvas.getVerticalBar ();
     void onVBarSelection(Event e) {
         int vSelection = vBar.getSelection ();
         int destY = -vSelection - origin.y;

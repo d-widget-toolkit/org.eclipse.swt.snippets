@@ -28,8 +28,14 @@ import org.eclipse.swt.widgets.Text;
 
 import java.lang.all;
 
-//import tango.core.Thread;
-import tango.text.Unicode;
+version(Tango){
+    //import tango.core.Thread;
+    import tango.text.Unicode;
+} else {
+    import std.string;
+    import std.uni;
+    alias isUniUpper isUpper;
+}
 
 void main(String[] args) {
     Display display = new Display();
@@ -41,11 +47,15 @@ void main(String[] args) {
     Thread thread = new Thread({
         String string = "Love the method.";
         String lstring;
-        lstring. length = string.length;
-        toLower(string, lstring);
+        version(Tango){
+            lstring. length = string.length;
+            toLower(string, lstring);
+        } else {
+            lstring = tolower(string);
+        }
         for (int i = 0; i < string.length; i++) {
             char ch = string.charAt(i);
-            bool shift = isUpper(ch);
+            bool shift = cast(bool) isUpper(ch);
             ch = lstring.charAt(i);
             if (shift) {
                 Event event = new Event();

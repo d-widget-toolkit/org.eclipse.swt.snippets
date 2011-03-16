@@ -27,8 +27,8 @@ import org.eclipse.swt.events.PaintEvent;
 
 void main() 
 {
-	final Display display = new Display();
-	final Shell shell = new Shell(display);
+	Display display = new Display();
+	Shell shell = new Shell(display);
 	shell.addPaintListener(new class(shell) PaintListener {
         Shell shell;
         this(Shell s) { this.shell = s; }

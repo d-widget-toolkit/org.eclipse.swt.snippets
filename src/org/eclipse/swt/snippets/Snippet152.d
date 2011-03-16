@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
+import java.lang.all;
 
 void main() {
     Display display = new Display();
@@ -79,7 +80,7 @@ void main() {
     fileMenu.addListener(SWT.Hide, hideListener);
     fileMenu.addListener(SWT.Show, showListener);
     fileItem.setMenu(fileMenu);
-    char[][] fileStrings = [ "New", "Close", "Exit" ];
+    String[] fileStrings = [ "New", "Close", "Exit" ];
     for (int i = 0; i < fileStrings.length; i++) {
         MenuItem item = new MenuItem(fileMenu, SWT.PUSH);
         item.setText(fileStrings[i]);
@@ -88,7 +89,7 @@ void main() {
     Menu editMenu = new Menu(shell, SWT.DROP_DOWN);
     editMenu.addListener(SWT.Hide, hideListener);
     editMenu.addListener(SWT.Show, showListener);
-    char[][] editStrings = [ "Cut", "Copy", "Paste" ];
+    String[] editStrings = [ "Cut", "Copy", "Paste" ];
     editItem.setMenu(editMenu);
     for (int i = 0; i < editStrings.length; i++) {
         MenuItem item = new MenuItem(editMenu, SWT.PUSH);

@@ -33,8 +33,13 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 static Display display;
 static Shell shell;
@@ -53,7 +58,7 @@ void main () {
     for (int j = 0; j < 5; j++) {
         int width = 0;
         ToolItem item = new ToolItem(toolBar, SWT.PUSH);
-        item.setText("B" ~ to!(char[])(j));
+        item.setText("B" ~ to!(String)(j));
         width = item.getWidth();
         /* find the width of the widest tool */
         if (width > minWidth) minWidth = width;

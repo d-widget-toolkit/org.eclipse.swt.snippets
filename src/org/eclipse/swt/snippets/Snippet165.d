@@ -33,8 +33,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     auto display = new Display ();
@@ -54,10 +59,10 @@ void main () {
     folder.setUnselectedCloseVisible(false);
     for (int i = 0; i < 8; i++) {
         CTabItem item = new CTabItem(folder, SWT.CLOSE);
-        item.setText("Item " ~ to!(char[])(i));
+        item.setText("Item " ~ to!(String)(i));
         item.setImage(image);
         Text text = new Text(folder, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
-        text.setText("Text for item " ~ to!(char[])(i) ~
+        text.setText("Text for item " ~ to!(String)(i) ~
                      "\n\none, two, three\n\nabcdefghijklmnop");
         item.setControl(text);
     }

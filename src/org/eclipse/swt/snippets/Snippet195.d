@@ -37,7 +37,11 @@ import org.eclipse.swt.opengl.GLData;
 import derelict.opengl.gl;
 import derelict.opengl.glu;
 
-import Math = tango.math.Math;
+version(Tango){
+    import Math = tango.math.Math;
+} else { // Phobos
+    import Math = std.math;
+}
 
 void drawTorus(float r, float R, int nsides, int rings)
 {

@@ -32,8 +32,13 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
 
-import tango.util.Convert;
-import tango.io.Stdout;
+version(Tango){
+    import tango.util.Convert;
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.conv;
+    import std.stdio;
+}
 
 import java.lang.all;
 
@@ -42,7 +47,7 @@ void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new RowLayout(SWT.HORIZONTAL));
-    final Tree tree = new Tree(shell, SWT.BORDER | SWT.CHECK);
+    Tree tree = new Tree(shell, SWT.BORDER | SWT.CHECK);
     tree.setLayoutData(new RowData(-1, 300));
     tree.setHeaderVisible(true);
     TreeColumn column = new TreeColumn(tree, SWT.LEFT);
@@ -87,7 +92,11 @@ void main() {
     }
     Listener listener = new class Listener {
         public void handleEvent(Event e) {
-            Stdout.print("Move "~e.widget.toString).newline;
+            version(Tango){
+                Stdout.print("Move "~e.widget.toString).newline;
+            } else {
+                writeln("Move "~e.widget.toString);
+            }
         }
     };
     TreeColumn[] columns = tree.getColumns();

@@ -34,7 +34,11 @@ import org.eclipse.swt.widgets.Text;
 
 import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main(String[] args) {
     Display display = new Display();

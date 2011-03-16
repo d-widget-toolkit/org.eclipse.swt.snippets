@@ -24,19 +24,31 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseAdapter;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main() {
-	final Display display = new Display();
-	final Shell shell = new Shell(display);
+	Display display = new Display();
+	Shell shell = new Shell(display);
 	shell.addMouseListener(new class MouseAdapter {
 		public void mouseUp(MouseEvent e) {
 			if (e.count == 1) {
-				Stdout("Mouse up").newline;
+				version(Tango){
+					Stdout("Mouse up").newline;
+				} else { // Phobos
+					writeln("Mouse up");
+				}
 			}
 		}
 		public void mouseDoubleClick(MouseEvent e) {
-            Stdout("Double-click").newline;
+			version(Tango){
+				Stdout("Double-click").newline;
+			} else { // Phobos
+				writeln("Double-click");
+			}
 		}
 	});
 	shell.setBounds(10, 10, 200, 200);

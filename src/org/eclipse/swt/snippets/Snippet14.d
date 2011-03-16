@@ -26,7 +26,11 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     Display display = new Display ();
@@ -34,20 +38,32 @@ void main (String [] args) {
     shell.setSize (100, 100);
     shell.addListener (SWT.MouseEnter, new class() Listener{
         public void handleEvent (Event e) {
-            Stdout("ENTER\n");
-            Stdout.flush();
+            version(Tango){
+                Stdout("ENTER\n");
+                Stdout.flush();
+            } else { // Phobos
+                writeln("ENTER");
+            }
         }
     });
     shell.addListener (SWT.MouseExit, new class() Listener{
         public void handleEvent (Event e) {
-            Stdout("EXIT\n");
-            Stdout.flush();
+            version(Tango){
+                Stdout("EXIT\n");
+                Stdout.flush();
+            } else { // Phobos
+                writeln("EXIT");
+            }
         }
     });
     shell.addListener (SWT.MouseHover, new class() Listener{
         public void handleEvent (Event e) {
-            Stdout("HOVER\n");
-            Stdout.flush();
+            version(Tango){
+                Stdout("HOVER\n");
+                Stdout.flush();
+            } else { // Phobos
+                writeln("HOVER");
+            }
         }
     });
     shell.open ();

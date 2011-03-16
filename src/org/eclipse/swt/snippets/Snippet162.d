@@ -46,15 +46,15 @@ void main(String[] args){
 
 public class Snippet162 {
 
-    final static String STATE = "CheckedIndices";
+    const static String STATE = "CheckedIndices";
 
     public static void main (String [] args) {
-        final Display display = new Display ();
+        Display display = new Display ();
         Image checkedImage = getCheckedImage (display);
         Image uncheckedImage = getUncheckedImage (display);
         Shell shell = new Shell (display);
         shell.setLayout (new FillLayout ());
-        final Table table = new Table (shell, SWT.BORDER);
+        Table table = new Table (shell, SWT.BORDER);
         TableColumn column1 = new TableColumn (table, SWT.NONE);
         TableColumn column2 = new TableColumn (table, SWT.NONE);
         TableColumn column3 = new TableColumn (table, SWT.NONE);

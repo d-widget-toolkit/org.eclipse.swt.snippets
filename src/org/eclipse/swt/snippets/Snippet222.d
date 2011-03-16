@@ -39,9 +39,11 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.TextLayout;
 import org.eclipse.swt.graphics.GlyphMetrics;
-import tango.text.Text;
-alias Text!(char) StringBuffer;
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 import java.lang.all;
 version(JIVE){
@@ -56,13 +58,13 @@ void main() {
     StyledText styledText = new StyledText (shell, SWT.FULL_SELECTION | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
     StringBuffer text = new StringBuffer();
     text.append("Here is StyledText with some bulleted lists:\n\n");
-    for (int i = 0; i < 4; i++) text.append("Red Bullet List Item " ~ to!(char[])(i) ~ "\n");
+    for (int i = 0; i < 4; i++) text.append("Red Bullet List Item " ~ to!(String)(i) ~ "\n");
     text.append("\n");
-    for (int i = 0; i < 2; i++) text.append("Numbered List Item " ~ to!(char[])(i) ~ "\n");
-    for (int i = 0; i < 4; i++) text.append("Sub List Item " ~ to!(char[])(i) ~ "\n");
-    for (int i = 0; i < 2; i++) text.append("Numbered List Item " ~ to!(char[])(2+i) ~ "\n");
+    for (int i = 0; i < 2; i++) text.append("Numbered List Item " ~ to!(String)(i) ~ "\n");
+    for (int i = 0; i < 4; i++) text.append("Sub List Item " ~ to!(String)(i) ~ "\n");
+    for (int i = 0; i < 2; i++) text.append("Numbered List Item " ~ to!(String)(2+i) ~ "\n");
     text.append("\n");
-    for (int i = 0; i < 4; i++) text.append("Custom Draw List Item " ~ to!(char[])(i) ~ "\n");
+    for (int i = 0; i < 4; i++) text.append("Custom Draw List Item " ~ to!(String)(i) ~ "\n");
     styledText.setText(text.toString());
 
     StyleRange style0 = new StyleRange();
@@ -99,7 +101,7 @@ void main() {
             layout.setAscent(event.ascent);
             layout.setDescent(event.descent);
             layout.setFont(font);
-            layout.setText("\u2023 1." ~ to!(char[])( event.bulletIndex) ~ ")");
+            layout.setText("\u2023 1." ~ to!(String)( event.bulletIndex) ~ ")");
             layout.draw(event.gc, event.x + 10, event.y);
             layout.dispose();
         }

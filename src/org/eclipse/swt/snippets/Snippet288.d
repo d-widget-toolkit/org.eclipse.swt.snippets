@@ -31,12 +31,24 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import java.lang.all;
 
-import tango.io.FilePath;
-import tango.io.model.IFile;
-//import tango.core.Thread;
-import tango.io.Stdout;
-import tango.util.Convert;
-import tango.core.Exception;
+version(Tango){
+    import tango.io.FilePath;
+    import tango.io.model.IFile;
+    //import tango.core.Thread;
+    import tango.io.Stdout;
+    import tango.util.Convert;
+    import tango.core.Exception;
+} else { // Phobos
+    import std.path;
+    import std.stream;
+    import std.stdio;
+    import std.conv;
+    import core.exception;
+    import core.thread : ThreadException;
+    struct FileConst {
+        static const PathSeparatorChar = sep;
+    }
+}
 
 static Display display;
 static Shell shell;
@@ -47,7 +59,7 @@ static ImageData[][] imageDataArray;
 static Thread[] animateThread;
 static Image[][] image;
 private static ToolItem[] item;
-static final bool useGIFBackground = false;
+static const bool useGIFBackground = false;
 
 void main () {
     display = new Display();
@@ -56,15 +68,24 @@ void main () {
     FileDialog dialog = new FileDialog(shell, SWT.OPEN | SWT.MULTI);
     dialog.setText("Select Multiple Animated GIFs");
     dialog.setFilterExtensions(["*.gif"]);
-    char[] filename = dialog.open();
-    char[][] filenames = dialog.getFileNames();
+    String filename = dialog.open();
+    String[] filenames = dialog.getFileNames();
     int numToolBarItems = filenames.length;
     if (numToolBarItems > 0) {
-        try {
-            loadAllImages((new FilePath(filename)).parent, filenames);
-        } catch (SWTException e) {
-            Stdout.print("There was an error loading an image.").newline;
-            e.printStackTrace();
+        version(Tango){
+            try {
+                loadAllImages((new FilePath(filename)).parent, filenames);
+            } catch (SWTException e) {
+                Stdout.print("There was an error loading an image.").newline;
+                e.printStackTrace();
+            }
+        } else { // Phobos
+            try {
+                loadAllImages(filename.getDirName, filenames);
+            } catch (SWTException e) {
+                writeln("There was an error loading an image.");
+                e.printStackTrace();
+            }
         }
         ToolBar toolBar = new ToolBar (shell, SWT.FLAT | SWT.BORDER | SWT.WRAP);
         item = new ToolItem[numToolBarItems];
@@ -91,7 +112,7 @@ void main () {
     Thread.joinAll();
 }
 
-private static void loadAllImages(char[] directory, char[][] filenames) {
+private static void loadAllImages(String directory, String[] filenames) {
     int numItems = filenames.length;
     loader.length = numItems;
     imageDataArray.length = numItems;
@@ -198,7 +219,11 @@ private static void startAnimationThreads() {
                         if (imageDataIndex == imageDataArray[id].length - 1) repeatCount--;
                     }
                 } catch (SWTException ex) {
-                    Stdout.print("There was an error animating the GIF").newline;
+                    version(Tango){
+                        Stdout.print("There was an error animating the GIF").newline;
+                    } else { // Phobos
+                        writeln("There was an error animating the GIF");
+                    }
                     ex.printStackTrace();
                 }
             }

@@ -24,8 +24,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     auto display = new Display ();
@@ -34,16 +39,16 @@ void main () {
     auto tree = new Tree (shell, SWT.BORDER);
     for (int i=0; i<4; i++) {
         auto iItem = new TreeItem (tree, 0);
-        iItem.setText ("TreeItem (0) -" ~ to!(char[])(i));
+        iItem.setText ("TreeItem (0) -" ~ to!(String)(i));
         for (int j=0; j<4; j++) {
             TreeItem jItem = new TreeItem (iItem, 0);
-            jItem.setText ("TreeItem (1) -" ~ to!(char[])(j));
+            jItem.setText ("TreeItem (1) -" ~ to!(String)(j));
             for (int k=0; k<4; k++) {
                 TreeItem kItem = new TreeItem (jItem, 0);
-                kItem.setText ("TreeItem (2) -" ~ to!(char[])(k));
+                kItem.setText ("TreeItem (2) -" ~ to!(String)(k));
                 for (int l=0; l<4; l++) {
                     TreeItem lItem = new TreeItem (kItem, 0);
-                    lItem.setText ("TreeItem (3) -" ~ to!(char[])(l));
+                    lItem.setText ("TreeItem (3) -" ~ to!(String)(l));
                 }
             }
         }

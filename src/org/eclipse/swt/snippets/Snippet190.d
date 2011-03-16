@@ -20,8 +20,13 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridLayout;
 
-import Math = tango.math.Math;
-import tango.io.Stdout;
+version(Tango){
+    import Math = tango.math.Math;
+    import tango.io.Stdout;
+} else { // Phobos
+    import Math = std.math;
+    import std.stdio;
+}
 
 /*
  * Floating point values in Spinner
@@ -37,7 +42,7 @@ void main () {
     Shell shell = new Shell (display);
     shell.setText("Spinner with float values");
     shell.setLayout(new GridLayout());
-    final Spinner spinner = new Spinner(shell, SWT.NONE);
+    Spinner spinner = new Spinner(shell, SWT.NONE);
     // allow 3 decimal places
     spinner.setDigits(3);
     // set the minimum value to 0.001
@@ -52,7 +57,11 @@ void main () {
         public void widgetSelected(SelectionEvent e) {
             int selection = spinner.getSelection();
             float digits = spinner.getDigits();
-            Stdout.formatln("Selection is {}", selection / Math.pow(10.f, digits));
+            version(Tango){
+                Stdout.formatln("Selection is {}", selection / Math.pow(10.f, digits));
+            } else { // Phobos
+                writefln("Selection is %s", selection / Math.pow(10.f, digits));
+            }
         }
     });
     shell.setSize(200, 200);

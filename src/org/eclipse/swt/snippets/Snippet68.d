@@ -34,15 +34,15 @@ import org.eclipse.swt.layout.RowLayout;
 
 void main (String [] args) {
     Display display = new Display ();
-    final Color red = display.getSystemColor (SWT.COLOR_RED);
-    final Color blue = display.getSystemColor (SWT.COLOR_BLUE);
+    Color red = display.getSystemColor (SWT.COLOR_RED);
+    Color blue = display.getSystemColor (SWT.COLOR_BLUE);
     Shell shell = new Shell (display);
     shell.setLayout (new RowLayout ());
     Button button = new Button (shell, SWT.PUSH);
     button.setText ("Stop Timer");
-    final Label label = new Label (shell, SWT.BORDER);
+    Label label = new Label (shell, SWT.BORDER);
     label.setBackground (red);
-    final int time = 500;
+    int time = 500;
     Runnable timer;
     timer = dgRunnable({
         if (label.isDisposed ()) return;

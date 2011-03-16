@@ -33,7 +33,11 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     /* These cannot be local in the
@@ -66,13 +70,22 @@ void main (String [] args) {
             ok.setLayoutData(new GridData (SWT.FILL, SWT.CENTER, false, false));
             ok.addSelectionListener (new class() SelectionAdapter{
                 void widgetSelected (SelectionEvent e) {
-                    Stdout.formatln("Calendar date selected (MM/DD/YYYY) = {:d02}/{:d02}/{:d04}",
-                                    (calendar.getMonth () + 1),calendar.getDay (),calendar.getYear ());
-                    Stdout.formatln("Date selected (MM/YYYY)= {:d02}/{:d04}",
-                                    (date.getMonth () + 1), date.getYear ());
-                    Stdout.formatln("Time selected (HH:MM) = {:d02}:{:d02}",
-                                    time.getHours(), time.getMinutes());
-                    Stdout.flush();
+                    version(Tango){
+                        Stdout.formatln("Calendar date selected (MM/DD/YYYY) = {:d02}/{:d02}/{:d04}",
+                                        (calendar.getMonth () + 1),calendar.getDay (),calendar.getYear ());
+                        Stdout.formatln("Date selected (MM/YYYY)= {:d02}/{:d04}",
+                                        (date.getMonth () + 1), date.getYear ());
+                        Stdout.formatln("Time selected (HH:MM) = {:d02}:{:d02}",
+                                        time.getHours(), time.getMinutes());
+                        Stdout.flush();
+                    } else { // Phobos
+                        writefln("Calendar date selected (MM/DD/YYYY) = %02d/%02d/%04d",
+                                 (calendar.getMonth () + 1),calendar.getDay (),calendar.getYear ());
+                        writefln("Date selected (MM/YYYY)= %02d/%04d",
+                                 (date.getMonth () + 1), date.getYear ());
+                        writefln("Time selected (HH:MM) = %02d:%02d",
+                                 time.getHours(), time.getMinutes());
+                    }
                     dialog.close ();
                 }
             });

@@ -30,8 +30,12 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-//import tango.core.Thread;
-import tango.io.Stdout;
+version(Tango){
+    //import tango.core.Thread;
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main(String[] args) {
     Display display = new Display();
@@ -42,7 +46,11 @@ void main(String[] args) {
     shell.pack();
     shell.open();
     button.addListener(SWT.MouseDown, dgListener( (Event e){
-        Stdout.formatln("Mouse Down  (Button: {} x: {} y: {})",e.button,e.x,e.y);
+        version(Tango){
+            Stdout.formatln("Mouse Down  (Button: {} x: {} y: {})",e.button,e.x,e.y);
+        } else { // Phobos
+            writefln("Mouse Down  (Button: %s x: %s y: %s)",e.button,e.x,e.y);
+        }
     }));
     Point pt = display.map(shell, null, 50, 50);
     Thread thread = new Thread({

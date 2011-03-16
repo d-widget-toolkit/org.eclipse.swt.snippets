@@ -35,7 +35,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main() {
     auto display = new Display();
@@ -52,7 +56,11 @@ void main() {
         item.addSelectionListener(new class SelectionAdapter {
             public void widgetSelected(SelectionEvent e) {
                 text.setText("");
-                Stdout("Search cancelled").newline;
+                version(Tango){
+                    Stdout("Search cancelled").newline;
+                } else { // Phobos
+                    writeln("Search cancelled");
+                }
             }
         });
     }
@@ -60,10 +68,18 @@ void main() {
     text.setText("Search text");
     text.addSelectionListener(new class SelectionAdapter {
         public void widgetDefaultSelected(SelectionEvent e) {
-            if (e.detail == SWT.CANCEL) {
-                Stdout("Search cancelled").newline;
-            } else {
-                Stdout("Searching for: ")(text.getText())("...").newline;
+            version(Tango){
+                if (e.detail == SWT.CANCEL) {
+                    Stdout("Search cancelled").newline;
+                } else {
+                    Stdout("Searching for: ")(text.getText())("...").newline;
+                }
+            } else { // Phobos
+                if (e.detail == SWT.CANCEL) {
+                    writeln("Search cancelled");
+                } else {
+                    writeln("Searching for: " ~ text.getText() ~ "...");
+                }
             }
         }
     });

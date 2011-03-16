@@ -25,8 +25,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.CoolBar;
 import org.eclipse.swt.widgets.CoolItem;
 import org.eclipse.swt.widgets.Shell;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     auto display = new Display ();
@@ -35,7 +40,7 @@ void main () {
     for (int i=0; i<2; i++) {
         auto item = new CoolItem (bar, SWT.NONE);
         auto button = new Button (bar, SWT.PUSH);
-        button.setText ("Button " ~ to!(char[])(i));
+        button.setText ("Button " ~ to!(String)(i));
         auto size = button.computeSize (SWT.DEFAULT, SWT.DEFAULT);
         item.setPreferredSize (item.computeSize (size.x, size.y));
         item.setControl (button);

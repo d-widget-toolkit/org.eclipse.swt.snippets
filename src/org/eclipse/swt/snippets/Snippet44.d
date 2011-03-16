@@ -33,14 +33,22 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 class MyJob : Job {
     this(char[] name) {
         super(name);
     }
     public IStatus run(IProgressMonitor monitor) {
-        Stdout.formatln("doing job");
+        version(Tango){
+            Stdout.formatln("doing job");
+        } else { // Phobos
+            writeln("doing job");
+        }
         return Status.OK_STATUS;
     }
 }
@@ -59,7 +67,11 @@ void main (String [] args) {
             auto job = new MyJob("test");
             job.schedule();
             job.join;
-            Stdout.formatln("job done");
+            version(Tango){
+                Stdout.formatln("job done");
+            } else { // Phobos
+                writeln("job done");
+            }
         }
     });
     while (!shell.isDisposed ()) {

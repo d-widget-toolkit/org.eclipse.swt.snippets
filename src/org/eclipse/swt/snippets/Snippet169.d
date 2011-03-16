@@ -31,7 +31,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.layout.FillLayout;
 
 import java.lang.all;
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main(String[] args){
     Snippet169.main(args);
@@ -41,7 +45,7 @@ void main(String[] args){
 public class Snippet169 {
     public static void main (String [] args) {
         Display display = new Display ();
-        final Shell shell = new Shell (display);
+        Shell shell = new Shell (display);
         shell.setLayout (new FillLayout ());
         Listener listener = new class() Listener {
             public void handleEvent (Event e) {
@@ -57,7 +61,7 @@ public class Snippet169 {
         };
         for (int i=0; i<20; i++) {
             Button button = new Button (shell, SWT.TOGGLE);
-            button.setText ("B" ~to!(char[])(i));
+            button.setText ("B" ~to!(String)(i));
             button.addListener (SWT.Selection, listener);
             if (i == 0) button.setSelection (true);
         }

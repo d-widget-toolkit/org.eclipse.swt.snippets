@@ -27,8 +27,13 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
 	Display display = new Display ();
@@ -36,7 +41,7 @@ void main () {
 	ToolBar toolBar = new ToolBar (shell, SWT.WRAP);
 	for (int i=0; i<12; i++) {
 		ToolItem item = new ToolItem (toolBar, SWT.PUSH);
-		item.setText ("Item " ~ to!(char[])(i));
+		item.setText ("Item " ~ to!(String)(i));
 	}
 	shell.addListener (SWT.Resize, new class Listener {
 		void handleEvent (Event e) {

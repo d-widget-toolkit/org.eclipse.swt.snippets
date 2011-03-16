@@ -34,8 +34,8 @@ import org.eclipse.swt.events.PaintListener;
 Image image;
 
 void main() {
-    final Display display = new Display();
-    final Shell shell = new Shell(display);
+    Display display = new Display();
+    Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Capture");

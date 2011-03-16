@@ -29,7 +29,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main(String[] args) {
     Display display = new Display();
@@ -40,7 +44,11 @@ void main(String[] args) {
     combo.setText("Here is some text");
     combo.addSelectionListener(new class() SelectionAdapter{
         public void widgetDefaultSelected(SelectionEvent e) {
-            Stdout("Combo default selected (overrides default button)\n");
+            version(Tango){
+                Stdout("Combo default selected (overrides default button)\n");
+            } else { // Phobos
+                writeln("Combo default selected (overrides default button)");
+            }
         }
     });
     combo.addTraverseListener(new class() TraverseListener{
@@ -55,7 +63,11 @@ void main(String[] args) {
     button.setText("Ok");
     button.addSelectionListener(new class() SelectionAdapter{
         public void widgetSelected(SelectionEvent e) {
-            Stdout("Button selected\n");
+            version(Tango){
+                Stdout("Button selected\n");
+            } else { // Phobos
+                writeln("Button selected");
+            }
         }
     });
     shell.setDefaultButton(button);

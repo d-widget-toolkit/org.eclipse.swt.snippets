@@ -69,7 +69,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.GlyphMetrics;
 import java.lang.all;
 
-const char[] OBJ_MARKER = "\uFFFC";
+const String OBJ_MARKER = "\uFFFC";
 
 void main() {
     static StyledText styledText;

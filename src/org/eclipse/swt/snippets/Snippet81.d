@@ -34,9 +34,17 @@ import org.eclipse.swt.ole.win32.OleFrame;
 import org.eclipse.swt.ole.win32.OleFunctionDescription;
 import org.eclipse.swt.ole.win32.OlePropertyDescription;
 
-import tango.io.Stdout;
-import tango.io.stream.Format;
-import tango.text.convert.Format;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.io.stream.Format;
+    import tango.text.convert.Format;
+} else { // Phobos
+    import std.stdio;
+    import std.string;
+    class FormatOutput(T) {
+        alias writefln formatln;
+    }
+}
 
 int main() {
     int iRes = 0;
@@ -54,19 +62,32 @@ int main() {
         oOleSite = new OleControlSite(frame, SWT.NONE, progID); 
     }
     catch (Exception oExc) {
-        Stdout.formatln("Exception {} creating OleControlSite on type library for {}", oExc.toString(), progID);
+        version(Tango){
+            Stdout.formatln("Exception {} creating OleControlSite on type library for {}", oExc.toString(), progID);
+        } else { // Phobos
+            writefln("Exception %s creating OleControlSite on type library for %s", oExc.toString(), progID);
+        }
         return 1;
     }
     try {
         oOleAutoObj = new OleAutomation(oOleSite);
     }
     catch (Exception oExc) {
-        Stdout.formatln("Exception {}  OleAutomation on type library for {}", oExc.toString(), progID);
+        version(Tango){
+            Stdout.formatln("Exception {}  OleAutomation on type library for {}", oExc.toString(), progID);
+        } else { // Phobos
+            writefln("Exception %s  OleAutomation on type library for %s", oExc.toString(), progID);
+        }
         return 1;
     }
 
-    Stdout.formatln("TypeLibrary for: '{}'", progID);
-    printTypeInfo(oOleAutoObj, Stdout);
+    version(Tango){
+        Stdout.formatln("TypeLibrary for: '{}'", progID);
+        printTypeInfo(oOleAutoObj, Stdout);
+    } else {
+        writefln("TypeLibrary for: '%s'", progID);
+        printTypeInfo(oOleAutoObj, new FormatOutput!(char));
+    }
 
     oShell.dispose();
     oDisplay.dispose();
@@ -81,7 +102,7 @@ private static void printTypeInfo(OleAutomation oOleAutoObj, FormatOutput!(char)
             oOut.formatln("Functions :");
             for (int iIdx = 0; iIdx < pTypeAttr.cFuncs; ++iIdx) {
                 OleFunctionDescription oData = oOleAutoObj.getFunctionDescription(iIdx);
-                char[] sArgList = "";
+                String sArgList = "";
                 int iFirstOptionalArgIndex = oData.args.length - oData.optionalArgCount;
                 for (int iArg = 0; iArg < oData.args.length; ++iArg) {
                     sArgList ~= "[";
@@ -96,29 +117,48 @@ private static void printTypeInfo(OleAutomation oOleAutoObj, FormatOutput!(char)
                         sArgList ~= ", ";
                     }
                 }
-                oOut.formatln("{} (id = {} (0x{:X8}))", getInvokeKind(oData.invokeKind), oData.id, oData.id);
-                oOut.formatln("\tSignature  : {} {}({})", getTypeName(oData.returnType), oData.name, sArgList);
-                oOut.formatln("\tDescription: {}", oData.documentation);
-                oOut.formatln("\tHelp File  : {}", oData.helpFile);
-                oOut.formatln("");
+                version(Tango){
+                    oOut.formatln("{} (id = {} (0x{:X8}))", getInvokeKind(oData.invokeKind), oData.id, oData.id);
+                    oOut.formatln("\tSignature  : {} {}({})", getTypeName(oData.returnType), oData.name, sArgList);
+                    oOut.formatln("\tDescription: {}", oData.documentation);
+                    oOut.formatln("\tHelp File  : {}", oData.helpFile);
+                    oOut.formatln("");
+                } else { // Phobos
+                    oOut.formatln("%s (id = %s (0x%8X))", getInvokeKind(oData.invokeKind), oData.id, oData.id);
+                    oOut.formatln("\tSignature  : %s %s(%s)", getTypeName(oData.returnType), oData.name, sArgList);
+                    oOut.formatln("\tDescription: %s", oData.documentation);
+                    oOut.formatln("\tHelp File  : %s", oData.helpFile);
+                    oOut.formatln("");
+                }
             }
         }
 
         if (pTypeAttr.cVars > 0) {
-            oOut.formatln("\n\nVariables :");
-            for (int iIdx = 0; iIdx < pTypeAttr.cVars; ++iIdx) {
-                OlePropertyDescription oData = oOleAutoObj.getPropertyDescription(iIdx);
-                oOut.formatln("PROPERTY (id = {} (0x{:X8})", oData.id, oData.id);
-                oOut.formatln("\tName : {}", oData.name);
-                oOut.formatln("\tType : {}", getTypeName(oData.type));
-                oOut.formatln("");
+            version(Tango){
+                oOut.formatln("\n\nVariables :");
+                for (int iIdx = 0; iIdx < pTypeAttr.cVars; ++iIdx) {
+                    OlePropertyDescription oData = oOleAutoObj.getPropertyDescription(iIdx);
+                    oOut.formatln("PROPERTY (id = {} (0x{:X8})", oData.id, oData.id);
+                    oOut.formatln("\tName : {}", oData.name);
+                    oOut.formatln("\tType : {}", getTypeName(oData.type));
+                    oOut.formatln("");
+                }
+            } else { // Phobos
+                oOut.formatln("\n\nVariables :");
+                for (int iIdx = 0; iIdx < pTypeAttr.cVars; ++iIdx) {
+                    OlePropertyDescription oData = oOleAutoObj.getPropertyDescription(iIdx);
+                    oOut.formatln("PROPERTY (id = %s (0x%8X)", oData.id, oData.id);
+                    oOut.formatln("\tName : %s", oData.name);
+                    oOut.formatln("\tType : %s", getTypeName(oData.type));
+                    oOut.formatln("");
+                }
             }
         }
     }
 }
-private static char[] getTypeName(int iType) {
+private static String getTypeName(int iType) {
     int iBase = iType & ~OLE.VT_BYREF;
-    char[] sDsc = null;
+    String sDsc = null;
     switch (iBase) {
         case OLE.VT_BOOL :          sDsc = "boolean"; break;
         case OLE.VT_R4 :            sDsc = "float"; break;
@@ -147,11 +187,15 @@ private static char[] getTypeName(int iType) {
         }
         return sDsc;
     }
-    return Format("unknown {} (0x{:X4})", iType, iType);
+    version(Tango){
+        return Format("unknown {} (0x{:X4})", iType, iType);
+    } else { // Phobos
+        return format("unknown %s (0x%4X)", iType, iType);
+    }
 }
 
-char[] getDirection(int bDirection) {
-    char[] sDirString = "";
+String getDirection(int bDirection) {
+    String sDirString = "";
     bool bComma = false;
     if ((bDirection & OLE.IDLFLAG_FIN) != 0) {
         sDirString ~= "in";
@@ -173,7 +217,7 @@ char[] getDirection(int bDirection) {
     }
     return sDirString;
 }
-private static char[] getInvokeKind(int iInvKind) {
+private static String getInvokeKind(int iInvKind) {
     switch (iInvKind) {
         case OLE.INVOKE_FUNC : return "METHOD";
         case OLE.INVOKE_PROPERTYGET : return "PROPERTY GET";
@@ -181,7 +225,11 @@ private static char[] getInvokeKind(int iInvKind) {
         case OLE.INVOKE_PROPERTYPUTREF : return "PROPERTY PUT BY REF";
         default: break;
     }
-    return Format("unknown {}", iInvKind);
+    version(Tango){
+        return Format("unknown {}", iInvKind);
+    } else { // Phobos
+        return format("unknown %s", iInvKind);
+    }
 }
 
 

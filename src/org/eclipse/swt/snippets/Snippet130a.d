@@ -33,10 +33,15 @@ import org.eclipse.swt.custom.BusyIndicator;
 
 import java.lang.all;
 
-//import tango.core.Thread;
-import tango.io.Stdout;
-import tango.util.Convert;
-import tango.util.log.Trace;
+version(Tango){
+    //import tango.core.Thread;
+    import tango.io.Stdout;
+    import tango.util.Convert;
+    import tango.util.log.Trace;
+} else { // Phobos
+    import std.conv;
+    import std.stdio;
+}
 
 
 void main(String[] args){
@@ -66,7 +71,11 @@ public class Snippet130 {
                             display.syncExec( dgRunnable( &printStart, text, id ));
                             for (int i = 0; i < 6; i++) {
                             if (display.isDisposed()) return;
-                            Trace.formatln("do task that takes a long time in a separate thread {} {}/6", id, i);
+                            version(Tango){
+                                Trace.formatln("do task that takes a long time in a separate thread {} {}/6", id, i);
+                            } else { // Phobos
+                                writefln("do task that takes a long time in a separate thread %s %s/6", id, i);
+                            }
                             Thread.sleep(500);
                             }
                             /*
@@ -101,14 +110,22 @@ public class Snippet130 {
         }
         display.dispose();
     }
-    private void printStart(Text text, int id ) {
+    private static void printStart(Text text, int id ) {
         if (text.isDisposed()) return;
-        Trace.formatln( "Start long running task {}", id );
-        text.append("\nStart long running task "~to!(char[])(id));
+        version(Tango){
+            Trace.formatln( "Start long running task {}", id );
+        } else { // Phobos
+            writefln( "Start long running task %s", id );
+        }
+        text.append("\nStart long running task "~to!(String)(id));
     }
-    private void printEnd(Text text, int id ) {
+    private static void printEnd(Text text, int id ) {
         if (text.isDisposed()) return;
-        Trace.formatln( "Completed long running task {}", id );
-        text.append("\nCompleted long running task "~to!(char[])(id));
+        version(Tango){
+            Trace.formatln( "Completed long running task {}", id );
+        } else { // Phobos
+            writefln( "Completed long running task %s", id );
+        }
+        text.append("\nCompleted long running task "~to!(String)(id));
     }
 }

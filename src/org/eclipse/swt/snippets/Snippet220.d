@@ -33,8 +33,13 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 version(JIVE){
     import jive.stacktrace;
@@ -78,7 +83,7 @@ void main() {
     item.setText("root item");
     for (int i = 0; i < 4; i++) {
         TreeItem newItem = new TreeItem(item, SWT.NONE);
-        newItem.setText("descendent " ~ to!(char[])(i));
+        newItem.setText("descendent " ~ to!(String)(i));
         if (i % 2 == 0) newItem.setData(xImage);
         item.setExpanded(true);
         item = newItem;

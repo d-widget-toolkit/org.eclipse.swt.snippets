@@ -37,7 +37,12 @@ import org.eclipse.swt.graphics.Image;
 
 import java.lang.all;
 
-import Math = tango.math.Math;
+version(Tango){
+    import Math = tango.math.Math;
+} else { // Phobos
+    import Math = std.algorithm;
+}
+
 version(JIVE){
     import jive.stacktrace;
 }

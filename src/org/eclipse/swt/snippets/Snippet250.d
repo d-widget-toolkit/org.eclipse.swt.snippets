@@ -28,7 +28,11 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     Display display = new Display ();
@@ -38,16 +42,24 @@ void main (String [] args) {
     DateTime calendar = new DateTime (shell, SWT.CALENDAR);
     calendar.addSelectionListener (new class() SelectionAdapter{
         void widgetSelected (SelectionEvent e) {
-            Stdout("calendar date changed\n");
-            Stdout.flush();
+            version(Tango){
+                Stdout("calendar date changed\n");
+                Stdout.flush();
+            } else { // Phobos
+                writeln("calendar date changed");
+            }
         }
     });
 
     DateTime time = new DateTime (shell, SWT.TIME);
     time.addSelectionListener (new class() SelectionAdapter{
         void widgetSelected (SelectionEvent e) {
-            Stdout("time changed\n");
-            Stdout.flush();
+            version(Tango){
+                Stdout("time changed\n");
+                Stdout.flush();
+            } else { // Phobos
+                writeln("time changed");
+            }
         }
     });
 

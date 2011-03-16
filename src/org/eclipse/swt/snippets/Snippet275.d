@@ -31,13 +31,17 @@ import org.eclipse.swt.widgets.Canvas;
 
 import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 static String value;
 public static void main () {
-	final int INTERVAL = 888;
-	final Display display = new Display ();
-	final Image image = new Image (display, 750, 750);
+	int INTERVAL = 888;
+	Display display = new Display ();
+	Image image = new Image (display, 750, 750);
 	GC gc = new GC (image);
 	gc.setBackground (display.getSystemColor (SWT.COLOR_RED));
 	gc.fillRectangle (image.getBounds ());
@@ -45,11 +49,11 @@ public static void main () {
 
 	Shell shell = new Shell (display);
 	shell.setBounds (10, 10, 790, 790);
-	final Canvas canvas = new Canvas (shell, SWT.NONE);
+	Canvas canvas = new Canvas (shell, SWT.NONE);
 	canvas.setBounds (10, 10, 750, 750);
 
     void onPaint (Event event) {
-        value = to!(char[])(System.currentTimeMillis ());
+        value = to!(String)(System.currentTimeMillis ());
         event.gc.drawImage (image, 0, 0);
         event.gc.drawString (value, 10, 10, true);
     }

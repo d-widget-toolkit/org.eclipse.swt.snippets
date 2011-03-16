@@ -35,15 +35,20 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 int itemCount;
 CoolItem createItem(CoolBar coolBar, int count) {
     ToolBar toolBar = new ToolBar(coolBar, SWT.FLAT);
     for (int i = 0; i < count; i++) {
         ToolItem item = new ToolItem(toolBar, SWT.PUSH);
-        item.setText(to!(char[])(itemCount++) ~"");
+        item.setText(to!(String)(itemCount++) ~"");
     }
     toolBar.pack();
     Point size = toolBar.getSize();
@@ -57,7 +62,7 @@ CoolItem createItem(CoolBar coolBar, int count) {
 void main () {
 
     Display display = new Display();
-    final Shell shell = new Shell(display);
+    Shell shell = new Shell(display);
     CoolBar coolBar = new CoolBar(shell, SWT.NONE);
     createItem(coolBar, 3);
     createItem(coolBar, 2);

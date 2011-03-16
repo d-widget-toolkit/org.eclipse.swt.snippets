@@ -24,18 +24,23 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Button;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
 	Display display = new Display ();
-	final Shell shell = new Shell (display);
-	final TabFolder tabFolder = new TabFolder (shell, SWT.BORDER);
+	Shell shell = new Shell (display);
+	TabFolder tabFolder = new TabFolder (shell, SWT.BORDER);
 	for (int i=0; i<6; i++) {
 		TabItem item = new TabItem (tabFolder, SWT.NONE);
-		item.setText ("TabItem " ~ to!(char[])(i));
+		item.setText ("TabItem " ~ to!(String)(i));
 		Button button = new Button (tabFolder, SWT.PUSH);
-		button.setText ("Page " ~ to!(char[])(i));
+		button.setText ("Page " ~ to!(String)(i));
 		item.setControl (button);
 	}
 	tabFolder.pack ();

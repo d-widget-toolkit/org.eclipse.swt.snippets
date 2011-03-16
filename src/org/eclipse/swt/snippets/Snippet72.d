@@ -23,7 +23,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.FileDialog;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main () {
     Display display = new Display ();
@@ -34,7 +38,11 @@ void main () {
     dialog.setFilterExtensions (["*.bat", "*.*"]); //Windows wild cards
     dialog.setFilterPath ("c:\\"); //Windows path
     dialog.setFileName ("fred.bat");
-    Stdout.formatln ("Save to: {}", dialog.open ());
+    version(Tango){
+        Stdout.formatln ("Save to: {}", dialog.open ());
+    } else { // Phobos
+        writeln ("Save to: %s", dialog.open ());
+    }
     while (!shell.isDisposed ()) {
         if (!display.readAndDispatch ()) display.sleep ();
     }

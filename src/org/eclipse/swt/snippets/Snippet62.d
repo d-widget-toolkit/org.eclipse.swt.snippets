@@ -25,12 +25,18 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
+import java.lang.all;
 
-import tango.io.Stdout;
-import tango.util.Convert;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.util.Convert;
+} else { // Phobos
+    import std.stdio;
+    import std.conv;
+}
 
-static char[] stateMask (int stateMask) {
-    char[] str = "";
+static String stateMask (int stateMask) {
+    String str = "";
     if ((stateMask & SWT.CTRL) != 0) str ~= " CTRL";
     if ((stateMask & SWT.ALT) != 0) str ~= " ALT";
     if ((stateMask & SWT.SHIFT) != 0) str ~= " SHIFT";
@@ -40,25 +46,29 @@ static char[] stateMask (int stateMask) {
 
 void main () {
     Display display = new Display ();
-    final Shell shell = new Shell (display);
+    Shell shell = new Shell (display);
     Listener listener = new class Listener {
         public void handleEvent (Event e) {
-            char[] str = "Unknown";
+            String str = "Unknown";
             switch (e.type) {
             case SWT.MouseDown: str = "DOWN"; break;
             case SWT.MouseMove: str = "MOVE"; break;
             case SWT.MouseUp: str = "UP"; break;
             }
-            str ~=": button: " ~ to!(char[])(e.button) ~ ", ";
-            str ~= "stateMask=0x" ~ to!(char[])(e.stateMask) 
+            str ~=": button: " ~ to!(String)(e.button) ~ ", ";
+            str ~= "stateMask=0x" ~ to!(String)(e.stateMask) 
             ~ stateMask (e.stateMask) 
-            ~ ", x=" ~ to!(char[])(e.x) ~ ", y=" ~ to!(char[])(e.y);
+            ~ ", x=" ~ to!(String)(e.x) ~ ", y=" ~ to!(String)(e.y);
             if ((e.stateMask & SWT.BUTTON1) != 0) str ~= " BUTTON1";
             if ((e.stateMask & SWT.BUTTON2) != 0) str ~= " BUTTON2";
             if ((e.stateMask & SWT.BUTTON3) != 0) str ~= " BUTTON3";
             if ((e.stateMask & SWT.BUTTON4) != 0) str ~= " BUTTON4";
             if ((e.stateMask & SWT.BUTTON5) != 0) str ~= " BUTTON5";
-            Stdout.formatln (str);
+            version(Tango){
+                Stdout.formatln (str);
+            } else { // Phobos
+                writeln(str);
+            }
         }
     };
     shell.addListener (SWT.MouseDown, listener);

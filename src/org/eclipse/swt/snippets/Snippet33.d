@@ -22,18 +22,30 @@ module org.eclipse.swt.snippets.Snippet33;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import java.lang.all;
 
-import tango.io.FileSystem;
-import tango.io.Stdout;
-import tango.util.Convert;
+version(Tango){
+    import tango.sys.Environment;
+    import tango.io.Stdout;
+    import tango.util.Convert;
+} else { // Phobos
+    import std.file;
+    import std.stdio;
+    import std.conv;
+}
 
 void main () {
     auto display = new Display ();
     auto shell = new Shell (display);
     shell.open ();
     auto dialog = new DirectoryDialog (shell);
-    dialog.setFilterPath (FileSystem.getDirectory());
-    Stdout("RESULT=" ~ to!(char[])(dialog.open())).newline;
+    version(Tango){
+        dialog.setFilterPath (Environment.cwd());
+        Stdout("RESULT=" ~ to!(String)(dialog.open())).newline;
+    } else {
+        dialog.setFilterPath (getcwd());
+        writeln("RESULT=" ~ to!(String)(dialog.open()));
+    }
     while (!shell.isDisposed()) {
         if (!display.readAndDispatch ()) display.sleep ();
     }

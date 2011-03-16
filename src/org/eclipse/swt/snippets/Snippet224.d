@@ -31,7 +31,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
-import tango.util.Convert;
+
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main(String[] args){
     Snippet224.main(args);
@@ -45,7 +50,7 @@ public class Snippet224 {
         shell.setLayout (new RowLayout (SWT.VERTICAL));
         for (int i=0; i<8; i++) {
             Button button = new Button (shell, SWT.RADIO);
-            button.setText ("B" ~ to!(char[])(i));
+            button.setText ("B" ~ to!(String)(i));
             if (i == 0) button.setSelection (true);
         }
         Button button = new Button (shell, SWT.PUSH);

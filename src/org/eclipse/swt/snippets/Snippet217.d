@@ -48,7 +48,7 @@ version(JIVE){
     import jive.stacktrace;
 }
 
-const char[] OBJ_MARKER = "\uFFFC";
+const String OBJ_MARKER = "\uFFFC";
 void main() {
     static StyledText styledText;
     static String text =

@@ -28,8 +28,13 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 void main () {
     auto display = new Display ();
@@ -39,7 +44,7 @@ void main () {
     tree.setMenu (menu);
     for (int i=0; i<12; i++) {
         auto item = new TreeItem (tree, SWT.NONE);
-        item.setText ("Item " ~ to!(char[])(i));
+        item.setText ("Item " ~ to!(String)(i));
     }
     menu.addListener (SWT.Show, new class Listener {
         public void handleEvent (Event event) {

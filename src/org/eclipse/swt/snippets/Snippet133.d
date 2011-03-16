@@ -52,8 +52,14 @@ import java.lang.all;
 
 // tango
 //import tango.core.Thread;
-import tango.io.device.File;
-import tango.text.Unicode;
+version(Tango){
+    import tango.io.device.File;
+    import tango.text.Unicode;
+} else { // Phobos
+    import std.file;
+    import std.ctype;
+    alias isprint isPrintable;
+}
 
 public void 
 main(String[] args){
@@ -160,7 +166,11 @@ class Snippet133{
 
         try{
             try{
-                textString = cast(char[])File.get(name);
+                version(Tango){
+                    textString = cast(char[])File.get(name);
+                } else { // Phobos
+                    textString = cast(String)std.file.read(name);
+                }
             }
             catch (IOException e){
                 MessageBox box = new MessageBox(shell, SWT.ICON_ERROR);
@@ -240,7 +250,7 @@ class Snippet133{
                         printer.dispose();
                     }
                 public 
-                    this(char[] o_name){
+                    this(String o_name){
                         //this.name = o_name;
                         super(&run);
                     }

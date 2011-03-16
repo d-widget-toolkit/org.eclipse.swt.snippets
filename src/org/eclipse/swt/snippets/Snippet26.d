@@ -22,8 +22,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Combo;
+import java.lang.all;
 
-char[][] content = ["A", "B", "C"];
+String[] content = ["A", "B", "C"];
 
 void main () {
     auto display = new Display ();

@@ -30,8 +30,29 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import java.lang.all;
-import tango.io.FilePath;
-import tango.io.FileSystem;
+version(Tango){
+    import tango.io.FilePath;
+    import tango.io.FileSystem;
+} else { // Phobos
+    import std.file;
+    import std.path;
+    class FileSystem {
+        static string[] roots() {return [rel2abs(sep)];}
+    }
+    class FilePath {
+        string path;
+        this (string path) {this.path = path;}
+        FilePath[] toList() {
+            FilePath[] r;
+            foreach (file; listDir(path)) {
+                r ~= new FilePath(std.path.join(path, file));
+            }
+            return r;
+        }
+        bool isFolder() {return exists(path) && isDir(path);}
+        string toString() {return path;}
+    }
+}
 
 void main () {
     auto display = new Display ();

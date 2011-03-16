@@ -29,13 +29,17 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.layout.FillLayout;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 import java.lang.all;
 
 void main() {
     Display display = new Display();
-    final Shell shell = new Shell(display);
+    Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
     Tree tree = new Tree(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
     tree.setHeaderVisible(true);

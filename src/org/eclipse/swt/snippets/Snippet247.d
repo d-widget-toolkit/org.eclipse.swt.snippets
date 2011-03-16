@@ -32,7 +32,11 @@ import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
 
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     Display display = new Display ();
@@ -55,8 +59,12 @@ void main (String [] args) {
     button.setText("OK");
     button.addSelectionListener(new class() SelectionAdapter{
         public void widgetSelected(SelectionEvent e) {
-            Stdout("OK selected\n");
-            Stdout.flush();
+            version(Tango){
+                Stdout("OK selected\n");
+                Stdout.flush();
+            } else {
+                writeln("OK selected");
+            }
         }
     });
     shell.setDefaultButton(button);

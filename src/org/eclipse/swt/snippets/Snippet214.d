@@ -37,7 +37,11 @@ import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
 
-import tango.util.Convert;
+version(Tango){
+    import tango.util.Convert;
+} else { // Phobos
+    import std.conv;
+}
 
 static Image oldImage;
 void main(String [] args) {
@@ -54,7 +58,7 @@ void main(String [] args) {
     group.setLayout (layout2);
     for (int i=0; i<8; i++) {
         Button button = new Button (group, SWT.RADIO);
-        button.setText ("Button " ~ to!(char[])(i));
+        button.setText ("Button " ~ to!(String)(i));
     }
     shell.addListener (SWT.Resize, new class() Listener {
        public void handleEvent (Event event) {

@@ -28,7 +28,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String [] args) {
     Display display = new Display ();
@@ -40,12 +44,20 @@ void main (String [] args) {
     text.setText ("some text");
     combo.addListener (SWT.DefaultSelection, new class() Listener{
         public void handleEvent (Event e) {
-            Stdout(e.widget.toString() ~ " - Default Selection\n");
+            version(Tango){
+                Stdout(e.widget.toString() ~ " - Default Selection\n");
+            } else { // Phobos
+                writeln(e.widget.toString() ~ " - Default Selection");
+            }
         }
     });
     text.addListener (SWT.DefaultSelection, new class() Listener{
         public void handleEvent (Event e) {
-            Stdout(e.widget.toString() ~ " - Default Selection\n");
+            version(Tango){
+                Stdout(e.widget.toString() ~ " - Default Selection\n");
+            } else { // Phobos
+                writeln(e.widget.toString() ~ " - Default Selection");
+            }
         }
     });
     shell.pack ();

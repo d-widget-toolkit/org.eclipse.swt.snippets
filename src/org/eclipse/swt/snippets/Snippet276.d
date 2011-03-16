@@ -29,7 +29,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+} else { // Phobos
+    import std.stdio;
+}
 
 void main (String[] args) {
     Display display = new Display ();
@@ -39,7 +43,11 @@ void main (String[] args) {
     label.setText ("click in shell to print display-relative coordinate");
     Listener listener = dgListener( (Event event) {
         Point point = new Point (event.x, event.y);
-        Stdout(display.map (cast(Control)event.widget, null, point)).newline().flush();
+        version(Tango){
+            Stdout(display.map (cast(Control)event.widget, null, point)).newline().flush();
+        } else { // Phobos
+            writeln(display.map (cast(Control)event.widget, null, point));
+        }
     });
     shell.addListener (SWT.MouseDown, listener);
     label.addListener (SWT.MouseDown, listener);

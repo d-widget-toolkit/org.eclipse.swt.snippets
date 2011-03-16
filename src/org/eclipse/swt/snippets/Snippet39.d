@@ -28,8 +28,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
-import tango.util.Convert;
-import tango.io.Stdout;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.util.Convert;
+} else { // Phobos
+    import std.stdio;
+    import std.conv;
+}
 public static void main(String[] args) {
     Display display = new Display();
     Shell shell = new Shell(display);
@@ -38,13 +43,17 @@ public static void main(String[] args) {
     CCombo combo = new CCombo(shell, SWT.FLAT | SWT.BORDER);
     combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
     for (int i = 0; i < 5; i++) {
-        combo.add("item" ~ to!(char[])(i));
+        combo.add("item" ~ to!(String)(i));
     }
     combo.setText("item0");
 
     combo.addSelectionListener(new class() SelectionAdapter {
         public void widgetSelected(SelectionEvent e) {
-            Stdout.formatln("Item selected");
+            version(Tango){
+                Stdout.formatln("Item selected");
+            } else { // Phobos
+                writeln("Item selected");
+            }
         };
     });
 

@@ -32,9 +32,14 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 
-import tango.io.Stdout;
-import tango.util.Convert;
-//import tango.core.Thread;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.util.Convert;
+    //import tango.core.Thread;
+} else { // Phobos
+    import std.stdio;
+    import std.conv;
+}
 
 void main(String[] args) {
     Display display = new Display();
@@ -50,10 +55,14 @@ void main(String[] args) {
     shell.setSize(styledText.computeSize(SWT.DEFAULT, 400));
     shell.open();
     styledText.addListener(SWT.MouseWheel, dgListener( (Event e){
-        Stdout.formatln("Mouse Wheel event \n"); //" + e);
-        Stdout.flush();
+        version(Tango){
+            Stdout.formatln("Mouse Wheel event \n"); //" + e);
+            Stdout.flush();
+        } else {
+            writeln("Mouse Wheel event "); //" + e);
+        }
     }));
-    final Point pt = display.map(shell, null, 50, 50);
+    Point pt = display.map(shell, null, 50, 50);
     Thread thread = new Thread({
         Event event;
         for (int i = 0; i < 50; i++) {
@@ -68,7 +77,11 @@ void main(String[] args) {
                 Thread.sleep(400);
             } catch (InterruptedException e) {}
         }
-        Stdout("Thread done\n").flush(); 
+        version(Tango){
+            Stdout("Thread done\n").flush(); 
+        } else {
+            writeln("Thread done");
+        }
     });
   
     thread.start();

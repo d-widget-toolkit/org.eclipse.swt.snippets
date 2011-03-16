@@ -30,49 +30,83 @@ import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
-import tango.io.Stdout;
-import tango.text.convert.Format;
+import java.lang.all;
+version(Tango){
+    import tango.io.Stdout;
+    import tango.text.convert.Format;
+} else { // Phobos
+    import std.stdio;
+    import std.string;
+}
 
 TrayItem item;
 Menu menu;
 
-public static void main(char[][] args) {
+void main(String[] args) {
     Display display = new Display ();
     Shell shell = new Shell (display);
     Image image = new Image (display, 16, 16);
-    final Tray tray = display.getSystemTray ();
+    Tray tray = display.getSystemTray ();
     if (tray is null) {
-        Stdout.formatln ("The system tray is not available");
+        version(Tango){
+            Stdout.formatln ("The system tray is not available");
+        } else { // Phobos
+            writefln("The system tray is not available");
+        }
     } else {
         item = new TrayItem (tray, SWT.NONE);
         item.setToolTipText("SWT TrayItem");
         item.addListener (SWT.Show, new class() Listener {
             public void handleEvent (Event event) {
-                Stdout.formatln("show");
+                version(Tango){
+                    Stdout.formatln("show");
+                } else { // Phobos
+                    writefln("show");
+                }
             }
         });
         item.addListener (SWT.Hide, new class() Listener {
             public void handleEvent (Event event) {
-                Stdout.formatln("hide");
+                version(Tango){
+                    Stdout.formatln("hide");
+                } else { // Phobos
+                    writefln("hide");
+                }
             }
         });
         item.addListener (SWT.Selection, new class() Listener {
             public void handleEvent (Event event) {
-                Stdout.formatln("selection");
+                version(Tango){
+                    Stdout.formatln("selection");
+                } else { // Phobos
+                    writefln("selection");
+                }
             }
         });
         item.addListener (SWT.DefaultSelection, new class() Listener {
             public void handleEvent (Event event) {
-                Stdout.formatln("default selection");
+                version(Tango){
+                    Stdout.formatln("default selection");
+                } else { // Phobos
+                    writefln("default selection");
+                }
             }
         });
         menu = new Menu (shell, SWT.POP_UP);
         for (int i = 0; i < 8; i++) {
             MenuItem mi = new MenuItem (menu, SWT.PUSH);
-            mi.setText ( Format( "Item{}", i ));
+            version(Tango){
+                mi.setText ( Format( "Item{}", i ));
+            } else { // Phobos
+                mi.setText ( format( "Item%s", i ));
+            }
             mi.addListener (SWT.Selection, new class() Listener {
                 public void handleEvent (Event event) {
-                    Stdout.formatln("selection {}", event.widget);
+                    version(Tango){
+                        Stdout.formatln("selection {}", event.widget);
+                    } else { // Phobos
+                        writefln("selection %s", event.widget);
+                    }
                 }
             });
             if (i == 0) menu.setDefaultItem(mi);
