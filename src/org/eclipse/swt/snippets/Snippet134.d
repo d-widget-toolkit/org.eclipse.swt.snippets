@@ -50,13 +50,10 @@ int[] circle(int r, int offsetX, int offsetY) {
     return polygon;
 }
 
-Display display;
-Shell shell;
-
-void main(char[][] args) {
-    display = new Display();
+void main() {
+    auto display = new Display();
     //Shell must be created with style SWT.NO_TRIM
-    shell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
+    auto shell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
     shell.setBackground(display.getSystemColor(SWT.COLOR_RED));
     //define a region that looks like a key hole
     Region region = new Region();

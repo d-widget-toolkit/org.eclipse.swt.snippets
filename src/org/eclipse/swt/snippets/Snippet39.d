@@ -30,12 +30,16 @@ import org.eclipse.swt.widgets.Shell;
 import java.lang.all;
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
     import tango.util.Convert;
 } else { // Phobos
     import std.stdio;
     import std.conv;
 }
-public static void main(String[] args) {
+
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
@@ -47,13 +51,9 @@ public static void main(String[] args) {
     }
     combo.setText("item0");
 
-    combo.addSelectionListener(new class() SelectionAdapter {
+    combo.addSelectionListener(new class SelectionAdapter {
         public void widgetSelected(SelectionEvent e) {
-            version(Tango){
-                Stdout.formatln("Item selected");
-            } else { // Phobos
-                writeln("Item selected");
-            }
+            writeln("Item selected");
         };
     });
 

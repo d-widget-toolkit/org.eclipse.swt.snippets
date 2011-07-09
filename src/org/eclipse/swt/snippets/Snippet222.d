@@ -91,7 +91,7 @@ void main() {
     styledText.setLineBullet(13, 2, bullet1);
     styledText.setLineBullet(16, 4, bullet3);
 
-    styledText.addPaintObjectListener(new class() PaintObjectListener {
+    styledText.addPaintObjectListener(new class PaintObjectListener {
         public void paintObject(PaintObjectEvent event) {
             Display display = event.display;
             StyleRange style = event.style;

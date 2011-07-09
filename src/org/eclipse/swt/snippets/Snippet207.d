@@ -56,7 +56,7 @@ void main() {
     shell.setText("Matrix Tranformations");
     shell.setLayout(new FillLayout());
     Canvas canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
-    canvas.addPaintListener(new class() PaintListener {
+    canvas.addPaintListener(new class PaintListener {
             public void paintControl(PaintEvent e) {    
                 GC gc = e.gc;
                 gc.setAdvanced(true);

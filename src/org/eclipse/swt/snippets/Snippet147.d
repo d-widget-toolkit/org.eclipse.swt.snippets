@@ -31,27 +31,26 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
 
-void main(String[] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
     Combo combo = new Combo(shell, SWT.NONE);
     combo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     combo.setText("Here is some text");
-    combo.addSelectionListener(new class() SelectionAdapter{
+    combo.addSelectionListener(new class SelectionAdapter{
         public void widgetDefaultSelected(SelectionEvent e) {
-            version(Tango){
-                Stdout("Combo default selected (overrides default button)\n");
-            } else { // Phobos
-                writeln("Combo default selected (overrides default button)");
-            }
+            writeln("Combo default selected (overrides default button)");
         }
     });
-    combo.addTraverseListener(new class() TraverseListener{
+    combo.addTraverseListener(new class TraverseListener{
         public void keyTraversed(TraverseEvent e) {
             if (e.detail == SWT.TRAVERSE_RETURN) {
                 e.doit = false;
@@ -61,13 +60,9 @@ void main(String[] args) {
     });
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Ok");
-    button.addSelectionListener(new class() SelectionAdapter{
+    button.addSelectionListener(new class SelectionAdapter{
         public void widgetSelected(SelectionEvent e) {
-            version(Tango){
-                Stdout("Button selected\n");
-            } else { // Phobos
-                writeln("Button selected");
-            }
+            writeln("Button selected");
         }
     });
     shell.setDefaultButton(button);

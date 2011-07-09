@@ -29,22 +29,23 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Label;
 import java.lang.all;
 
-static String statusText = "";
 void main() {
+    String statusText = "";
+    
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setBounds(10, 10, 200, 200);
     ToolBar bar = new ToolBar(shell, SWT.BORDER);
-    bar.setBounds(10, 10, 150, 50);
+    bar.setBounds(10, 10, 170, 50);
     Label statusLine = new Label(shell, SWT.BORDER);
-    statusLine.setBounds(10, 90, 150, 30);
+    statusLine.setBounds(10, 90, 170, 30);
     (new ToolItem(bar, SWT.NONE)).setText("item 1");
     (new ToolItem(bar, SWT.NONE)).setText("item 2");
     (new ToolItem(bar, SWT.NONE)).setText("item 3");
     bar.addMouseMoveListener(new class MouseMoveListener {
         void mouseMove(MouseEvent e) {
             ToolItem item = bar.getItem(new Point(e.x, e.y));
-           String name = "";
+            String name = "";
             if (item !is null) {
                 name = item.getText();
             }

@@ -37,39 +37,32 @@ version(Tango){
     import std.conv;
 }
 
-void main(String[] args){
-    Snippet169.main(args);
-}
-
-
-public class Snippet169 {
-    public static void main (String [] args) {
-        Display display = new Display ();
-        Shell shell = new Shell (display);
-        shell.setLayout (new FillLayout ());
-        Listener listener = new class() Listener {
-            public void handleEvent (Event e) {
-                Control [] children = shell.getChildren ();
-                for (int i=0; i<children.length; i++) {
-                    Control child = children [i];
-                    if (e.widget !is child && cast(Button)child !is null && (child.getStyle () & SWT.TOGGLE) != 0) {
-                        (cast(Button) child).setSelection (false);
-                    }
+void main () {
+    Display display = new Display ();
+    Shell shell = new Shell (display);
+    shell.setLayout (new FillLayout ());
+    Listener listener = new class Listener {
+        public void handleEvent (Event e) {
+            Control [] children = shell.getChildren ();
+            for (int i=0; i<children.length; i++) {
+                Control child = children [i];
+                if (e.widget !is child && cast(Button)child !is null && (child.getStyle () & SWT.TOGGLE) != 0) {
+                    (cast(Button) child).setSelection (false);
                 }
-                (cast(Button) e.widget).setSelection (true);
             }
-        };
-        for (int i=0; i<20; i++) {
-            Button button = new Button (shell, SWT.TOGGLE);
-            button.setText ("B" ~to!(String)(i));
-            button.addListener (SWT.Selection, listener);
-            if (i == 0) button.setSelection (true);
+            (cast(Button) e.widget).setSelection (true);
         }
-        shell.pack ();
-        shell.open ();
-        while (!shell.isDisposed ()) {
-            if (!display.readAndDispatch ()) display.sleep ();
-        }
-        display.dispose ();
+    };
+    for (int i=0; i<20; i++) {
+        Button button = new Button (shell, SWT.TOGGLE);
+        button.setText ("B" ~to!(String)(i));
+        button.addListener (SWT.Selection, listener);
+        if (i == 0) button.setSelection (true);
     }
+    shell.pack ();
+    shell.open ();
+    while (!shell.isDisposed ()) {
+        if (!display.readAndDispatch ()) display.sleep ();
+    }
+    display.dispose ();
 }

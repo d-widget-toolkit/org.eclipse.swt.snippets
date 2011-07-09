@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import java.lang.all;
 
-void main(String [] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setText("The SWT.Settings Event");
@@ -78,7 +78,7 @@ void main(String [] args) {
     }
     display.dispose();
 }
-static int[] colorIds = 
+const int[19] colorIds = 
     [ 
     SWT.COLOR_INFO_BACKGROUND, 
     SWT.COLOR_INFO_FOREGROUND, 
@@ -100,7 +100,7 @@ static int[] colorIds =
     SWT.COLOR_WIDGET_LIGHT_SHADOW,
     SWT.COLOR_WIDGET_NORMAL_SHADOW,
     ];
-static String [] colorNames = 
+const String[19] colorNames = 
     [
     "SWT.COLOR_INFO_BACKGROUND",
     "SWT.COLOR_INFO_FOREGROUND", 

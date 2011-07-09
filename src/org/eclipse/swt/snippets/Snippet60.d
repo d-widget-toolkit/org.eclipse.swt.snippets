@@ -25,28 +25,23 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setSize (200, 200);
     shell.open ();
     display.timerExec (5000, dgRunnable({
-        version(Tango){
-            Stdout("5000\n").flush();
-        } else { // Phobos
-            writeln("5000");
-        }
+        writeln("5000");
     }));
     display.timerExec (2000, dgRunnable({
-        version(Tango){
-            Stdout("2000\n").flush();
-        } else { // Phobos
-            writeln("2000");
-        }
+        writeln("2000");
     }));
     while (!shell.isDisposed ()) {
         if (!display.readAndDispatch ()) display.sleep ();

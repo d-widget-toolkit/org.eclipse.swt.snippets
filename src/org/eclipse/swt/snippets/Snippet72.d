@@ -23,8 +23,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.FileDialog;
 
+import java.lang.all;
+
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
@@ -34,15 +39,18 @@ void main () {
     Shell shell = new Shell (display);
     shell.open ();
     FileDialog dialog = new FileDialog (shell, SWT.SAVE);
-    dialog.setFilterNames (["Batch Files", "All Files (*.*)"]);
-    dialog.setFilterExtensions (["*.bat", "*.*"]); //Windows wild cards
-    dialog.setFilterPath ("c:\\"); //Windows path
-    dialog.setFileName ("fred.bat");
-    version(Tango){
-        Stdout.formatln ("Save to: {}", dialog.open ());
-    } else { // Phobos
-        writeln ("Save to: %s", dialog.open ());
+    version(Windows) {
+        dialog.setFilterNames (["Batch Files", "All Files (*.*)"]);
+        dialog.setFilterExtensions (["*.bat", "*.*"]); //Windows wild cards
+        dialog.setFilterPath ("c:\\"); //Windows path
+        dialog.setFileName ("fred.bat");
+    } else {
+        dialog.setFilterNames (["Shell Script", "All Files (*.*)"]);
+        dialog.setFilterExtensions (["*.sh", "*.*"]); //Posix wild cards
+        dialog.setFilterPath ("/"); //Posix path
+        dialog.setFileName ("fred.sh");
     }
+    writeln ( Format("Save to: {}", dialog.open ()) );
     while (!shell.isDisposed ()) {
         if (!display.readAndDispatch ()) display.sleep ();
     }

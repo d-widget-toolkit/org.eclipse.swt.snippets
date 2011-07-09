@@ -27,6 +27,9 @@ import java.lang.all;
 version(Tango){
     import tango.sys.Environment;
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
     import tango.util.Convert;
 } else { // Phobos
     import std.file;
@@ -41,11 +44,10 @@ void main () {
     auto dialog = new DirectoryDialog (shell);
     version(Tango){
         dialog.setFilterPath (Environment.cwd());
-        Stdout("RESULT=" ~ to!(String)(dialog.open())).newline;
     } else {
         dialog.setFilterPath (getcwd());
-        writeln("RESULT=" ~ to!(String)(dialog.open()));
     }
+    writeln("RESULT=" ~ to!(String)(dialog.open()));
     while (!shell.isDisposed()) {
         if (!display.readAndDispatch ()) display.sleep ();
     }

@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Text;
 import java.lang.all;
 
 
-public static void main( String[] args) {
+void main() {
     Display display = new Display ();
     Clipboard cb = new Clipboard(display);
     Shell shell = new Shell (display);
@@ -45,7 +45,7 @@ public static void main( String[] args) {
 
     Button copy = new Button(shell, SWT.PUSH);
     copy.setText("Copy");
-    copy.addListener (SWT.Selection, new class() Listener {
+    copy.addListener (SWT.Selection, new class Listener {
         public void handleEvent (Event e) {
             String textData = text.getSelectionText();
             if (textData.length > 0) {
@@ -60,7 +60,7 @@ public static void main( String[] args) {
 
     Button paste = new Button(shell, SWT.PUSH);
     paste.setText("Paste");
-    paste.addListener (SWT.Selection, new class() Listener {
+    paste.addListener (SWT.Selection, new class Listener {
         public void handleEvent (Event e) {
             TextTransfer transfer = TextTransfer.getInstance();
             String data = stringcast(cb.getContents(transfer));

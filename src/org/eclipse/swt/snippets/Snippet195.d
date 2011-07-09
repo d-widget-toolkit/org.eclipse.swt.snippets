@@ -87,7 +87,7 @@ void main()
 
     canvas.setCurrent();
 
-    canvas.addListener(SWT.Resize, new class() Listener {
+    canvas.addListener(SWT.Resize, new class Listener {
         public void handleEvent(Event event) {
             Rectangle bounds = canvas.getBounds();
             float fAspect = cast(float) bounds.width / cast(float) bounds.height;
@@ -112,7 +112,7 @@ void main()
     shell.setSize(640, 480);
     shell.open();
 
-    display.asyncExec(new class() Runnable {
+    display.asyncExec(new class Runnable {
         int rot = 0;
         public void run() {
             if (!canvas.isDisposed()) {

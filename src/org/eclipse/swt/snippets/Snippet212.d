@@ -10,32 +10,7 @@
  * Port to the D programming language:
  *     yidabu at gmail dot com  ( D China http://www.d-programming-language-china.org/ )
  *******************************************************************************/
-/*
-Unhandled Exception: EXCEPTION_ACCESS_VIOLATION(0xc0000005) at ntdll.dll (0x7c90316c) thread(1480)
-->us
-#0 ?? () at org.eclipse.swt\graphics\TextLayout.d:2915 from ntdll.dll
-#1 0x77f205bf in ?? () at org.eclipse.swt\graphics\TextLayout.d:2915 from GDI32.dll
-#2 0x00483c72 in  org.eclipse.swt.graphics.TextLayout.TextLayout.shape () at dwt\graphics\TextLayout.d:2915
-#3 0x0047bfff in  org.eclipse.swt.graphics.TextLayout.TextLayout.computeRuns () at dwt\graphics\TextLayout.d:267
-#4 0x00480474 in  org.eclipse.swt.graphics.Rectangle.Rectangle dwt.graphics.TextLayout.TextLayout.getBounds () at dwt\graphics\TextLayout.d:1387
-#5 0x00411ea7 in  org.eclipse.swt.graphics.Point.Point dwt.custom.StyledText.StyledText.computeSize () at dwt\custom\StyledText.d:1784
-#6 0x0041f24b in  org.eclipse.swt.layout.GridData.GridData.computeSize () at dwt\layout\GridData.d:484
-#7 0x0043258f in  org.eclipse.swt.graphics.Point.Point dwt.layout.GridLayout.GridLayout.layout () at dwt\layout\GridLayout.d:232
-#8 0x00432325 in  org.eclipse.swt.layout.GridLayout.GridLayout.layout () at dwt\layout\GridLayout.d:208
-#9 0x004999af in  org.eclipse.swt.widgets.Composite.Composite.updateLayout () at dwt\widgets\Composite.d:1170
-#10 0x00498eba in  org.eclipse.swt.widgets.Composite.Composite.sendResize () at dwt\widgets\Composite.d:879
-#11 0x00499053 in  org.eclipse.swt.widgets.Composite.Composite.setBounds () at dwt\widgets\Composite.d:924
-#12 0x004d959d in  org.eclipse.swt.widgets.Decorations.Decorations.setBounds () at dwt\widgets\Decorations.d:888
-#13 0x0042f9a2 in  org.eclipse.swt.widgets.Shell.Shell.setBounds () at dwt\widgets\Shell.d:1460
-#14 0x004733f3 in  org.eclipse.swt.widgets.Control.Control.setBounds () at dwt\widgets\Control.d:2639
-#15 0x00473d27 in  org.eclipse.swt.widgets.Control.Control.setSize () at dwt\widgets\Control.d:3153
-#16 0x004042c8 in _Dmain () at Snippet212.d:171
-#17 0x00645778 in extern (C) int dmain2.main(int, char**) . void runMain(void*) () from dmain2
-#18 0x006457af in extern (C) int dmain2.main(int, char**) . void runAll(void*) () from dmain2
-#19 0x006454f0 in _main () from dmain2
-#20 0x0065f801 in _mainCRTStartup () from constart
-#21 0x7c816fd7 in ?? () from KERNEL32.dll
-*/
+
 module org.eclipse.swt.snippets.Snippet212;
 /**
  * StyledText snippet: embed images
@@ -129,13 +104,7 @@ void main() {
     // use a verify listener to keep the offsets up to date
     styledText.addListener(SWT.Verify, dgListener(&onVerify));
 
-    styledText.addPaintObjectListener(new class(images, offsets) PaintObjectListener {
-        Image[] images;
-        int[] offsets;
-        this( Image[] images_, int[] offsets_) {
-            this.images = images_;
-            this.offsets = offsets_;
-        }
+    styledText.addPaintObjectListener(new class PaintObjectListener {
         public void paintObject(PaintObjectEvent event) {
             GC gc = event.gc;
             StyleRange style = event.style;

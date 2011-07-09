@@ -28,50 +28,16 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.IJobChangeListener;
-version(Tango){
-    import tango.io.Stdout;
-} else { // Phobos
-    import std.stdio;
-}
-
-class MyJob : Job {
-    this(char[] name) {
-        super(name);
-    }
-    public IStatus run(IProgressMonitor monitor) {
-        version(Tango){
-            Stdout.formatln("doing job");
-        } else { // Phobos
-            writeln("doing job");
-        }
-        return Status.OK_STATUS;
-    }
-}
-
-
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Cursor cursor = new Cursor (display, SWT.CURSOR_HAND);
     Shell shell = new Shell (display);
     shell.open ();
     Button b = new Button (shell, 0);
     b.setBounds (10, 10, 200, 200);
-    b.addListener (SWT.Selection, new class() Listener{
+    b.addListener (SWT.Selection, new class Listener{
         public void handleEvent (Event e) {
-            //b.setCursor (cursor);
-            auto job = new MyJob("test");
-            job.schedule();
-            job.join;
-            version(Tango){
-                Stdout.formatln("job done");
-            } else { // Phobos
-                writeln("job done");
-            }
+            b.setCursor (cursor);
         }
     });
     while (!shell.isDisposed ()) {

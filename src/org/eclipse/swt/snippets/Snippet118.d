@@ -33,16 +33,16 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setSize(150, 150);
-    Cursor[] cursor = new Cursor[1];
+    Cursor[1] cursor;
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Change cursor");
     Point size = button.computeSize(SWT.DEFAULT, SWT.DEFAULT);
     button.setSize(size);
-    button.addListener(SWT.Selection, new class() Listener{
+    button.addListener(SWT.Selection, new class Listener{
         public void handleEvent(Event e) {
             FileDialog dialog = new FileDialog(shell);
             dialog.setFilterExtensions(["*.ico", "*.gif", "*.*"]);

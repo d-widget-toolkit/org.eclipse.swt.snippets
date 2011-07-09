@@ -29,9 +29,7 @@ void main()
 {
 	Display display = new Display();
 	Shell shell = new Shell(display);
-	shell.addPaintListener(new class(shell) PaintListener {
-        Shell shell;
-        this(Shell s) { this.shell = s; }
+	shell.addPaintListener(new class PaintListener {
         public void paintControl(PaintEvent event) {
             Rectangle rect = shell.getClientArea();
             event.gc.drawOval(0, 0, rect.width - 1, rect.height - 1);

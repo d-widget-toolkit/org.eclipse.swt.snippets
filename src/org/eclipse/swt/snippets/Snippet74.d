@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     Caret caret = new Caret (shell, SWT.NONE);

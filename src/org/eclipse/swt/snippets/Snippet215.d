@@ -31,15 +31,15 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.events.PaintListener;
 
-Image image;
-
 void main() {
+    Image image;
+    
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Capture");
-    button.addListener(SWT.Selection, new class() Listener {
+    button.addListener(SWT.Selection, new class Listener {
         public void handleEvent(Event event) {
 
             /* Take the screen shot */
@@ -52,7 +52,7 @@ void main() {
             popup.setLayout(new FillLayout());
             popup.setText("Image");
             popup.setBounds(50, 50, 200, 200);
-            popup.addListener(SWT.Close, new class() Listener {
+            popup.addListener(SWT.Close, new class Listener {
                     public void handleEvent(Event e) {
                         image.dispose();
                     }
@@ -62,7 +62,7 @@ void main() {
             Canvas canvas = new Canvas(sc, SWT.NONE);
             sc.setContent(canvas);
             canvas.setBounds(display.getBounds ());
-            canvas.addPaintListener(new class() PaintListener {
+            canvas.addPaintListener(new class PaintListener {
                     public void paintControl(PaintEvent e) {
                         e.gc.drawImage(image, 0, 0);
                     }

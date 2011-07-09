@@ -34,13 +34,13 @@ version(Tango){
     import std.stdio;
 }
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout (new RowLayout ());
 
     DateTime calendar = new DateTime (shell, SWT.CALENDAR);
-    calendar.addSelectionListener (new class() SelectionAdapter{
+    calendar.addSelectionListener (new class SelectionAdapter{
         void widgetSelected (SelectionEvent e) {
             version(Tango){
                 Stdout("calendar date changed\n");
@@ -52,7 +52,7 @@ void main (String [] args) {
     });
 
     DateTime time = new DateTime (shell, SWT.TIME);
-    time.addSelectionListener (new class() SelectionAdapter{
+    time.addSelectionListener (new class SelectionAdapter{
         void widgetSelected (SelectionEvent e) {
             version(Tango){
                 Stdout("time changed\n");

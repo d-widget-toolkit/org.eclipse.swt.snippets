@@ -48,7 +48,7 @@ version(JIVE){
     import jive.stacktrace;
 }
 
-const String OBJ_MARKER = "\uFFFC";
+const OBJ_MARKER = "\uFFFC";
 void main() {
     static StyledText styledText;
     static String text =
@@ -56,9 +56,9 @@ void main() {
         "Here is one: " ~ OBJ_MARKER ~ ", and here is another: " ~ OBJ_MARKER ~ ".";
     static int[] offsets;
     static Control[] controls;
-    static int MARGIN = 5;
+    static const int MARGIN = 5;
 
-    void addControl(Control control, int offset) {
+    static void addControl(Control control, int offset) {
         StyleRange style = new StyleRange ();
         style.start = offset;
         style.length = OBJ_MARKER.length;
@@ -118,11 +118,7 @@ void main() {
     styledText.addListener(SWT.Verify, dgListener(&onVerify));
 
     // reposition widgets on paint event
-    styledText.addPaintObjectListener(new class(offsets) PaintObjectListener {
-        int[] offsets;
-        this(int[] offsets_) {
-            this.offsets = offsets_;
-        }
+    styledText.addPaintObjectListener(new class PaintObjectListener {
         public void paintObject(PaintObjectEvent event) {
             StyleRange style = event.style;
             int start = style.start;

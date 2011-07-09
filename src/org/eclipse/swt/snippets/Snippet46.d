@@ -31,7 +31,7 @@ import org.eclipse.swt.layout.FillLayout;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     Composite composite = new Composite (shell, SWT.NONE);
@@ -41,8 +41,8 @@ void main (String [] args) {
     button.setText ("Button");
     composite.pack ();
     composite.setLocation (10, 10);
-    Point [] offset = new Point [1];
-    Listener listener = new class() Listener{
+    Point[1] offset;
+    Listener listener = new class Listener{
         public void handleEvent (Event event) {
             switch (event.type) {
                 case SWT.MouseDown:

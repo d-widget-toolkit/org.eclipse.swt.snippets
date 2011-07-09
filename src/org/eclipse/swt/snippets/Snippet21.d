@@ -30,6 +30,9 @@ import org.eclipse.swt.widgets.Canvas;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
@@ -58,7 +61,7 @@ void main () {
         case SWT.TRAVERSE_PAGE_NEXT:	
         case SWT.TRAVERSE_PAGE_PREVIOUS:
             e.doit = true;
-            break;
+        default:
         }
     }
 
@@ -71,11 +74,7 @@ void main () {
     }
 
     void onKeyDown (Event e, Canvas c) {
-        version(Tango){
-            Stdout("KEY").newline;
-        } else { // Phobos
-            writeln("KEY");
-        }
+        writeln("KEY");
         for (int i=0; i<64; i++) {
             Color c1 = red, c2 = blue;
             if (c.isFocusControl ()) {

@@ -28,42 +28,30 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setSize (100, 100);
-    shell.addListener (SWT.MouseEnter, new class() Listener{
+    shell.addListener (SWT.MouseEnter, new class Listener{
         public void handleEvent (Event e) {
-            version(Tango){
-                Stdout("ENTER\n");
-                Stdout.flush();
-            } else { // Phobos
-                writeln("ENTER");
-            }
+            writeln("ENTER");
         }
     });
-    shell.addListener (SWT.MouseExit, new class() Listener{
+    shell.addListener (SWT.MouseExit, new class Listener{
         public void handleEvent (Event e) {
-            version(Tango){
-                Stdout("EXIT\n");
-                Stdout.flush();
-            } else { // Phobos
-                writeln("EXIT");
-            }
+            writeln("EXIT");
         }
     });
-    shell.addListener (SWT.MouseHover, new class() Listener{
+    shell.addListener (SWT.MouseHover, new class Listener{
         public void handleEvent (Event e) {
-            version(Tango){
-                Stdout("HOVER\n");
-                Stdout.flush();
-            } else { // Phobos
-                writeln("HOVER");
-            }
+            writeln("HOVER");
         }
     });
     shell.open ();

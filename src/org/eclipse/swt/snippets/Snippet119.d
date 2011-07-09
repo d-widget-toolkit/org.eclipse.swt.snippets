@@ -35,7 +35,7 @@ import java.lang.all;
 
 
 
-static byte[] srcData = [
+auto srcData = [
         cast(byte)0x11, cast(byte)0x11, cast(byte)0x11, cast(byte)0x00, cast(byte)0x00, cast(byte)0x11, cast(byte)0x11, cast(byte)0x11,
         cast(byte)0x11, cast(byte)0x10, cast(byte)0x00, cast(byte)0x01, cast(byte)0x10, cast(byte)0x00, cast(byte)0x01, cast(byte)0x11,
         cast(byte)0x11, cast(byte)0x00, cast(byte)0x22, cast(byte)0x01, cast(byte)0x10, cast(byte)0x33, cast(byte)0x00, cast(byte)0x11,
@@ -54,7 +54,7 @@ static byte[] srcData = [
         cast(byte)0x11, cast(byte)0x11, cast(byte)0x11, cast(byte)0x00, cast(byte)0x00, cast(byte)0x11, cast(byte)0x11, cast(byte)0x11,
 ];
 
-static byte[] mskData = [
+auto mskData = [
         cast(byte)0x03, cast(byte)0xc0,
         cast(byte)0x1f, cast(byte)0xf8,
         cast(byte)0x3f, cast(byte)0xfc,
@@ -85,11 +85,11 @@ void main (String [] args) {
     //Create a source ImageData of depth 4
     PaletteData palette = new PaletteData ([black.getRGB(), white.getRGB(), yellow.getRGB(),
                                             red.getRGB(), blue.getRGB(), green.getRGB()]);
-    ImageData sourceData = new ImageData (16, 16, 4, palette, 1, srcData);
+    ImageData sourceData = new ImageData (16, 16, 4, palette, 1, srcData[]);
 
     //Create a mask ImageData of depth 1 (monochrome)
     palette = new PaletteData ([black.getRGB(), white.getRGB()]);
-    ImageData maskData = new ImageData (16, 16, 1, palette, 1, mskData);
+    ImageData maskData = new ImageData (16, 16, 1, palette, 1, mskData[]);
 
     //Set mask
     sourceData.maskData = maskData.data;
@@ -105,7 +105,7 @@ void main (String [] args) {
     Shell shell = new Shell(display);
     Image source = new Image (display,sourceData);
     Image mask = new Image (display, maskData);
-    shell.addPaintListener(new class() PaintListener{
+    shell.addPaintListener(new class PaintListener{
         public void paintControl(PaintEvent e) {
             GC gc = e.gc;
             int x = 10, y = 10;

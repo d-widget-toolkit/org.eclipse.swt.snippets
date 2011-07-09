@@ -28,16 +28,17 @@ import org.eclipse.swt.widgets.Event;
 import java.lang.all;
 
 version(Tango){
-    import tango.io.Stdout;
-    import tango.text.convert.Format;
     import tango.util.Convert;
+    import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
-    import std.string;
     import std.conv;
 }
 
-static String stateMask (int stateMask) {
+String stateMask (int stateMask) {
 	String string = "";
 	if ((stateMask & SWT.CTRL) != 0) string ~= " CTRL";
 	if ((stateMask & SWT.ALT) != 0) string ~= " ALT";
@@ -46,7 +47,7 @@ static String stateMask (int stateMask) {
 	return string;
 }
 
-static String character (wchar character) {
+String character (wchar character) {
 	switch (character) {
     case 0: 		return "'\\0'";
     case SWT.BS:	return "'\\b'";
@@ -60,7 +61,7 @@ static String character (wchar character) {
 	}
 }
 
-static String keyCode (int keyCode) {
+String keyCode (int keyCode) {
 	switch (keyCode) {
 		
 		/* Keyboard and Mouse Masks */
@@ -144,18 +145,12 @@ void main () {
 	Shell shell = new Shell (display);
 	Listener listener = new class Listener {
 		public void handleEvent (Event e) {
-			String string = e.type == SWT.KeyDown ? "DOWN:" : "UP  :";
-			version(Tango){
-				string ~= Format("stateMask=0x{:x}{},", e.stateMask, stateMask (e.stateMask));
-				string ~= Format(" keyCode=0x{:x} {},", e.keyCode, keyCode (e.keyCode));
-				string ~= Format(" character=0x{:x} {}", e.character, character (e.character));
-				Stdout.formatln (string);
-			} else { // Phobos
-				string ~= format("stateMask=0x%x%s,", e.stateMask, stateMask (e.stateMask));
-				string ~= format(" keyCode=0x%x %s,", e.keyCode, keyCode (e.keyCode));
-				string ~= format(" character=0x%x %s", e.character, character (e.character));
-				writefln (string);
-			}
+			String string = Format("{} stateMask=0x{:x}{}, keyCode=0x{:x} {}, character=0x{:x} {}",
+				e.type == SWT.KeyDown ? "DOWN:" : "UP  :",
+				e.stateMask, stateMask (e.stateMask),
+				e.keyCode, keyCode (e.keyCode),
+				e.character, character (e.character));
+			writeln(string);
 		}
 	};
 	shell.addListener (SWT.KeyDown, listener);

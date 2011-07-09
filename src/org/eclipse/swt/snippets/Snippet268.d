@@ -35,7 +35,6 @@ import org.eclipse.swt.layout.FillLayout;
 version(Tango){
     import tango.io.Stdout;
     import tango.util.Convert;
-    //import tango.core.Thread;
 } else { // Phobos
     import std.stdio;
     import std.conv;
@@ -56,10 +55,10 @@ void main(String[] args) {
     shell.open();
     styledText.addListener(SWT.MouseWheel, dgListener( (Event e){
         version(Tango){
-            Stdout.formatln("Mouse Wheel event \n"); //" + e);
+            Stdout.formatln("Mouse Wheel event {}\n", e);
             Stdout.flush();
         } else {
-            writeln("Mouse Wheel event "); //" + e);
+            writefln("Mouse Wheel event %s", e);
         }
     }));
     Point pt = display.map(shell, null, 50, 50);

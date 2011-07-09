@@ -37,7 +37,7 @@ version(Tango){
     alias isUniUpper isUpper;
 }
 
-void main(String[] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     Text text = new Text(shell, SWT.BORDER);

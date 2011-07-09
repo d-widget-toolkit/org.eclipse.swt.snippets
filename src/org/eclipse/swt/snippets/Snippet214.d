@@ -43,8 +43,9 @@ version(Tango){
     import std.conv;
 }
 
-static Image oldImage;
 void main(String [] args) {
+    Image oldImage;
+    
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setBackgroundMode (SWT.INHERIT_DEFAULT);
@@ -60,7 +61,7 @@ void main(String [] args) {
         Button button = new Button (group, SWT.RADIO);
         button.setText ("Button " ~ to!(String)(i));
     }
-    shell.addListener (SWT.Resize, new class() Listener {
+    shell.addListener (SWT.Resize, new class Listener {
        public void handleEvent (Event event) {
            Rectangle rect = shell.getClientArea ();
            Image newImage = new Image (display, Math.max (1, rect.width), 1);

@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Shell;
 import java.lang.all;
 
 
-void main (String [] args) {
+void main () {
     Display display = new Display();
     Color white = display.getSystemColor (SWT.COLOR_WHITE);
     Color black = display.getSystemColor (SWT.COLOR_BLACK);
@@ -62,7 +62,7 @@ void main (String [] args) {
     Image source = new Image (display,sourceData);
     Image mask = new Image (display, maskData);
     //Draw source and mask just to show what they look like
-    shell.addPaintListener(new class() PaintListener{
+    shell.addPaintListener(new class PaintListener{
         void paintControl(PaintEvent e) {
             GC gc = e.gc;
             gc.drawString("source: ", 10, 10);

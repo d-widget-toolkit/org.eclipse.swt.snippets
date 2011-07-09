@@ -38,14 +38,14 @@ version(Tango){
     import std.stdio;
 }
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout(new RowLayout());
     Text text = new Text(shell, SWT.MULTI | SWT.BORDER);
     String modifier = SWT.MOD1 == SWT.CTRL ? "Ctrl" : "Command";
     text.setText("Hit " ~ modifier ~ "+Return\nto see\nthe default button\nrun");
-    text.addTraverseListener(new class() TraverseListener{
+    text.addTraverseListener(new class TraverseListener{
         public void keyTraversed(TraverseEvent e) {
           switch (e.detail) {
           case SWT.TRAVERSE_RETURN:
@@ -57,7 +57,7 @@ void main (String [] args) {
     Button button = new Button (shell, SWT.PUSH);
     button.pack();
     button.setText("OK");
-    button.addSelectionListener(new class() SelectionAdapter{
+    button.addSelectionListener(new class SelectionAdapter{
         public void widgetSelected(SelectionEvent e) {
             version(Tango){
                 Stdout("OK selected\n");

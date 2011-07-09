@@ -61,8 +61,7 @@ version(Tango){
     alias isprint isPrintable;
 }
 
-public void 
-main(String[] args){
+void main(){
     (new Snippet133).open();
 }
 
@@ -104,28 +103,28 @@ class Snippet133{
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("&Open...");
             item.setAccelerator(SWT.CTRL + 'O');
-            item.addSelectionListener(new class() SelectionAdapter{
+            item.addSelectionListener(new class SelectionAdapter{
                 public void widgetSelected(SelectionEvent event) {
                     menuOpen();
                 }
             });
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("Font...");
-            item.addSelectionListener(new class() SelectionAdapter{
+            item.addSelectionListener(new class SelectionAdapter{
                 public void widgetSelected(SelectionEvent event){
                     menuFont();
                 }
             });
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("Foreground Color...");
-            item.addSelectionListener(new class() SelectionAdapter{
+            item.addSelectionListener(new class SelectionAdapter{
                 public void widgetSelected(SelectionEvent event){
                     menuForegroundColor();
                 }
             });
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("Background Color...");
-            item.addSelectionListener(new class() SelectionAdapter{
+            item.addSelectionListener(new class SelectionAdapter{
                 public void widgetSelected(SelectionEvent event) {
                     menuBackgroundColor();
                 }
@@ -133,7 +132,7 @@ class Snippet133{
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("&Print...");
             item.setAccelerator(SWT.CTRL + 'P');
-            item.addSelectionListener(new class() SelectionAdapter{
+            item.addSelectionListener(new class SelectionAdapter{
                 public void widgetSelected(SelectionEvent event) {
                     menuPrint();
                 }
@@ -141,7 +140,7 @@ class Snippet133{
             new MenuItem(fileMenu, SWT.SEPARATOR);
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("E&xit");
-            item.addSelectionListener(new class() SelectionAdapter{
+            item.addSelectionListener(new class SelectionAdapter{
                 public void widgetSelected(SelectionEvent event){
                     System.exit(0);
                 }

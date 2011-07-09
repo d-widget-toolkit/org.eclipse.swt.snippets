@@ -30,24 +30,18 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-void main(String[] args){
-    Snippet206.main(args);
-}
-
-public class Snippet206 {
-    public static void main(String[] args) {
-        Display display = new Display();
-        Image image = display.getSystemImage(SWT.ICON_QUESTION);
-        Shell shell = new Shell(display);
-        shell.setLayout (new GridLayout());
-        Button button = new Button(shell, SWT.PUSH);
-        button.setImage(image);
-        button.setText("Button");
-        shell.setSize(300, 300);
-        shell.open();
-        while (!shell.isDisposed ()) {
-            if (!display.readAndDispatch ()) display.sleep ();
-        }
-        display.dispose ();
+void main() {
+    Display display = new Display();
+    Image image = display.getSystemImage(SWT.ICON_QUESTION);
+    Shell shell = new Shell(display);
+    shell.setLayout (new GridLayout());
+    Button button = new Button(shell, SWT.PUSH);
+    button.setImage(image);
+    button.setText("Button");
+    shell.setSize(300, 300);
+    shell.open();
+    while (!shell.isDisposed ()) {
+        if (!display.readAndDispatch ()) display.sleep ();
     }
+    display.dispose ();
 }

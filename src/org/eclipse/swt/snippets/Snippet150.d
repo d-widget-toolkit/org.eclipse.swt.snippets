@@ -48,7 +48,7 @@ CoolItem createItem(CoolBar coolBar, int count) {
     ToolBar toolBar = new ToolBar(coolBar, SWT.FLAT);
     for (int i = 0; i < count; i++) {
         ToolItem item = new ToolItem(toolBar, SWT.PUSH);
-        item.setText(to!(String)(itemCount++) ~"");
+        item.setText(to!(String)(itemCount++));
     }
     toolBar.pack();
     Point size = toolBar.getSize();
@@ -77,7 +77,7 @@ void main () {
     coolData.right = new FormAttachment(100);
     coolData.top = new FormAttachment(0);
     coolBar.setLayoutData(coolData);
-    coolBar.addListener(SWT.Resize, new class() Listener {
+    coolBar.addListener(SWT.Resize, new class Listener {
         void handleEvent(Event event) {
             shell.layout();
         }

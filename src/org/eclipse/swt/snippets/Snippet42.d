@@ -24,17 +24,16 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
-void main (String [] args) {
+
+void main () {
     Display display = new Display ();
-    version(Tango){
-        Stdout.formatln("Display Bounds= {}  Display ClientArea= {}" 
-                        ,display.getBounds(),display.getClientArea());
-    } else { // Phobos
-        writefln("Display Bounds= %s  Display ClientArea= %s" 
-                 ,display.getBounds().toString(),display.getClientArea().toString());
-    }
+    writeln(Format("Display Bounds={} Display ClientArea={}",
+        display.getBounds(), display.getClientArea()));
     display.dispose ();
 }

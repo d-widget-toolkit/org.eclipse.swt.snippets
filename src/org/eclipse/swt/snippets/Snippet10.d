@@ -45,7 +45,7 @@ void main() {
     gc.setBackground(display.getSystemColor(SWT.COLOR_RED));
     gc.fillOval(rect.x, rect.y, rect.width, rect.height);
     gc.dispose();
-    shell.addListener(SWT.Paint, new class() Listener {
+    shell.addListener(SWT.Paint, new class Listener {
             public void handleEvent(Event event) {
                 GC gc = event.gc;               
                 Transform tr = new Transform(display);

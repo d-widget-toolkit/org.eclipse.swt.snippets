@@ -29,13 +29,16 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
     import tango.util.Convert;
 } else { // Phobos
     import std.stdio;
     import std.conv;
 }
 
-static String stateMask (int stateMask) {
+String stateMask (int stateMask) {
     String str = "";
     if ((stateMask & SWT.CTRL) != 0) str ~= " CTRL";
     if ((stateMask & SWT.ALT) != 0) str ~= " ALT";
@@ -54,21 +57,16 @@ void main () {
             case SWT.MouseDown: str = "DOWN"; break;
             case SWT.MouseMove: str = "MOVE"; break;
             case SWT.MouseUp: str = "UP"; break;
+            default:
             }
-            str ~=": button: " ~ to!(String)(e.button) ~ ", ";
-            str ~= "stateMask=0x" ~ to!(String)(e.stateMask) 
-            ~ stateMask (e.stateMask) 
-            ~ ", x=" ~ to!(String)(e.x) ~ ", y=" ~ to!(String)(e.y);
+            str ~= Format(": button: {}, stateMask=0x{:x}{}, x={}, y={}",
+                e.button, e.stateMask, stateMask (e.stateMask), e.x, e.y);
             if ((e.stateMask & SWT.BUTTON1) != 0) str ~= " BUTTON1";
             if ((e.stateMask & SWT.BUTTON2) != 0) str ~= " BUTTON2";
             if ((e.stateMask & SWT.BUTTON3) != 0) str ~= " BUTTON3";
             if ((e.stateMask & SWT.BUTTON4) != 0) str ~= " BUTTON4";
             if ((e.stateMask & SWT.BUTTON5) != 0) str ~= " BUTTON5";
-            version(Tango){
-                Stdout.formatln (str);
-            } else { // Phobos
-                writeln(str);
-            }
+            writeln(str);
         }
     };
     shell.addListener (SWT.MouseDown, listener);

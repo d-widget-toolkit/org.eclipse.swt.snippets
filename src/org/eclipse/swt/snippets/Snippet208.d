@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     PaletteData palette = new PaletteData(0xff, 0xff00, 0xff0000);
 
     // ImageData showing variations of hue

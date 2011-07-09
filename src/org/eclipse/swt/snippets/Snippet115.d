@@ -30,7 +30,7 @@ import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout (new RowLayout (SWT.VERTICAL));
@@ -39,7 +39,7 @@ void main (String [] args) {
     Composite c2 = new Composite (shell, SWT.BORDER | SWT.NO_RADIO_GROUP);
     c2.setLayout (new RowLayout ());
     Composite [] composites = [c1, c2];
-    Listener radioGroup = new class() Listener{
+    Listener radioGroup = new class Listener{
         public void handleEvent (Event event) {
             for (int i=0; i<composites.length; i++) {
                 Composite composite = composites [i];

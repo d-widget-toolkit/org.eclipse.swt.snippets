@@ -50,16 +50,18 @@ version(Tango){
     }
 }
 
-static Display display;
-static Shell shell;
-static GC shellGC;
-static Color shellBackground;
-static ImageLoader[] loader;
-static ImageData[][] imageDataArray;
-static Thread[] animateThread;
-static Image[][] image;
-private static ToolItem[] item;
-static const bool useGIFBackground = false;
+mixin(gshared!("
+Display display;
+Shell shell;
+GC shellGC;
+Color shellBackground;
+ImageLoader[] loader;
+ImageData[][] imageDataArray;
+Thread[] animateThread;
+Image[][] image;
+ToolItem[] item;
+"));
+const bool useGIFBackground = false;
 
 void main () {
     display = new Display();
@@ -112,7 +114,7 @@ void main () {
     Thread.joinAll();
 }
 
-private static void loadAllImages(String directory, String[] filenames) {
+void loadAllImages(String directory, String[] filenames) {
     int numItems = filenames.length;
     loader.length = numItems;
     imageDataArray.length = numItems;
@@ -180,7 +182,7 @@ private static void loadAllImages(String directory, String[] filenames) {
     }
 }
 
-private static void startAnimationThreads() {
+void startAnimationThreads() {
     animateThread = new Thread[image.length];
     for (int ii = 0; ii < image.length; ii++) {
         animateThread[ii] = new class(ii) Thread {

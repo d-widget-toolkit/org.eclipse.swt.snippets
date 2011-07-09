@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Event;
 void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
-    Listener listener = new class() Listener {
+    Listener listener = new class Listener {
         int lastX = 0, lastY = 0;
         public void handleEvent (Event event) {
             switch (event.type) {

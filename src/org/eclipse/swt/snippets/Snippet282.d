@@ -38,7 +38,13 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.lang.all;
 
-public static void main(String[] args) {
+void main() {
+    //An org.eclipse.swt.graphics.Resource in DWT Windows (as against SWT) checks
+    //in destructor if it has been disposed, so we are to watch imageButton's
+    //image and dispose it after shell.isDisposed() or just disable this check
+    version(Windows)
+        Image.globalDisposeChecking = false;
+    
     Display display = new Display();
     Clipboard clipboard = new Clipboard(display);
     Shell shell = new Shell(display, SWT.SHELL_TRIM);
@@ -55,7 +61,7 @@ public static void main(String[] args) {
     buttons.setLayout(new GridLayout(4, true));
     Button button = new Button(buttons, SWT.PUSH);
     button.setText("Open");
-    button.addListener(SWT.Selection, new class() Listener {
+    button.addListener(SWT.Selection, new class Listener {
             public void handleEvent(Event event) {
             FileDialog dialog = new FileDialog (shell, SWT.OPEN);
             dialog.setText("Open an image file or cancel");
@@ -71,7 +77,7 @@ public static void main(String[] args) {
 
     button = new Button(buttons, SWT.PUSH);
     button.setText("Copy");
-    button.addListener(SWT.Selection, new class() Listener {
+    button.addListener(SWT.Selection, new class Listener {
             public void handleEvent(Event event) {
             Image image = imageButton.getImage();
             if (image !is null) {
@@ -86,7 +92,7 @@ public static void main(String[] args) {
             });
     button = new Button(buttons, SWT.PUSH);
     button.setText("Paste");
-    button.addListener(SWT.Selection, new class() Listener {
+    button.addListener(SWT.Selection, new class Listener {
             public void handleEvent(Event event) {
             ImageTransfer transfer = ImageTransfer.getInstance();
             ImageData imageData = cast(ImageData)clipboard.getContents(transfer);
@@ -104,7 +110,7 @@ public static void main(String[] args) {
 
     button = new Button(buttons, SWT.PUSH);
     button.setText("Clear");
-    button.addListener(SWT.Selection, new class() Listener {
+    button.addListener(SWT.Selection, new class Listener {
             public void handleEvent(Event event) {
             imageButton.setText("");
             Image image = imageButton.getImage();

@@ -37,7 +37,7 @@ import org.eclipse.swt.widgets.Text;
 
 import java.lang.all;
 
-public static void main(String[] args) {
+void main() {
     Display display = new Display();
     Clipboard cb = new Clipboard(display);
     Shell shell = new Shell(display);
@@ -46,7 +46,7 @@ public static void main(String[] args) {
     Menu menu = new Menu(shell, SWT.POP_UP);
     MenuItem copyItem = new MenuItem(menu, SWT.PUSH);
     copyItem.setText("Copy");
-    copyItem.addSelectionListener(new class() SelectionAdapter{
+    copyItem.addSelectionListener(new class SelectionAdapter{
         public void widgetSelected(SelectionEvent e) {
             String selection = text.getSelectionText();
             if (selection.length == 0) return;
@@ -57,13 +57,13 @@ public static void main(String[] args) {
     });
     MenuItem pasteItem = new MenuItem(menu, SWT.PUSH);
     pasteItem.setText ("Paste");
-    pasteItem.addSelectionListener(new class() SelectionAdapter{
+    pasteItem.addSelectionListener(new class SelectionAdapter{
         public void widgetSelected(SelectionEvent e) {
             String string = stringcast(cb.getContents(TextTransfer.getInstance()));
             if (string !is null) text.insert(string);
         }
     });
-    menu.addMenuListener(new class() MenuAdapter{
+    menu.addMenuListener(new class MenuAdapter{
         public void menuShown(MenuEvent e) {
             // is copy valid?
             String selection = text.getSelectionText();

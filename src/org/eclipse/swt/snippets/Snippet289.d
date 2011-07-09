@@ -28,14 +28,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import java.lang.all;
 
-void main(String[] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
     Combo combo = new Combo(shell, SWT.NONE);
     combo.setItems(["1111", "2222", "3333", "4444"]);
     combo.setText(combo.getItem(0));
-    combo.addVerifyListener(new class() VerifyListener{
+    combo.addVerifyListener(new class VerifyListener{
         public void verifyText(VerifyEvent e) {
             String newText = e.text;
             try {
@@ -45,7 +45,7 @@ void main(String[] args) {
             }
         }
     });
-    combo.addTraverseListener(new class() TraverseListener {
+    combo.addTraverseListener(new class TraverseListener {
         public void keyTraversed(TraverseEvent e) {
             if (e.detail == SWT.TRAVERSE_RETURN) {
                 e.doit = false;

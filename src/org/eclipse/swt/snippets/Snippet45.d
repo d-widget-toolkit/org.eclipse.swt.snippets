@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Scale;
 import java.lang.all;
 
 
-public static void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     Scale scale = new Scale (shell, SWT.BORDER);

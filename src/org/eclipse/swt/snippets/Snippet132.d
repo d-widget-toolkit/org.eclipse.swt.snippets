@@ -36,8 +36,7 @@ import org.eclipse.swt.printing.PrintDialog,
 // java
 import java.lang.all;
 
-public void 
-main(String [] args){
+void main(){
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.open();

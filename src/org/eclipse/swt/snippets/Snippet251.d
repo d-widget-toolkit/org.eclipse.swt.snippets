@@ -39,7 +39,7 @@ version(Tango){
     import std.stdio;
 }
 
-void main (String [] args) {
+void main () {
     /* These cannot be local in the
      * listener, hence we put it here and not at the
      * constructor. (THD)
@@ -54,7 +54,7 @@ void main (String [] args) {
 
     Button open = new Button (shell, SWT.PUSH);
     open.setText ("Open Dialog");
-    open.addSelectionListener (new class() SelectionAdapter{
+    open.addSelectionListener (new class SelectionAdapter{
         public void widgetSelected (SelectionEvent e) {
             dialog = new Shell (shell, SWT.DIALOG_TRIM);
             dialog.setLayout (new GridLayout (3, false));
@@ -68,7 +68,7 @@ void main (String [] args) {
             Button ok = new Button (dialog, SWT.PUSH);
             ok.setText ("OK");
             ok.setLayoutData(new GridData (SWT.FILL, SWT.CENTER, false, false));
-            ok.addSelectionListener (new class() SelectionAdapter{
+            ok.addSelectionListener (new class SelectionAdapter{
                 void widgetSelected (SelectionEvent e) {
                     version(Tango){
                         Stdout.formatln("Calendar date selected (MM/DD/YYYY) = {:d02}/{:d02}/{:d04}",

@@ -45,7 +45,7 @@ version(Tango){
     import Math = std.algorithm;
 }
 
-public static void main() 
+void main() 
 {
     DerelictGL.load();
     DerelictGLU.load();
@@ -78,7 +78,7 @@ public static void main()
     display.dispose();
 }
 
-static void init(GLCanvas canvas) {
+void init(GLCanvas canvas) {
     canvas.setCurrent();
     resize(canvas);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -88,7 +88,7 @@ static void init(GLCanvas canvas) {
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }
 
-static void render() {
+void render() {
     static int rot = 0;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -103,7 +103,7 @@ static void render() {
     glEnd();
 }
 
-static void resize(GLCanvas canvas) {
+void resize(GLCanvas canvas) {
     canvas.setCurrent();
     Rectangle rect = canvas.getClientArea();
     int width = rect.width;

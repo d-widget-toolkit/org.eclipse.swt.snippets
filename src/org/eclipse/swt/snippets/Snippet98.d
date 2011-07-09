@@ -38,10 +38,10 @@ version(Tango){
     import std.conv;
 }
 
-static int pageNum = 0;
-static Composite pageComposite;
+void main() {
+    int pageNum = 0;
+    Composite pageComposite;
 
-void main(String args[]) {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new GridLayout());
@@ -51,7 +51,7 @@ void main(String args[]) {
     pageComposite.setLayout(new GridLayout());
     pageComposite.setLayoutData(new GridData());
 
-    button.addListener(SWT.Selection, new class() Listener{
+    button.addListener(SWT.Selection, new class Listener{
         public void handleEvent(Event event) {
             if ((pageComposite !is null) && (!pageComposite.isDisposed())) {
                 pageComposite.dispose();

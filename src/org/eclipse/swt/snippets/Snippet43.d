@@ -25,13 +25,14 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Caret;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
-    shell.open ();
     Caret caret = new Caret (shell, SWT.NONE);
     Color white = display.getSystemColor (SWT.COLOR_WHITE);
     Color black = display.getSystemColor (SWT.COLOR_BLACK);
@@ -45,12 +46,16 @@ void main (String [] args) {
     gc.dispose ();
     caret.setLocation (10, 10);
     caret.setImage (image);
-    gc = new GC (shell);
-    gc.drawImage (image, 10, 64);
-    caret.setVisible (false);
-    gc.drawString ("Test", 12, 12);
     caret.setVisible (true);
-    gc.dispose ();
+    shell.addListener(SWT.Paint, new class Listener {
+        public void handleEvent(Event event) {
+            GC gc = event.gc;
+            gc.drawImage (image, 10, 64);
+            gc.drawString ("Test", 12, 12);
+        }
+    });
+    shell.open ();
+     
     while (!shell.isDisposed ()) {
         if (!display.readAndDispatch ()) display.sleep ();
     }

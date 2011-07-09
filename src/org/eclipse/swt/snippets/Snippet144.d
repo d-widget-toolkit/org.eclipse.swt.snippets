@@ -35,6 +35,9 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
     import tango.time.StopWatch;
     import tango.util.Convert;
 } else {
@@ -55,11 +58,7 @@ void main() {
             auto item = cast(TableItem) event.item;
             auto index = table.indexOf (item);
             item.setText ("Item " ~ to!(String)(index));
-            version(Tango){
-                Stdout(item.getText ()).newline;
-            } else { // Phobos
-                writeln(item.getText ());
-            }
+            writeln(item.getText ());
         }
     });
     table.setLayoutData (new RowData (200, 200));
@@ -68,20 +67,17 @@ void main() {
     auto label = new Label(shell, SWT.NONE);
     button.addListener (SWT.Selection, new class Listener {
         public void handleEvent (Event event) {
+            StopWatch elapsed; //Tango or Phobos StopWatch
+            elapsed.start();
+            table.setItemCount (COUNT);
             version(Tango){
-                StopWatch elapsed;
-                elapsed.start;
-                table.setItemCount (COUNT);
-                auto t = elapsed.stop;
+                auto t = elapsed.stop() * 1_000;
             } else { // Phobos
-                StopWatch elapsed;
-                elapsed.start;
-                table.setItemCount (COUNT);
-                elapsed.stop;
+                elapsed.stop();
                 auto t = elapsed.peek.msecs;
             }
             label.setText ("Items: " ~ to!(String)(COUNT) ~
-                           ", Time: " ~ to!(String)(t) ~ " (sec)");
+                           ", Time: " ~ to!(String)(t) ~ " (msec)");
             shell.layout ();
         }
     });

@@ -38,7 +38,7 @@ void main(String [] args) {
     shell.setBounds(10, 10, 200, 200);
     Canvas canvas = new Canvas(shell, SWT.BORDER);
     canvas.setBounds(10,50,150,100);
-    canvas.addPaintListener(new class() PaintListener{
+    canvas.addPaintListener(new class PaintListener{
         public void paintControl(PaintEvent e) {
             e.gc.drawString("hide Cursor here", 10, 10);
         }

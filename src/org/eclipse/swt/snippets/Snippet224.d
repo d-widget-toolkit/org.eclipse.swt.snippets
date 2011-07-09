@@ -38,41 +38,34 @@ version(Tango){
     import std.conv;
 }
 
-void main(String[] args){
-    Snippet224.main(args);
-}
-
-
-public class Snippet224 {
-    public static void main (String [] args) {
-        Display display = new Display ();
-        Shell shell = new Shell (display);
-        shell.setLayout (new RowLayout (SWT.VERTICAL));
-        for (int i=0; i<8; i++) {
-            Button button = new Button (shell, SWT.RADIO);
-            button.setText ("B" ~ to!(String)(i));
-            if (i == 0) button.setSelection (true);
-        }
-        Button button = new Button (shell, SWT.PUSH);
-        button.setText ("Set Selection to B4");
-        button.addListener (SWT.Selection, new class() Listener{
-            public void handleEvent (Event event) {
-                Control [] children = shell.getChildren ();
-                Button newButton = cast(Button) children [4];
-                for (int i=0; i<children.length; i++) {
-                    Control child = children [i];
-                    if ( cast(Button)child !is null && (child.getStyle () & SWT.RADIO) != 0) {
-                        (cast(Button)child).setSelection (false);
-                    }
-                }
-                newButton.setSelection (true);
-            }
-        });
-        shell.pack ();
-        shell.open ();
-        while (!shell.isDisposed ()) {
-            if (!display.readAndDispatch ()) display.sleep ();
-        }
-        display.dispose ();
+void main () {
+    Display display = new Display ();
+    Shell shell = new Shell (display);
+    shell.setLayout (new RowLayout (SWT.VERTICAL));
+    for (int i=0; i<8; i++) {
+        Button button = new Button (shell, SWT.RADIO);
+        button.setText ("B" ~ to!(String)(i));
+        if (i == 0) button.setSelection (true);
     }
+    Button button = new Button (shell, SWT.PUSH);
+    button.setText ("Set Selection to B4");
+    button.addListener (SWT.Selection, new class Listener{
+        public void handleEvent (Event event) {
+            Control [] children = shell.getChildren ();
+            Button newButton = cast(Button) children [4];
+            for (int i=0; i<children.length; i++) {
+                Control child = children [i];
+                if ( cast(Button)child !is null && (child.getStyle () & SWT.RADIO) != 0) {
+                    (cast(Button)child).setSelection (false);
+                }
+            }
+            newButton.setSelection (true);
+        }
+    });
+    shell.pack ();
+    shell.open ();
+    while (!shell.isDisposed ()) {
+        if (!display.readAndDispatch ()) display.sleep ();
+    }
+    display.dispose ();
 }

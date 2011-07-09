@@ -33,11 +33,14 @@ import java.lang.all;
 version(Tango){
     //import tango.core.Thread;
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
 
-void main(String[] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     Button button = new Button(shell,SWT.NONE);
@@ -46,11 +49,7 @@ void main(String[] args) {
     shell.pack();
     shell.open();
     button.addListener(SWT.MouseDown, dgListener( (Event e){
-        version(Tango){
-            Stdout.formatln("Mouse Down  (Button: {} x: {} y: {})",e.button,e.x,e.y);
-        } else { // Phobos
-            writefln("Mouse Down  (Button: %s x: %s y: %s)",e.button,e.x,e.y);
-        }
+        writeln(Format("Mouse Down  (Button: {} x: {} y: {})", e.button, e.x, e.y));
     }));
     Point pt = display.map(shell, null, 50, 50);
     Thread thread = new Thread({

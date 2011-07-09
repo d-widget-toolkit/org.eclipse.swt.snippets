@@ -27,6 +27,9 @@ import java.lang.all;
 
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
@@ -39,19 +42,10 @@ void main (String [] args) {
     timer = dgRunnable( {
         Point point = display.getCursorLocation ();
         Rectangle rect = shell.getBounds ();
-        version(Tango){
-            if (rect.contains (point)) {
-                Stdout("In\n");
-            } else {
-                Stdout("Out\n");
-            }
-            Stdout.flush();
-        } else { // Phobos
-            if (rect.contains (point)) {
-                writeln("In");
-            } else {
-                writeln("Out");
-            }
+        if (rect.contains (point)) {
+            writeln("In");
+        } else {
+            writeln("Out");
         }
         display.timerExec (time, timer);
     });

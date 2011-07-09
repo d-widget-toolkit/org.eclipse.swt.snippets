@@ -42,7 +42,7 @@ void main() {
     b3.setSelection(true);
 
     // This function does not appear in the api for swt 3.3
-    //	b3.setGrayed(true);
+    b3.setGrayed(true);
 
     shell.pack();
     shell.open();

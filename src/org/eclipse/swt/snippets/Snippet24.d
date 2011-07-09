@@ -30,11 +30,14 @@ import org.eclipse.swt.layout.RowLayout;
 import java.lang.all;
 version(Tango){
     import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
 } else { // Phobos
     import std.stdio;
 }
 
-void main (String [] args) {
+void main() {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout (new RowLayout ());
@@ -42,22 +45,14 @@ void main (String [] args) {
     combo.setItems (["A-1", "B-1", "C-1"]);
     Text text = new Text (shell, SWT.SINGLE | SWT.BORDER);
     text.setText ("some text");
-    combo.addListener (SWT.DefaultSelection, new class() Listener{
+    combo.addListener (SWT.DefaultSelection, new class Listener{
         public void handleEvent (Event e) {
-            version(Tango){
-                Stdout(e.widget.toString() ~ " - Default Selection\n");
-            } else { // Phobos
-                writeln(e.widget.toString() ~ " - Default Selection");
-            }
+            writeln(e.widget.toString() ~ " - Default Selection");
         }
     });
-    text.addListener (SWT.DefaultSelection, new class() Listener{
+    text.addListener (SWT.DefaultSelection, new class Listener{
         public void handleEvent (Event e) {
-            version(Tango){
-                Stdout(e.widget.toString() ~ " - Default Selection\n");
-            } else { // Phobos
-                writeln(e.widget.toString() ~ " - Default Selection");
-            }
+            writeln(e.widget.toString() ~ " - Default Selection");
         }
     });
     shell.pack ();

@@ -35,7 +35,7 @@ version(Tango){
     import std.stdio;
 }
 
-void main (String[] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setBounds (200, 200, 400, 400);

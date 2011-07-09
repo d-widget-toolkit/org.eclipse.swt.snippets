@@ -94,7 +94,7 @@ int main() {
     return iRes;
 }
 
-private static void printTypeInfo(OleAutomation oOleAutoObj, FormatOutput!(char) oOut)
+void printTypeInfo(OleAutomation oOleAutoObj, FormatOutput!(char) oOut)
 {
     org.eclipse.swt.internal.ole.win32.OAIDL.TYPEATTR * pTypeAttr = oOleAutoObj.getTypeInfoAttributes();
     if (pTypeAttr !is null) {
@@ -156,7 +156,8 @@ private static void printTypeInfo(OleAutomation oOleAutoObj, FormatOutput!(char)
         }
     }
 }
-private static String getTypeName(int iType) {
+
+String getTypeName(int iType) {
     int iBase = iType & ~OLE.VT_BYREF;
     String sDsc = null;
     switch (iBase) {
@@ -217,7 +218,8 @@ String getDirection(int bDirection) {
     }
     return sDirString;
 }
-private static String getInvokeKind(int iInvKind) {
+
+String getInvokeKind(int iInvKind) {
     switch (iInvKind) {
         case OLE.INVOKE_FUNC : return "METHOD";
         case OLE.INVOKE_PROPERTYGET : return "PROPERTY GET";

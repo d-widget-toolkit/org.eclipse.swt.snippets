@@ -57,7 +57,7 @@ import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Event;
 
-public static void main(String [] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     GridLayout gridLayout = new GridLayout();
@@ -115,7 +115,7 @@ public static void main(String [] args) {
     progressBar.setLayoutData(data);
 
     /* event handling */
-    Listener listener = new class() Listener {
+    Listener listener = new class Listener {
         public void handleEvent(Event event) {
             ToolItem item = cast(ToolItem)event.widget;
             String string = item.getText();
@@ -126,7 +126,7 @@ public static void main(String [] args) {
             else if (string.equals("Go")) browser.setUrl(location.getText());
        }
     };
-    browser.addProgressListener(new class() ProgressListener {
+    browser.addProgressListener(new class ProgressListener {
         public void changed(ProgressEvent event) {
                 if (event.total == 0) return;                            
                 int ratio = event.current * 100 / event.total;
@@ -136,12 +136,12 @@ public static void main(String [] args) {
             progressBar.setSelection(0);
         }
     });
-    browser.addStatusTextListener(new class() StatusTextListener {
+    browser.addStatusTextListener(new class StatusTextListener {
         public void changed(StatusTextEvent event) {
             status.setText(event.text); 
         }
     });
-    browser.addLocationListener(new class() LocationListener {
+    browser.addLocationListener(new class LocationListener {
         public void changed(LocationEvent event) {
             if (event.top) location.setText(event.location);
         }
@@ -153,7 +153,7 @@ public static void main(String [] args) {
     itemStop.addListener(SWT.Selection, listener);
     itemRefresh.addListener(SWT.Selection, listener);
     itemGo.addListener(SWT.Selection, listener);
-    location.addListener(SWT.DefaultSelection, new class() Listener {
+    location.addListener(SWT.DefaultSelection, new class Listener {
         public void handleEvent(Event e) {
             browser.setUrl(location.getText());
         }

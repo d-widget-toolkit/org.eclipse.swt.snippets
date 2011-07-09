@@ -30,19 +30,19 @@ import org.eclipse.swt.layout.RowLayout;
 
 import java.lang.all;
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout(new RowLayout ());
     Button button1 = new Button(shell, SWT.PUSH);
     button1.setText("Can't Traverse");
-    button1.addTraverseListener(new class() TraverseListener{
+    button1.addTraverseListener(new class TraverseListener{
         public void keyTraversed(TraverseEvent e) {
             switch (e.detail) {
             case SWT.TRAVERSE_TAB_NEXT:
-            case SWT.TRAVERSE_TAB_PREVIOUS: {
-                    e.doit = false;
-                }
+            case SWT.TRAVERSE_TAB_PREVIOUS:
+                e.doit = false;
+            default:
             }
         }
     });

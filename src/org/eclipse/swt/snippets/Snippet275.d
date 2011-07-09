@@ -37,8 +37,8 @@ version(Tango){
     import std.conv;
 }
 
-static String value;
-public static void main () {
+void main () {
+    String value;
 	int INTERVAL = 888;
 	Display display = new Display ();
 	Image image = new Image (display, 750, 750);

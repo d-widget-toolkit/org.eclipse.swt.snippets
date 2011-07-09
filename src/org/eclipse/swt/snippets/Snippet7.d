@@ -38,7 +38,7 @@ version(Tango){
     import std.conv;
 }
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Image image = new Image (display, 16, 16);
     GC gc = new GC (image);
@@ -56,7 +56,7 @@ void main (String [] args) {
             if (table.isDisposed ()) return;
 
             int [] index =  [i];
-            display.syncExec (new class() Runnable{
+            display.syncExec (new class Runnable{
                 public void run () {
                     if (table.isDisposed ()) return;
                     TableItem item = new TableItem (table, SWT.NONE);

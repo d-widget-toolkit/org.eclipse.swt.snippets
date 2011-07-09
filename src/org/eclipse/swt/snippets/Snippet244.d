@@ -36,7 +36,7 @@ version(JIVE){
 }
 
 void main() {
-    static String SEARCH_STRING = "box";
+    const String SEARCH_STRING = "box";
     Display display = new Display();
     Color RED = display.getSystemColor(SWT.COLOR_RED);
     Shell shell = new Shell(display);

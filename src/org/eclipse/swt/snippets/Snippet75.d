@@ -37,7 +37,7 @@ import org.eclipse.swt.layout.RowLayout;
 import java.lang.all;
 
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Shell shell = new Shell (display);
     shell.setLayout (new RowLayout ());

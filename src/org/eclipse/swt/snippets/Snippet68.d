@@ -32,7 +32,7 @@ import java.lang.all;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 
-void main (String [] args) {
+void main () {
     Display display = new Display ();
     Color red = display.getSystemColor (SWT.COLOR_RED);
     Color blue = display.getSystemColor (SWT.COLOR_BLUE);

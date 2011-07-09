@@ -30,41 +30,43 @@ import org.eclipse.swt.layout.RowData;
 
 import java.lang.all;
 
-void main(String[] args){
-    Snippet108.main(args);
+version(Tango){
+    import tango.io.Stdout;
+    void writeln(in char[] line) {
+        Stdout(line)("\n").flush();
+    }
+} else { // Phobos
+    import std.stdio;
 }
 
-public class Snippet108 {
-
-    public static void main (String [] args) {
-        Display display = new Display ();
-        Shell shell = new Shell (display);
-        Label label = new Label (shell, SWT.NONE);
-        label.setText ("Enter your name:");
-        Text text = new Text (shell, SWT.BORDER);
-        text.setLayoutData (new RowData (100, SWT.DEFAULT));
-        Button ok = new Button (shell, SWT.PUSH);
-        ok.setText ("OK");
-        ok.addSelectionListener(new class() SelectionAdapter {
-            public void widgetSelected(SelectionEvent e) {
-                getDwtLogger().info( __FILE__, __LINE__, "OK");
-            }
-        });
-        Button cancel = new Button (shell, SWT.PUSH);
-        cancel.setText ("Cancel");
-        cancel.addSelectionListener(new class() SelectionAdapter {
-            public void widgetSelected(SelectionEvent e) {
-                getDwtLogger().info( __FILE__, __LINE__, "Cancel");
-            }
-        });
-        shell.setDefaultButton (cancel);
-        shell.setLayout (new RowLayout ());
-        shell.pack ();
-        shell.open ();
-        while (!shell.isDisposed ()) {
-            if (!display.readAndDispatch ()) display.sleep ();
+void main () {
+    Display display = new Display ();
+    Shell shell = new Shell (display);
+    Label label = new Label (shell, SWT.NONE);
+    label.setText ("Enter your name:");
+    Text text = new Text (shell, SWT.BORDER);
+    text.setLayoutData (new RowData (100, SWT.DEFAULT));
+    Button ok = new Button (shell, SWT.PUSH);
+    ok.setText ("OK");
+    ok.addSelectionListener(new class SelectionAdapter {
+        public void widgetSelected(SelectionEvent e) {
+            writeln("OK");
         }
-        display.dispose ();
+    });
+    Button cancel = new Button (shell, SWT.PUSH);
+    cancel.setText ("Cancel");
+    cancel.addSelectionListener(new class SelectionAdapter {
+        public void widgetSelected(SelectionEvent e) {
+            writeln("Cancel");
+        }
+    });
+    shell.setDefaultButton (cancel);
+    shell.setLayout (new RowLayout ());
+    shell.pack ();
+    shell.open ();
+    while (!shell.isDisposed ()) {
+        if (!display.readAndDispatch ()) display.sleep ();
     }
+    display.dispose ();
 }
 

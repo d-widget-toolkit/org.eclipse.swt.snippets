@@ -86,20 +86,9 @@ void main() {
     editor.grabHorizontal = true;
     editor.grabVertical = true;
 
-    cursor.addSelectionListener(new class(table, editor, cursor) SelectionAdapter {
+    cursor.addSelectionListener(new class SelectionAdapter {
         // when the TableEditor is over a cell, select the corresponding row in
         // the table
-
-        Table table;
-        ControlEditor editor;
-        TableCursor cursor;
-        this(Table table_, ControlEditor editor_, TableCursor cursor_)
-        {
-            table = table_;
-            editor = editor_;
-            cursor = cursor_;
-        }
-
         public void widgetSelected(SelectionEvent e) {
             table.setSelection([cursor.getRow()]);
         }
@@ -150,12 +139,7 @@ void main() {
     });
     // Hide the TableCursor when the user hits the "CTRL" or "SHIFT" key.
     // This alows the user to select multiple items in the table.
-    cursor.addKeyListener(new class(cursor) KeyAdapter {
-        TableCursor cursor;
-        this(TableCursor cursor_)
-        {
-            cursor = cursor_;
-        }
+    cursor.addKeyListener(new class KeyAdapter {
         public void keyPressed(KeyEvent e) {
             if (e.keyCode == SWT.CTRL
                 || e.keyCode == SWT.SHIFT
@@ -167,15 +151,7 @@ void main() {
     });
     // When the user double clicks in the TableCursor, pop up a text editor so that
     // they can change the text of the cell
-    cursor.addMouseListener(new class(cursor, editor) MouseAdapter {
-        ControlEditor editor;
-        TableCursor cursor;
-        this(TableCursor cursor_, ControlEditor editor_)
-        {
-            cursor = cursor_;
-            editor = editor_;
-        }
-
+    cursor.addMouseListener(new class MouseAdapter {
         public void mouseDown(MouseEvent e) {
             Text text = new Text(cursor, SWT.NONE);
             TableItem row = cursor.getRow();
@@ -222,14 +198,7 @@ void main() {
 
     // Show the TableCursor when the user releases the "SHIFT" or "CTRL" key.
     // This signals the end of the multiple selection task.
-    table.addKeyListener(new class(table, cursor) KeyAdapter {
-        Table table;
-        TableCursor cursor;
-        this(Table table_, TableCursor cursor_)
-        {
-            table = table_;
-            cursor = cursor_;
-        }
+    table.addKeyListener(new class KeyAdapter {
         public void keyReleased(KeyEvent e) {
             if (e.keyCode == SWT.CONTROL && (e.stateMask & SWT.SHIFT) != 0)
                 return;

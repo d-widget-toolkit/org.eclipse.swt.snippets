@@ -40,7 +40,7 @@ version(Tango){
     import std.conv;
 }
 
-void main(String[] args) {
+void main() {
     Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
@@ -59,7 +59,7 @@ void main(String[] args) {
     text.setText("This tab can never be closed");
     specialItem.setControl(text);
 
-    folder.addCTabFolder2Listener(new class() CTabFolder2Adapter {
+    folder.addCTabFolder2Listener(new class CTabFolder2Adapter {
         public void close(CTabFolderEvent event) {
             if (event.item == specialItem) {
                 event.doit = false;

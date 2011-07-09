@@ -41,17 +41,14 @@ version(Tango){
     import std.conv;
 }
 
-static Display display;
-static Shell shell;
-static CoolBar coolBar;
-static Menu chevronMenu = null;
-
 
 void main () {
-    display = new Display ();
-    shell = new Shell (display);
+    Menu chevronMenu = null;
+    
+    auto display = new Display ();
+    auto shell = new Shell (display);
     shell.setLayout(new GridLayout());
-    coolBar = new CoolBar(shell, SWT.FLAT | SWT.BORDER);
+    auto coolBar = new CoolBar(shell, SWT.FLAT | SWT.BORDER);
     coolBar.setLayoutData(new GridData(GridData.FILL_BOTH));
     ToolBar toolBar = new ToolBar(coolBar, SWT.FLAT | SWT.WRAP);
     int minWidth = 0;
@@ -70,7 +67,7 @@ void main () {
     coolItem.setMinimumSize(minWidth, coolSize.y);
     coolItem.setPreferredSize(coolSize);
     coolItem.setSize(coolSize);
-    coolItem.addSelectionListener(new class() SelectionAdapter {
+    coolItem.addSelectionListener(new class SelectionAdapter {
         public void widgetSelected(SelectionEvent event) {
             if (event.detail == SWT.ARROW) {
                 CoolItem item = cast(CoolItem) event.widget;
