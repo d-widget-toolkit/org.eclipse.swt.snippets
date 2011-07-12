@@ -57,8 +57,7 @@ version(Tango){
     import tango.text.Unicode;
 } else { // Phobos
     import std.file;
-    import std.ctype;
-    alias isprint isPrintable;
+    import std.ascii; //FIXME: no Unicode support in std.ascii.isPrintable
 }
 
 void main(){
