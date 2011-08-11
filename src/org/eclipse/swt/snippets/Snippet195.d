@@ -34,6 +34,8 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.opengl.GLCanvas;
 import org.eclipse.swt.opengl.GLData;
 
+import java.lang.all;
+
 import derelict.opengl.gl;
 import derelict.opengl.glu;
 

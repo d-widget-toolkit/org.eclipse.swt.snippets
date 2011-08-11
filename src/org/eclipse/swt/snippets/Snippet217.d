@@ -48,7 +48,7 @@ version(JIVE){
     import jive.stacktrace;
 }
 
-const OBJ_MARKER = "\uFFFC";
+const char[] OBJ_MARKER = "\uFFFC"; //should be char[] because of dmd v1.069 @@@BUG@@@ Issue 6467
 void main() {
     static StyledText styledText;
     static String text =
@@ -91,6 +91,7 @@ void main() {
     int lastOffset = 0;
     for (int i = 0; i < controls.length; i++) {
         int offset = text.indexOf( OBJ_MARKER, lastOffset);
+        assert(offset != -1, "Can't find OBJ_MARKER");
         offsets[i] = offset;
         addControl(controls[i], offsets[i]);
         lastOffset = offset + OBJ_MARKER.length;
