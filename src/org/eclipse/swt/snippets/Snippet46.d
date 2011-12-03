@@ -62,6 +62,7 @@ void main () {
                 case SWT.MouseUp:
                 offset [0] = null;
                 break;
+                default:
             }
         }
     };
