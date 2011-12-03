@@ -50,7 +50,7 @@ version(JIVE){
 
 version(D_Version2)
 {
-const string OBJ_MARKER = "\uFFFC"; //should be char[] because of dmd v1.069 @@@BUG@@@ Issue 6467
+const string OBJ_MARKER = "\uFFFC"; 
 }
 else
 {
