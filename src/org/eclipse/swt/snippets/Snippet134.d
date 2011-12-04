@@ -81,6 +81,7 @@ void main() {
                         shell.setLocation(p.x - origin.x, p.y - origin.y);
                     }
                     break;
+                default:
             }
         }
     };

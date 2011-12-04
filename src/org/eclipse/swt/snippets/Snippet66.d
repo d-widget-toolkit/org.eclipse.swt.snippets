@@ -42,6 +42,7 @@ void main () {
                 lastX = event.x;
                 lastY = event.y;
                 break;
+            default:
             }
         }
     };

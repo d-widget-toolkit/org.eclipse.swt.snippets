@@ -48,7 +48,14 @@ version(JIVE){
     import jive.stacktrace;
 }
 
-const char[] OBJ_MARKER = "\uFFFC"; //should be char[] because of dmd v1.069 @@@BUG@@@ Issue 6467
+version(D_Version2)
+{
+const string OBJ_MARKER = "\uFFFC"; 
+}
+else
+{
+const char[] OBJ_MARKER = "\uFFFC"; //should be char[] because of dmd v1.069 @@@BUG@@@ Issue 6467    
+}
 void main() {
     static StyledText styledText;
     static String text =
