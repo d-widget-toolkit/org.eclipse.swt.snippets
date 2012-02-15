@@ -34,7 +34,6 @@ version(Tango){
 } else {
     import std.string;
     import std.uni;
-    alias isUniUpper isUpper;
 }
 
 void main() {
@@ -51,7 +50,7 @@ void main() {
             lstring. length = string.length;
             toLower(string, lstring);
         } else {
-            lstring = tolower(string);
+            lstring = toLower(string);
         }
         for (int i = 0; i < string.length; i++) {
             char ch = string.charAt(i);
