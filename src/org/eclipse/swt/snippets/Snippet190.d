@@ -60,7 +60,7 @@ void main () {
             version(Tango){
                 Stdout.formatln("Selection is {}", selection / Math.pow(10.f, digits));
             } else { // Phobos
-                writefln("Selection is %s", selection / Math.pow(10.f, digits));
+                writefln("Selection is %s", selection / Math.pow(10f, digits));
             }
         }
     });
