@@ -46,7 +46,7 @@ version(Tango){
     import core.exception;
     import core.thread : ThreadException;
     struct FileConst {
-        static const PathSeparatorChar = sep;
+        static const PathSeparatorChar = dirSeparator;
     }
 }
 
@@ -83,7 +83,7 @@ void main () {
             }
         } else { // Phobos
             try {
-                loadAllImages(filename.getDirName, filenames);
+                loadAllImages(filename.dirName, filenames);
             } catch (SWTException e) {
                 writeln("There was an error loading an image.");
                 e.printStackTrace();
