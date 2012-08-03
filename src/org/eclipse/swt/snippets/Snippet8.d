@@ -37,15 +37,15 @@ version(Tango){
     import std.file;
     import std.path;
     class FileSystem {
-        static string[] roots() {return [rel2abs(sep)];}
+        static string[] roots() {return [absolutePath(dirSeparator)];}
     }
     class FilePath {
         string path;
         this (string path) {this.path = path;}
         FilePath[] toList() {
             FilePath[] r;
-            foreach (file; listDir(path)) {
-                r ~= new FilePath(std.path.join(path, file));
+            foreach (string file; dirEntries(path, SpanMode.shallow)) {
+                r ~= new FilePath(std.path.buildPath(path, file));
             }
             return r;
         }
