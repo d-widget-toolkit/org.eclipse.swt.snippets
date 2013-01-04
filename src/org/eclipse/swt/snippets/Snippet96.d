@@ -89,11 +89,13 @@ void main() {
     cursor.addSelectionListener(new class SelectionAdapter {
         // when the TableEditor is over a cell, select the corresponding row in
         // the table
+        override
         public void widgetSelected(SelectionEvent e) {
             table.setSelection([cursor.getRow()]);
         }
         // when the user hits "ENTER" in the TableCursor, pop up a text editor so that
         // they can change the text of the cell
+        override
         public void widgetDefaultSelected(SelectionEvent e) {
             Text text = new Text(cursor, SWT.NONE);
             TableItem row = cursor.getRow();
@@ -107,6 +109,7 @@ void main() {
                     text = text_;
                     cursor = cursor_;
                 }
+                override
                 public void keyPressed(KeyEvent e) {
                     // close the text editor and copy the data over
                     // when the user hits "ENTER"
@@ -129,6 +132,7 @@ void main() {
                 {
                     text = text_;
                 }
+                override
                 public void focusLost(FocusEvent e) {
                     text.dispose();
                 }
@@ -140,6 +144,7 @@ void main() {
     // Hide the TableCursor when the user hits the "CTRL" or "SHIFT" key.
     // This alows the user to select multiple items in the table.
     cursor.addKeyListener(new class KeyAdapter {
+        override
         public void keyPressed(KeyEvent e) {
             if (e.keyCode == SWT.CTRL
                 || e.keyCode == SWT.SHIFT
@@ -152,6 +157,7 @@ void main() {
     // When the user double clicks in the TableCursor, pop up a text editor so that
     // they can change the text of the cell
     cursor.addMouseListener(new class MouseAdapter {
+        override
         public void mouseDown(MouseEvent e) {
             Text text = new Text(cursor, SWT.NONE);
             TableItem row = cursor.getRow();
@@ -165,6 +171,7 @@ void main() {
                     text = text_;
                     cursor = cursor_;
                 }
+                override
                 public void keyPressed(KeyEvent e) {
                     // close the text editor and copy the data over
                     // when the user hits "ENTER"
@@ -187,6 +194,7 @@ void main() {
                 {
                     text = text_;
                 }
+                override
                 public void focusLost(FocusEvent e) {
                     text.dispose();
                 }
@@ -199,6 +207,7 @@ void main() {
     // Show the TableCursor when the user releases the "SHIFT" or "CTRL" key.
     // This signals the end of the multiple selection task.
     table.addKeyListener(new class KeyAdapter {
+        override
         public void keyReleased(KeyEvent e) {
             if (e.keyCode == SWT.CONTROL && (e.stateMask & SWT.SHIFT) != 0)
                 return;

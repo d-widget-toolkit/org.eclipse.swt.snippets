@@ -55,6 +55,7 @@ void main() {
     b.setText("invoke long running job");
 
     b.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetSelected(SelectionEvent e) {
             Runnable longJob = new class Runnable {
                 bool done = false;

@@ -47,6 +47,7 @@ void main() {
     MenuItem copyItem = new MenuItem(menu, SWT.PUSH);
     copyItem.setText("Copy");
     copyItem.addSelectionListener(new class SelectionAdapter{
+        override
         public void widgetSelected(SelectionEvent e) {
             String selection = text.getSelectionText();
             if (selection.length == 0) return;
@@ -58,12 +59,14 @@ void main() {
     MenuItem pasteItem = new MenuItem(menu, SWT.PUSH);
     pasteItem.setText ("Paste");
     pasteItem.addSelectionListener(new class SelectionAdapter{
+        override
         public void widgetSelected(SelectionEvent e) {
             String string = stringcast(cb.getContents(TextTransfer.getInstance()));
             if (string !is null) text.insert(string);
         }
     });
     menu.addMenuListener(new class MenuAdapter{
+        override
         public void menuShown(MenuEvent e) {
             // is copy valid?
             String selection = text.getSelectionText();

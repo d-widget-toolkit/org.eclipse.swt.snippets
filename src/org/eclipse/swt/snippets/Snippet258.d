@@ -54,6 +54,7 @@ void main() {
         auto item = new ToolItem (toolBar, SWT.PUSH);
         item.setImage (image);
         item.addSelectionListener(new class SelectionAdapter {
+            override
             public void widgetSelected(SelectionEvent e) {
                 text.setText("");
                 version(Tango){
@@ -67,6 +68,7 @@ void main() {
     text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     text.setText("Search text");
     text.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetDefaultSelected(SelectionEvent e) {
             version(Tango){
                 if (e.detail == SWT.CANCEL) {

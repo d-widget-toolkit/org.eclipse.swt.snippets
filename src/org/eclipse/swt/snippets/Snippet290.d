@@ -34,6 +34,7 @@ void main() {
 	Display display = new Display();
 	Shell shell = new Shell(display);
 	shell.addMouseListener(new class MouseAdapter {
+		override
 		public void mouseUp(MouseEvent e) {
 			if (e.count == 1) {
 				version(Tango){
@@ -43,6 +44,7 @@ void main() {
 				}
 			}
 		}
+		override
 		public void mouseDoubleClick(MouseEvent e) {
 			version(Tango){
 				Stdout("Double-click").newline;

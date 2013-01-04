@@ -55,6 +55,7 @@ void main () {
     Button open = new Button (shell, SWT.PUSH);
     open.setText ("Open Dialog");
     open.addSelectionListener (new class SelectionAdapter{
+        override
         public void widgetSelected (SelectionEvent e) {
             dialog = new Shell (shell, SWT.DIALOG_TRIM);
             dialog.setLayout (new GridLayout (3, false));
@@ -69,6 +70,7 @@ void main () {
             ok.setText ("OK");
             ok.setLayoutData(new GridData (SWT.FILL, SWT.CENTER, false, false));
             ok.addSelectionListener (new class SelectionAdapter{
+                override
                 void widgetSelected (SelectionEvent e) {
                     version(Tango){
                         Stdout.formatln("Calendar date selected (MM/DD/YYYY) = {:d02}/{:d02}/{:d04}",

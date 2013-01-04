@@ -68,6 +68,7 @@ void main () {
     coolItem.setPreferredSize(coolSize);
     coolItem.setSize(coolSize);
     coolItem.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetSelected(SelectionEvent event) {
             if (event.detail == SWT.ARROW) {
                 CoolItem item = cast(CoolItem) event.widget;
