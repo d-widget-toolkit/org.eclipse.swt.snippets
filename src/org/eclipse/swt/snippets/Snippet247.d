@@ -58,6 +58,7 @@ void main () {
     button.pack();
     button.setText("OK");
     button.addSelectionListener(new class SelectionAdapter{
+        override
         public void widgetSelected(SelectionEvent e) {
             version(Tango){
                 Stdout("OK selected\n");

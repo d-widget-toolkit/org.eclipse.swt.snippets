@@ -41,6 +41,7 @@ void main () {
 
     DateTime calendar = new DateTime (shell, SWT.CALENDAR);
     calendar.addSelectionListener (new class SelectionAdapter{
+        override
         void widgetSelected (SelectionEvent e) {
             version(Tango){
                 Stdout("calendar date changed\n");
@@ -53,6 +54,7 @@ void main () {
 
     DateTime time = new DateTime (shell, SWT.TIME);
     time.addSelectionListener (new class SelectionAdapter{
+        override
         void widgetSelected (SelectionEvent e) {
             version(Tango){
                 Stdout("time changed\n");

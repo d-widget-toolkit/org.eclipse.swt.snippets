@@ -60,6 +60,7 @@ void main() {
     specialItem.setControl(text);
 
     folder.addCTabFolder2Listener(new class CTabFolder2Adapter {
+        override
         public void close(CTabFolderEvent event) {
             if (event.item == specialItem) {
                 event.doit = false;

@@ -46,6 +46,7 @@ void main() {
     combo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     combo.setText("Here is some text");
     combo.addSelectionListener(new class SelectionAdapter{
+        override
         public void widgetDefaultSelected(SelectionEvent e) {
             writeln("Combo default selected (overrides default button)");
         }
@@ -61,6 +62,7 @@ void main() {
     Button button = new Button(shell, SWT.PUSH);
     button.setText("Ok");
     button.addSelectionListener(new class SelectionAdapter{
+        override
         public void widgetSelected(SelectionEvent e) {
             writeln("Button selected");
         }

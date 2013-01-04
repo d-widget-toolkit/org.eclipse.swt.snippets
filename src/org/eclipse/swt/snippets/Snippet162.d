@@ -73,6 +73,7 @@ void main () {
 
     Accessible accessible = table.getAccessible ();
     accessible.addAccessibleListener( new class AccessibleAdapter  {
+        override
         public void getName (AccessibleEvent e) {
             super.getName (e);
             if (e.childID >= 0 && e.childID < table.getItemCount ()) {
@@ -100,6 +101,7 @@ void main () {
     });
 
     accessible.addAccessibleControlListener (new class AccessibleControlAdapter  {
+        override
         public void getState (AccessibleControlEvent e) {
             super.getState (e);
             if (e.childID >= 0 && e.childID < table.getItemCount ()) {

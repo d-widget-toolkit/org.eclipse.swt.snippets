@@ -103,6 +103,7 @@ class Snippet133{
             item.setText("&Open...");
             item.setAccelerator(SWT.CTRL + 'O');
             item.addSelectionListener(new class SelectionAdapter{
+                override
                 public void widgetSelected(SelectionEvent event) {
                     menuOpen();
                 }
@@ -110,6 +111,7 @@ class Snippet133{
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("Font...");
             item.addSelectionListener(new class SelectionAdapter{
+                override
                 public void widgetSelected(SelectionEvent event){
                     menuFont();
                 }
@@ -117,6 +119,7 @@ class Snippet133{
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("Foreground Color...");
             item.addSelectionListener(new class SelectionAdapter{
+                override
                 public void widgetSelected(SelectionEvent event){
                     menuForegroundColor();
                 }
@@ -124,6 +127,7 @@ class Snippet133{
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("Background Color...");
             item.addSelectionListener(new class SelectionAdapter{
+                override
                 public void widgetSelected(SelectionEvent event) {
                     menuBackgroundColor();
                 }
@@ -132,6 +136,7 @@ class Snippet133{
             item.setText("&Print...");
             item.setAccelerator(SWT.CTRL + 'P');
             item.addSelectionListener(new class SelectionAdapter{
+                override
                 public void widgetSelected(SelectionEvent event) {
                     menuPrint();
                 }
@@ -140,6 +145,7 @@ class Snippet133{
             item = new MenuItem(fileMenu, SWT.PUSH);
             item.setText("E&xit");
             item.addSelectionListener(new class SelectionAdapter{
+                override
                 public void widgetSelected(SelectionEvent event){
                     System.exit(0);
                 }

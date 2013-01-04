@@ -50,6 +50,7 @@ version(Tango){
             return r;
         }
         bool isFolder() {return exists(path) && isDir(path);}
+        override
         string toString() {return path;}
     }
 }
