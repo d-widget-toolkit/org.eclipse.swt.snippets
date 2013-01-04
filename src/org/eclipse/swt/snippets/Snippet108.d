@@ -49,6 +49,7 @@ void main () {
     Button ok = new Button (shell, SWT.PUSH);
     ok.setText ("OK");
     ok.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetSelected(SelectionEvent e) {
             writeln("OK");
         }
@@ -56,6 +57,7 @@ void main () {
     Button cancel = new Button (shell, SWT.PUSH);
     cancel.setText ("Cancel");
     cancel.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetSelected(SelectionEvent e) {
             writeln("Cancel");
         }

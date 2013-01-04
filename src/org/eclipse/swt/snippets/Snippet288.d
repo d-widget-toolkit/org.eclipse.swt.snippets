@@ -194,6 +194,7 @@ void startAnimationThreads() {
                 //isDaemon = true;
                 super(&run);
             }
+            override
             void run() {
                 try {
                     int repeatCount = loader[id].repeatCount;

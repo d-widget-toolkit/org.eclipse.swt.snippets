@@ -52,6 +52,7 @@ void main() {
     combo.setText("item0");
 
     combo.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetSelected(SelectionEvent e) {
             writeln("Item selected");
         };

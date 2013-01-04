@@ -54,6 +54,7 @@ void main () {
     // set the seletion to 3.456
     spinner.setSelection(3456);
     spinner.addSelectionListener(new class SelectionAdapter {
+        override
         public void widgetSelected(SelectionEvent e) {
             int selection = spinner.getSelection();
             float digits = spinner.getDigits();
