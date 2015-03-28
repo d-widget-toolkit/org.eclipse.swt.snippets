@@ -61,6 +61,7 @@ void main(String[] args) {
             writefln("Mouse Wheel event %s", e);
         }
     }));
+    bool disposed = false;
     Point pt = display.map(shell, null, 50, 50);
     Thread thread = new Thread({
         Event event;
@@ -71,7 +72,12 @@ void main(String[] args) {
             event.x = pt.x;
             event.y = pt.y;
             event.count = -2;
-            display.post(event);
+            if (disposed) return;
+            display.syncExec(new class Runnable {
+                override void run() {
+                    display.post(event);
+                }
+            });
             try {
                 Thread.sleep(400);
             } catch (InterruptedException e) {}
@@ -87,5 +93,7 @@ void main(String[] args) {
     while (!shell.isDisposed()) {
         if (!display.readAndDispatch()) display.sleep();
     }
+    disposed = true;
+    thread.join();
     display.dispose();
 }

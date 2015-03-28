@@ -86,7 +86,7 @@ void main() {
     void onVerify(Event e) {
         int start = e.start;
         int replaceCharCount = e.end - e.start;
-        int newCharCount = e.text.length;
+        ptrdiff_t newCharCount = e.text.length;
         for (int i = 0; i < offsets.length; i++) {
             int offset = offsets[i];
             if (start <= offset && offset < start + replaceCharCount) {

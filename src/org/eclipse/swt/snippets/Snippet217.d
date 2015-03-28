@@ -95,9 +95,9 @@ void main() {
     combo.add("another item");
     controls[1] = combo;
     offsets = new int[controls.length];
-    int lastOffset = 0;
+    ptrdiff_t lastOffset = 0;
     for (int i = 0; i < controls.length; i++) {
-        int offset = text.indexOf( OBJ_MARKER, lastOffset);
+        int offset = text.indexOf( OBJ_MARKER, cast(int)lastOffset);
         assert(offset != -1, "Can't find OBJ_MARKER");
         offsets[i] = offset;
         addControl(controls[i], offsets[i]);
@@ -107,7 +107,7 @@ void main() {
     void onVerify(Event e) {
         int start = e.start;
         int replaceCharCount = e.end - e.start;
-        int newCharCount = e.text.length;
+        ptrdiff_t newCharCount = e.text.length;
         for (int i = 0; i < offsets.length; i++) {
             int offset = offsets[i];
             if (start <= offset && offset < start + replaceCharCount) {

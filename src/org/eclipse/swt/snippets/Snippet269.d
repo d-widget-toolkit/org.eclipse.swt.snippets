@@ -36,7 +36,7 @@ void main() {
     combo.select (0);
     shell.pack ();
     shell.open ();
-    int stringLength = combo.getText().length;
+    int stringLength = cast(int)combo.getText().length;
     combo.setSelection (new Point (stringLength, stringLength));
     while (!shell.isDisposed ()) {
         if (!display.readAndDispatch ()) display.sleep ();

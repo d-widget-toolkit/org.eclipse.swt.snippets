@@ -60,17 +60,29 @@ void main() {
                 Event event = new Event();
                 event.type = SWT.KeyDown;
                 event.keyCode = SWT.SHIFT;
-                display.post(event);    
+                display.syncExec(new class Runnable {
+                    override void run() {
+                        display.post(event);
+                    }
+                });
             }
             Event event = new Event();
             event.type = SWT.KeyDown;
             event.character = ch;
-            display.post(event);
+            display.syncExec(new class Runnable {
+                override void run() {
+                    display.post(event);
+                }
+            });
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {}
             event.type = SWT.KeyUp;
-            display.post(event);
+            display.syncExec(new class Runnable {
+                override void run() {
+                    display.post(event);
+                }
+            });
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {}
@@ -78,7 +90,11 @@ void main() {
                 event = new Event();
                 event.type = SWT.KeyUp;
                 event.keyCode = SWT.SHIFT;
-                display.post(event);    
+                display.syncExec(new class Runnable {
+                    override void run() {
+                        display.post(event);
+                    }
+                });
             }
         }
     });

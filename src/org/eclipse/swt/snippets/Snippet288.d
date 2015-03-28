@@ -72,7 +72,7 @@ void main () {
     dialog.setFilterExtensions(["*.gif"]);
     String filename = dialog.open();
     String[] filenames = dialog.getFileNames();
-    int numToolBarItems = filenames.length;
+    int numToolBarItems = cast(int)filenames.length;
     if (numToolBarItems > 0) {
         version(Tango){
             try {
@@ -115,7 +115,7 @@ void main () {
 }
 
 void loadAllImages(String directory, String[] filenames) {
-    int numItems = filenames.length;
+    int numItems = cast(int)filenames.length;
     loader.length = numItems;
     imageDataArray.length = numItems;
     image.length = numItems;
@@ -124,7 +124,7 @@ void loadAllImages(String directory, String[] filenames) {
         int fullWidth = loader[i].logicalScreenWidth;
         int fullHeight = loader[i].logicalScreenHeight;
         imageDataArray[i] = loader[i].load(directory ~ FileConst.PathSeparatorChar ~ filenames[i]);
-        int numFramesOfAnimation = imageDataArray[i].length;
+        int numFramesOfAnimation = cast(int)imageDataArray[i].length;
         image[i] = new Image[numFramesOfAnimation];
         for (int j = 0; j < numFramesOfAnimation; j++) {
             if (j == 0) {
@@ -199,7 +199,7 @@ void startAnimationThreads() {
                 try {
                     int repeatCount = loader[id].repeatCount;
                     while (loader[id].repeatCount == 0 || repeatCount > 0) {
-                        imageDataIndex = (imageDataIndex + 1) % imageDataArray[id].length;
+                        imageDataIndex = (imageDataIndex + 1) % cast(int)imageDataArray[id].length;
                         if (!display.isDisposed()) {
                             display.asyncExec(new class Runnable {
 									public void run() {
