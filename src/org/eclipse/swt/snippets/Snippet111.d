@@ -58,7 +58,7 @@ void main () {
         case SWT.Verify: {
             String newText = text.getText ();
             String leftText = newText.substring (0, e.start);
-            String rightText = newText.substring (e.end, newText.length);
+            String rightText = newText.substring (e.end, cast(int)newText.length);
             GC gc = new GC (text);
             Point size = gc.textExtent (leftText ~ e.text ~ rightText);
             gc.dispose ();

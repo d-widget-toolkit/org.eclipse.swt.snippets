@@ -54,7 +54,7 @@ void main() {
                 try {
                     Integer.parseInt(newText);
                     combo.add(newText);
-                    combo.setSelection(new Point(0, newText.length));
+                    combo.setSelection(new Point(0, cast(int)newText.length));
                 } catch (NumberFormatException ex) {
                 }
             }

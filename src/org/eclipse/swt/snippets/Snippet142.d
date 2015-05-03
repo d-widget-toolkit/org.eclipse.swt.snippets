@@ -61,18 +61,30 @@ void main() {
         event.type = SWT.MouseMove;
         event.x = pt.x;
         event.y = pt.y;
-        display.post(event);
+        display.syncExec(new class Runnable {
+            override void run() {
+                display.post(event);
+            }
+        });
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {}
         event.type = SWT.MouseDown;
         event.button = 1;
-        display.post(event);
+        display.syncExec(new class Runnable {
+            override void run() {
+                display.post(event);
+            }
+        });
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {}
         event.type = SWT.MouseUp;
-        display.post(event);
+        display.syncExec(new class Runnable {
+            override void run() {
+                display.post(event);
+            }
+        });
     });
     thread.start();
     while (!shell.isDisposed()) {

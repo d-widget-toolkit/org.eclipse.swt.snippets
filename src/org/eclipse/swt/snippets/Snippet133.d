@@ -310,7 +310,7 @@ class Snippet133{
             x = leftMargin;
             y = topMargin;
             index = 0;
-            end = textToPrint.length;
+            end = cast(int)textToPrint.length;
             while(index < end){
                 char c = textToPrint.charAt(index);
                 index++;
