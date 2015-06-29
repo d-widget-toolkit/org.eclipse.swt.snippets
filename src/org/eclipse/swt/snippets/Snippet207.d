@@ -107,8 +107,8 @@ void main() {
                 gc.drawImage(image, 150, 475);
                 
                 // Rotate by 45 degrees 
-                float cos45 = Math.cos(45);
-                float sin45 = Math.sin(45);
+                float cos45 = Math.cos(45F);
+                float sin45 = Math.sin(45F);
                 transform.setElements(cos45, sin45, -sin45, cos45, 0, 0);
                 gc.setTransform(transform);
                 gc.drawImage(image, 350, 100);
