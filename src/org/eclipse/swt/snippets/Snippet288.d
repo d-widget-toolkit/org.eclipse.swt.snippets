@@ -40,7 +40,6 @@ version(Tango){
     import tango.core.Exception;
 } else { // Phobos
     import std.path;
-    import std.stream;
     import std.stdio;
     import std.conv;
     import core.exception;
