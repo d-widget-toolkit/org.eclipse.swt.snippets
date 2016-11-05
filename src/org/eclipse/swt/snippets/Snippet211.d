@@ -42,7 +42,7 @@ version(JIVE){
 
 void main() {
     static String text =
-        "You can set any font you want in a range. You can also set a baseline rise and all other old features"
+        "You can set any font you want in a range. You can also set a baseline rise and all other old features" ~
         " like background and foreground, and mix them any way you want. Totally awesome.";
 
     Display display = new Display();

@@ -76,12 +76,14 @@ void main () {
             switch (e.detail) {
             case SWT.TRAVERSE_RETURN:
                 item.setText (text.getText ());
-                //FALL THROUGH
+                goto case SWT.TRAVERSE_ESCAPE;
             case SWT.TRAVERSE_ESCAPE:
                 composite.dispose ();
                 e.doit = false;
+                break;
             default:
                 //no-op
+                break;
             }
             break;
         }
