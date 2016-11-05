@@ -61,7 +61,9 @@ void main () {
         case SWT.TRAVERSE_PAGE_NEXT:	
         case SWT.TRAVERSE_PAGE_PREVIOUS:
             e.doit = true;
+            break;
         default:
+            break;
         }
     }
 

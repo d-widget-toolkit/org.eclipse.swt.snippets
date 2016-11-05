@@ -59,7 +59,7 @@ const char[] OBJ_MARKER = "\uFFFC"; //should be char[] because of dmd v1.069 @@@
 void main() {
     static StyledText styledText;
     static String text =
-        "This snippet shows how to embed widgets in a StyledText.\n"
+        "This snippet shows how to embed widgets in a StyledText.\n" ~
         "Here is one: " ~ OBJ_MARKER ~ ", and here is another: " ~ OBJ_MARKER ~ ".";
     static int[] offsets;
     static Control[] controls;

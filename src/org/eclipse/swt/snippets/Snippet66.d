@@ -37,7 +37,7 @@ void main () {
                 GC gc = new GC (shell);
                 gc.drawLine (lastX, lastY, event.x, event.y);
                 gc.dispose ();
-                //FALL THROUGH
+                goto case SWT.MouseDown;
             case SWT.MouseDown:
                 lastX = event.x;
                 lastY = event.y;

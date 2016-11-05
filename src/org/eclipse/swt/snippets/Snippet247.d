@@ -50,7 +50,9 @@ void main () {
           switch (e.detail) {
           case SWT.TRAVERSE_RETURN:
               if ((e.stateMask & SWT.MOD1) != 0) e.doit = true;
+              break;
           default:
+              break;
           }
         }
     });

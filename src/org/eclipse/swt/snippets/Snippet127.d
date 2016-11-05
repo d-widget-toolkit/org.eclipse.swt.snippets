@@ -42,7 +42,9 @@ void main () {
             case SWT.TRAVERSE_TAB_NEXT:
             case SWT.TRAVERSE_TAB_PREVIOUS:
                 e.doit = false;
+                break;
             default:
+                break;
             }
         }
     });

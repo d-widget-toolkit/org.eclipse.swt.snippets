@@ -49,8 +49,8 @@ const String OBJ_MARKER = "\uFFFC";
 void main() {
     static StyledText styledText;
     static String text = 
-        "This snippet shows how to embed images in a StyledText.\n"
-        "Here is one: " ~ OBJ_MARKER ~ ", and here is another: " ~ OBJ_MARKER ~ "."
+        "This snippet shows how to embed images in a StyledText.\n" ~
+        "Here is one: " ~ OBJ_MARKER ~ ", and here is another: " ~ OBJ_MARKER ~ "." ~
         "Use the add button to add an image from your filesystem to the StyledText at the current caret offset.";
     static Image[] images;
     static int[] offsets;
