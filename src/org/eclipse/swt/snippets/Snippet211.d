@@ -64,7 +64,7 @@ void main() {
     styles[3].foreground = display.getSystemColor(SWT.COLOR_MAGENTA);
     styles[4] = new StyleRange();
     styles[4].font = font2;
-    styles[4].foreground = display.getSystemColor(SWT.COLOR_BLUE);;
+    styles[4].foreground = display.getSystemColor(SWT.COLOR_BLUE);
     styles[4].underline = true;
     styles[5] = new StyleRange();
     styles[5].rise = -data.getHeight() / 3;
